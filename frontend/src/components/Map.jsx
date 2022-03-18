@@ -1,10 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import GoogleMapReact from 'google-map-react';
+import axios from 'axios'
 const mapsAPI = process.env.REACT_APP_GOOGLEMAPSAPIKEY;
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const Marker = ({ text }) => <div>{text}</div>;
 
-export default function SimpleMap(){
+export default function SimpleMap(props){
+
+  const [coords, setCoords] = useState([]);
+  const [country, setCountry] = useState('');
+
   const defaultProps = {
     center: {
       lat: 10.99835602,
@@ -13,9 +18,24 @@ export default function SimpleMap(){
     zoom: 11
   };
 
+  const getCountry = (lat, lng) => {
+    axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lng}&limit=1&appid=f89361fb753c9647ce4d1c6ca62fdc3c`)
+      .then(response => {
+
+        setCountry(response.data[0].country);
+
+      })
+  }
+
   const handleApiLoaded = (map, maps) => {
     // use map and maps objects
   };
+
+  const onClick = mapsMouseEvent => {
+    // console.log(mapsMouseEvent.lat, mapsMouseEvent.lng);
+    setCoords([mapsMouseEvent.lat, mapsMouseEvent.lng])
+    getCountry(mapsMouseEvent.lat, mapsMouseEvent.lng)
+  }
 
   return (
     // Important! Always set the container height explicitly
@@ -26,11 +46,13 @@ export default function SimpleMap(){
         defaultZoom={defaultProps.zoom}
         yesIWantToUseGoogleMapApiInternals = {true}
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+        onClick={onClick}
       >
-        <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
-          text="My Marker"
+        <Marker
+          lat={coords[0]}
+          lng={coords[1]}
+          text={country}
+
         />
       </GoogleMapReact>
     </div>
