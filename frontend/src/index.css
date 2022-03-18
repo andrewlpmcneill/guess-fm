@@ -1,0 +1,13 @@
+* { 
+	box-sizing: border-box;
+}
+html, body {
+	min-height: 100%;
+	background: #fff;
+	color: #000;
+}
+
+	
+body, ul, ol, dl {
+	margin: 0;
+}
