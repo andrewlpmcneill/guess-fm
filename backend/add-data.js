@@ -5,6 +5,8 @@ const Game = db.Game;
 const Result = db.Result;
 const Station = db.Station;
 const Round = db.Round;
+const Guess = db.Guess;
+
 
 
 const addFile = async() => {
@@ -41,6 +43,11 @@ const addFile = async() => {
     game_id: 1,
     station_id: "6sWzPKV-",
     result: true
+  });
+
+  const guessExample = await Guess.create({
+    round_id: 1,
+    result: 1000
   });
 
   sequelize.close()
