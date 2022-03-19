@@ -1,9 +1,8 @@
 import React, {useState} from "react";
+import Marker from './Marker'
 import GoogleMapReact from 'google-map-react';
 import axios from 'axios'
 const mapsAPI = process.env.REACT_APP_GOOGLEMAPSAPIKEY;
-
-const Marker = ({ text }) => <div>{text}</div>;
 
 export default function SimpleMap(props){
 
@@ -12,18 +11,16 @@ export default function SimpleMap(props){
 
   const defaultProps = {
     center: {
-      lat: 10.99835602,
-      lng: 77.01502627
+      lat: 43.65381,
+      lng: -79.388055
     },
-    zoom: 11
+    zoom: 3
   };
 
   const getCountry = (lat, lng) => {
     axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lng}&limit=1&appid=f89361fb753c9647ce4d1c6ca62fdc3c`)
       .then(response => {
-
-        setCountry(response.data[0].country);
-
+        response.data[0] ? setCountry(response.data[0].country) : setCountry('N/A')
       })
   }
 
@@ -32,9 +29,8 @@ export default function SimpleMap(props){
   };
 
   const onClick = mapsMouseEvent => {
-    // console.log(mapsMouseEvent.lat, mapsMouseEvent.lng);
-    setCoords([mapsMouseEvent.lat, mapsMouseEvent.lng])
-    getCountry(mapsMouseEvent.lat, mapsMouseEvent.lng)
+    setCoords([mapsMouseEvent.lat, mapsMouseEvent.lng]);
+    getCountry(mapsMouseEvent.lat, mapsMouseEvent.lng);
   }
 
   return (
@@ -51,8 +47,8 @@ export default function SimpleMap(props){
         <Marker
           lat={coords[0]}
           lng={coords[1]}
+          icon={'https://i.imgur.com/DGy99y0.png'}
           text={country}
-
         />
       </GoogleMapReact>
     </div>

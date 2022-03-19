@@ -11,3 +11,9 @@ html, body {
 body, ul, ol, dl {
 	margin: 0;
 }
+
+.marker {
+	position: absolute;
+	left: -1.4em;
+	bottom: -1em;
+}
