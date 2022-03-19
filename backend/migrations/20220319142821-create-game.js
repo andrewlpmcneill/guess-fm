@@ -30,3 +30,5 @@ module.exports = {
     await queryInterface.dropTable('Games');
   }
 };
+
+
