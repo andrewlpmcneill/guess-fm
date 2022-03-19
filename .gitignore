@@ -2,5 +2,5 @@ backend/.env.test
 backend/.env.development
 backend/node_modules
 frontend/.env
-frontend/package-lock.json
 backend/package-lock.json
+frontend/package-lock.json
