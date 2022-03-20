@@ -2,7 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const { Sequelize } = require('sequelize');
 const db = require('./models');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
+const {randomStation} = require('./grab-data')
 const PORT = 8080;
 const ENVIRONMENT = 'dev';
 
@@ -10,7 +11,10 @@ const app = express();
 
 // middleware setup
 app.use(morgan(ENVIRONMENT));
-app.use(bodyParser);
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 
 app.get('/', (req, res) => {
   res.json({greetings: 'hello world'});
@@ -45,3 +49,10 @@ testSequelizeConn();
 // Game.create({
 //   creator_id: 1
 // });
+
+app.get('/stations',  async(req,res)=>{
+  const myRandomStations = await randomStation()
+
+  res.json(myRandomStations)
+
+})
