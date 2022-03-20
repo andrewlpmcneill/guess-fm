@@ -2,12 +2,14 @@ const express = require('express');
 const morgan = require('morgan');
 const { Sequelize } = require('sequelize');
 const db = require('./models');
-// const bodyParser = require('body-parser');
-const {randomStation} = require('./grab-data')
 const PORT = 8080;
 const ENVIRONMENT = 'dev';
 
 const app = express();
+const sequelize = new Sequelize('guessfm', 'labber', 'labber', {
+  host: 'localhost',
+  dialect: 'postgres'
+});
 
 // middleware setup
 app.use(morgan(ENVIRONMENT));
@@ -16,16 +18,14 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+
+//routes
 app.get('/', (req, res) => {
   res.json({greetings: 'hello world'});
 });
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
 
-const sequelize = new Sequelize('guessfm', 'labber', 'labber', {
-  host: 'localhost',
-  dialect: 'postgres'
-});
 
 //iife that checks for connection db
 (async() => {
@@ -37,11 +37,3 @@ const sequelize = new Sequelize('guessfm', 'labber', 'labber', {
   }
 })();
 
-
-
-// app.get('/stations',  async(req,res)=>{
-//   const myRandomStations = await randomStation()
-
-//   res.json(myRandomStations)
-
-// })
