@@ -1,9 +1,8 @@
 const express = require("express");
+const stationController = require('../controllers/stationController')
 const router = express.Router();
 
 
-router.get('/',(req, res) => {
-  res.json("this is the stations");
-});
+router.get('/', stationController.randomStations);
 
 module.exports = router;

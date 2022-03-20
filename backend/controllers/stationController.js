@@ -1,5 +1,8 @@
-const station = require('../models/station')
+const { Sequelize } = require('../models')
+const db = require('../models')
+const Station = db.Station;
 
+//grabs five random stations
 const randomStations = async(req, res) => {
   try{
     const myRandomStations = await Station.findAll({
