@@ -27,32 +27,21 @@ const sequelize = new Sequelize('guessfm', 'labber', 'labber', {
   dialect: 'postgres'
 });
 
-const testSequelizeConn = async() => {
+//iife that checks for connection db
+(async() => {
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
-};
+})();
 
-testSequelizeConn();
 
-// const User = db.User;
-// User.create({
-//   full_name: 'test',
-//   email: 'email',
-//   password: 'password'
-// });
 
-// const Game = db.Game;
-// Game.create({
-//   creator_id: 1
-// });
+// app.get('/stations',  async(req,res)=>{
+//   const myRandomStations = await randomStation()
 
-app.get('/stations',  async(req,res)=>{
-  const myRandomStations = await randomStation()
+//   res.json(myRandomStations)
 
-  res.json(myRandomStations)
-
-})
+// })
