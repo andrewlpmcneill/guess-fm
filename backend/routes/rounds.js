@@ -1,9 +1,8 @@
 const express = require("express");
+const roundController = require('../controllers/roundController')
 const router = express.Router();
 
 
-router.get('/',(req, res) => {
-  res.json("this is the rounds");
-});
+router.get('/', roundController.demoGreeting);
 
 module.exports = router;
