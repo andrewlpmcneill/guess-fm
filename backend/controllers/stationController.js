@@ -1,11 +1,11 @@
 const { Sequelize } = require('../models')
 const db = require('../models')
-const Station = db.Station;
+const station = db.Station;
 
-//grabs five random stations
+//retrieves five random stations from db
 const randomStations = async(req, res) => {
   try{
-    const myRandomStations = await Station.findAll({
+    const myRandomStations = await station.findAll({
       // attributes:[
       //   [Sequelize.fn('DISTINCT', Sequelize.col('country')), 'country']
       // ],
