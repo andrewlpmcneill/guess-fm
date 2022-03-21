@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Results from "../Results/Results"
 
-describe("Appointment", () => {
+describe("Results", () => {
   it("renders without crashing", () => {
     render(<Results />);
   });
