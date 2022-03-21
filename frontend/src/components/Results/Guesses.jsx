@@ -1,33 +1,16 @@
-import React, { Fragment } from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
-
+import React from "react";
+import GuessesItem from "./GuessesItem";
+import styles from "./Guesses.module.css"
 
 export default function Guesses(props) {
   const guessesData = props.data;
 
-  const guesses = guessesData.map((guess) => (
+  const guesses = guessesData
+    ? guessesData.map((guess) => <GuessesItem data={guess} />)
+    : <h3 className={styles.text}>No guesses currently</h3>;
 
-    <Fragment>
-      <ListItem>
-        <ListItemText primary={guess.distanceAway}/>
-      </ListItem>
-      <Divider/>
-    </Fragment>
-
-  ))
-
-  return (
-
-    <div variant="" className="guesses">
-      <h3>Guesses</h3>
-      <List>
-        {guesses}
-      </List>
-    </div>
-
-  )
-
+  return <div >
+    <h2 className={styles.text}>Guesses:</h2>
+    {guesses}
+    </div>;
 }
