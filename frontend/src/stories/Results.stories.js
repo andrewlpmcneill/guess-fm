@@ -2,11 +2,11 @@ import Results from "../components/Results/Results";
 import { storiesOf } from "@storybook/react";
 
 const DUMMY_GUESSES_DATA = [
-  { country:"Singapore", distanceAway: 4500, direction: "N" },
-  { country:"Zimbabwe", distanceAway: 6000, direction: "S" },
-  { country:"Monstserrat", distanceAway: 3200, direction: "SW" },
-  { country:"Italy", distanceAway: 1800, direction: "NE" },
-  { country:"Norway", distanceAway: 0, direction: "" },
+  {id: 1, country:"Singapore", distanceAway: 4500, direction: "N" },
+  {id: 2, country:"Zimbabwe", distanceAway: 6000, direction: "S" },
+  {id: 3, country:"Monstserrat", distanceAway: 3200, direction: "SW" },
+  {id: 4, country:"Italy", distanceAway: 1800, direction: "NE" },
+  {id: 5, country:"Norway", distanceAway: 0, direction: "" },
 ];
 
 const DUMMY_SCORE_DATA = 2
