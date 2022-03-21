@@ -1,0 +1,38 @@
+.guessItem{
+  display: flex;
+  box-sizing:border-box ;
+}
+
+.guessItem__column{
+  padding: 6px 13px 6px 13px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 2px 4px 2px 4px;
+}
+
+.guessItem__column p{
+  margin: 0;
+}
+
+.country{
+  display: flex;
+  justify-content: center;
+  max-width: 50%;
+  min-width: 40%;
+}
+
+.distanceAway{
+  display: flex;
+  justify-content: center;
+  max-width: 20%;
+  min-width: 20%;
+
+}
+
+.direction{
+  display: flex;
+  justify-content: center;
+  max-width: 5%;
+  min-width: 5%;
+
+}
