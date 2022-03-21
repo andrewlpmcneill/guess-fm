@@ -1,0 +1,10 @@
+.scoreContainer{
+  position: absolute;
+  bottom: 0;
+  right: 24%;
+}
+
+.scoreItem{
+  display: flex;
+  justify-content: center;
+}
