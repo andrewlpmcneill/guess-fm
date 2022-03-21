@@ -1,10 +1,10 @@
-const { Sequelize } = require('../models')
-const db = require('../models')
+const { Sequelize } = require('../models');
+const db = require('../models');
 const station = db.Station;
 
 //retrieves five random stations from db
 const randomStations = async(req, res) => {
-  try{
+  try {
     const myRandomStations = await station.findAll({
       // attributes:[
       //   [Sequelize.fn('DISTINCT', Sequelize.col('country')), 'country']
@@ -15,14 +15,14 @@ const randomStations = async(req, res) => {
   
       },
       limit: 5
-    })
+    });
 
-    res.json(myRandomStations)
+    res.json(myRandomStations);
 
-  }catch(err){
-    console.log(err)
+  } catch (err) {
+    console.log(err);
   }
 
-}
+};
 
-module.exports = { randomStations }
+module.exports = { randomStations };
