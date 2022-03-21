@@ -1,10 +1,27 @@
 * { 
 	box-sizing: border-box;
 }
+
+@font-face {
+  font-family: 'Wild World';
+  src: url('../public/wild_world-webfont.woff2') format('woff2'),
+       url('../public/wild_world-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
 	min-height: 100%;
 	background: #fff;
 	color: #000;
+}
+
+h1,h2,h3,h4 {
+  font-family: 'Wild World', Arial, sans-serif;
+}
+
+p {
+  font-family: 'Roboto', Arial, sans-serif;
 }
 
 	
