@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 import Results from "../Results/Results"
 
 const DUMMY_GUESSES_DATA = [
@@ -8,6 +8,8 @@ const DUMMY_GUESSES_DATA = [
   {id: 4, country:"Italy", distanceAway: 1800, direction: "NE" },
   {id: 5, country:"Norway", distanceAway: 0, direction: "" },
 ];
+
+afterEach(cleanup);
 
 const DUMMY_SCORE_DATA = 2
 

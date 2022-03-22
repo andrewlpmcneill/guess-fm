@@ -8,7 +8,7 @@ export default function Guesses(props) {
   const guesses = guessesData ? (
     guessesData.map((guess) => <GuessesItem key={guess.id} data={guess} />)
   ) : (
-    <Typography >No guesses currently</Typography>
+    <Typography sx={{margin:"auto"}} >No guesses currently</Typography>
   );
 
   return (
