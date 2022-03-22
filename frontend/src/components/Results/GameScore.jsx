@@ -9,7 +9,7 @@ export default function GameScore(props) {
   return (
 
     <Stack direction="column">
-      <Typography sx={{fontFamily: 'Wild World'}} variant={'h4'}>CURRENT SCORE:</Typography>
+      <Typography sx={{fontFamily: 'Wild World', margin: '15px'}} variant={'h4'}>CURRENT SCORE:</Typography>
       <Typography>{score}/3</Typography>
     </Stack>
   );

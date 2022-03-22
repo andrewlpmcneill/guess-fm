@@ -14,7 +14,8 @@ export default function Guesses(props) {
     padding: "6px 13px 6px 13px",
     margin: "2px 4px",
     width: "55%",
-    height: "100%"
+    height: "100%",
+    textAlign: 'center'
   }
 
   const distanceStyle = {
@@ -23,7 +24,8 @@ export default function Guesses(props) {
     padding: "6px 13px 6px 13px",
     margin: "2px 4px",
     width: "30%",
-    height: "100%"
+    height: "100%",
+    textAlign: 'center'
 
   }
 
@@ -33,13 +35,14 @@ export default function Guesses(props) {
     padding: "6px 13px 6px 13px",
     margin: "2px 4px",
     width: "15%",
-    height: "100%"
+    height: "100%",
+    textAlign: 'center'
 
   }
 
   return (
 
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={1} sx={{marginBottom: '5px'}}>
       <Box sx={countryStyle}>{guessData.country}</Box>
       <Box sx={distanceStyle}>{guessData.distanceAway}km</Box>
       <Box sx={directionStyle}>{directionClue}</Box>

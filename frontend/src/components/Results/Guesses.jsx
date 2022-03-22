@@ -13,7 +13,7 @@ export default function Guesses(props) {
 
   return (
     <Box sx={{height: "70%"}}>
-      <Typography sx={{fontFamily: 'Wild World'}} variant={'h4'}>GUESSES:</Typography>
+      <Typography sx={{fontFamily: 'Wild World', margin: '15px'}} variant={'h4'}>GUESSES:</Typography>
       {guesses}
     </Box>
   );
