@@ -8,6 +8,7 @@ const DUMMY_GUESSES_DATA = [
   {id: 4, country:"Italy", distanceAway: 1800, direction: "NE" },
   {id: 5, country:"Norway", distanceAway: 0, direction: "" },
 ];
+
 const DUMMY_SCORE_DATA = 2
 
 describe("Results", () => {
