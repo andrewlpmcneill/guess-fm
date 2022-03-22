@@ -1,6 +1,6 @@
 import Map from './components/Map'
 import './App.css';
-import Button from '@mui/material/Button';
+import Player from './components/Player/index';
 
 function App() {
 
@@ -9,8 +9,10 @@ function App() {
   return (
     <div className="App">
       <h3>GUESS FM</h3>
-      <Map />
-      <Button variant="contained">Hello World</Button>
+      <div>
+        <Map />  
+      </div>
+      <Player />
     </div>
   );
 }
