@@ -12,7 +12,7 @@ export default function Volume(props) {
     <Box sx={{ width: 220 }}>
       <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
         <VolumeDown />
-        <Slider aria-label="Volume" value={props.value} onChange={props.onChange} />
+        <Slider aria-label="Volume" data-testid="slider" value={props.value} onChange={props.onChange} />
         <VolumeUp />
       </Stack>
     </Box>
