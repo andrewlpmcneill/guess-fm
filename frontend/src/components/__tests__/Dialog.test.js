@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, screen, fireEvent } from "@testing-library/react";
+import { render, cleanup, screen } from "@testing-library/react";
 
 import Dialog from "../Dialog";
 
@@ -13,9 +13,9 @@ it("renders without crashing", () => {
 it("renders with a title", () => {
   render(<Dialog 
     title="GUESS FM" 
-    content="Try to guess the country that the radio station playing is in.
-    Your score will be based on how far away your guess is." 
-    action="PLAY" /> );
+    action="PLAY" > 
+      {"Try to guess the country that the radio station playing is in. Your score will be based on how far away your guess is."} 
+    </Dialog > );
     const titleElement = screen.getByText(/GUESS FM/i);
     expect(titleElement).toBeInTheDocument();
 });
@@ -23,9 +23,9 @@ it("renders with a title", () => {
 it("renders with dialog text", () => {
   render(<Dialog 
     title="GUESS FM" 
-    content="Try to guess the country that the radio station playing is in.
-    Your score will be based on how far away your guess is." 
-    action="PLAY" /> );
+    action="PLAY" > 
+      {"Try to guess the country that the radio station playing is in. Your score will be based on how far away your guess is."} 
+    </Dialog > );
     const textElement = screen.getByText(/radio station playing/i);
     expect(textElement).toBeInTheDocument();
 });
