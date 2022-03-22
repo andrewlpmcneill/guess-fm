@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import Guesses from "./Guesses";
 import GameScore from "./GameScore";
-import { IconButton, Drawer } from "@mui/material";
-import styles from "./Results.module.css"
+import { IconButton, Drawer, Box } from "@mui/material";
+import styles from "./Results.module.css";
 
 const drawerWidth = 300;
 
 export default function Results(props) {
-  const { guesses, score } = props;
+  const { guesses, score, menuStatus } = props;
 
-  const [openResults, setOpenResults] = useState(true);
+  const [openResults, setOpenResults] = useState(menuStatus ? menuStatus : true);
 
-  const handleOpenResults = () => { 
-    setOpenResults(false)
-  }
-  
+  const handleOpenResults = () => {
+    setOpenResults(prev => !prev);
+  };
+
 
   return (
     <Drawer
@@ -24,18 +24,17 @@ export default function Results(props) {
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: drawerWidth,
-        },
-        fontFamily: 'Wild World'
+        }
       }}
       variant="persistent"
       anchor="right"
       open={openResults}
     >
-      <IconButton onClick={handleOpenResults}>
-        ▶
-      </IconButton>
+      <Box className={styles.drawerHeader}>
+        <IconButton onClick={handleOpenResults}>▶</IconButton>
+      </Box>
       <Guesses data={guesses} />
-      <GameScore data={score}/>
+      <GameScore data={score} />
     </Drawer>
   );
 }

@@ -9,7 +9,7 @@ export default function Guesses(props) {
   const guesses = guessesData ? (
     guessesData.map((guess) => <GuessesItem key={guess.id} data={guess} />)
   ) : (
-    <h3 className={styles.text}>No guesses currently</h3>
+    <p className={styles.text}>No guesses currently</p>
   );
 
   return (

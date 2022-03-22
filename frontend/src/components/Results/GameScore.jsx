@@ -8,7 +8,7 @@ export default function GameScore(props) {
   return (
     <Box className={styles.scoreContainer}>
       <h2 className={styles.scoreItem}>Current Score:</h2>
-      <h3 className={styles.scoreItem}>{score}/3</h3>
+      <p className={styles.scoreItem}>{score}/3</p>
     </Box>
   );
 }
