@@ -1,13 +1,12 @@
-import Box from "@mui/material/Box"
-import Stack from "@mui/material/Stack"
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import React from "react";
-
 
 export default function Guesses(props) {
   const guessData = props.data;
 
   const directionClue = guessData.direction ? guessData.direction : "✔";
-  
+
   const countryStyle = {
     border: 1,
     borderRadius: "5px",
@@ -15,8 +14,8 @@ export default function Guesses(props) {
     margin: "2px 4px",
     width: "55%",
     height: "100%",
-    textAlign: 'center'
-  }
+    textAlign: "center",
+  };
 
   const distanceStyle = {
     border: 1,
@@ -25,9 +24,8 @@ export default function Guesses(props) {
     margin: "2px 4px",
     width: "30%",
     height: "100%",
-    textAlign: 'center'
-
-  }
+    textAlign: "center",
+  };
 
   const directionStyle = {
     border: 1,
@@ -36,18 +34,14 @@ export default function Guesses(props) {
     margin: "2px 4px",
     width: "15%",
     height: "100%",
-    textAlign: 'center'
-
-  }
+    textAlign: "center",
+  };
 
   return (
-
-    <Stack direction="row" spacing={1} sx={{marginBottom: '5px'}}>
+    <Stack direction="row" spacing={1} sx={{ marginBottom: "5px" }}>
       <Box sx={countryStyle}>{guessData.country}</Box>
       <Box sx={distanceStyle}>{guessData.distanceAway}km</Box>
       <Box sx={directionStyle}>{directionClue}</Box>
-
     </Stack>
-
   );
 }

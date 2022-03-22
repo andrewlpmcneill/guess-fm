@@ -5,18 +5,18 @@ import IconButton from "@mui/material/IconButton";
 import Drawer from "@mui/material/Drawer";
 import Stack from "@mui/material/Stack";
 
-
 const drawerWidth = 300;
 
 export default function Results(props) {
   const { guesses, score, menuStatus } = props;
 
-  const [openResults, setOpenResults] = useState(menuStatus === false ? menuStatus : true);
+  const [openResults, setOpenResults] = useState(
+    menuStatus === false ? menuStatus : true
+  );
 
   const handleOpenResults = () => {
-    setOpenResults(prev => !prev);
+    setOpenResults((prev) => !prev);
   };
-
 
   return (
     <Drawer
@@ -25,7 +25,7 @@ export default function Results(props) {
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: drawerWidth,
-        }
+        },
       }}
       variant="persistent"
       anchor="right"
@@ -37,7 +37,6 @@ export default function Results(props) {
 
       <Guesses data={guesses} />
       <GameScore data={score} />
-
     </Drawer>
   );
 }

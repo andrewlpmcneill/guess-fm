@@ -1,4 +1,4 @@
-import Results from "../components/Results/Results";
+import Results from "../components/Results/index";
 import GameScore from "../components/Results/GameScore";
 import GuessesItem from "../components/Results/GuessesItem";
 import Guesses from "../components/Results/Guesses";
