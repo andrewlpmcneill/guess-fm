@@ -17,7 +17,7 @@ export default function Guesses(props) {
         sx={{ fontFamily: "Wild World", margin: "15px" }}
         variant={"h4"}
       >
-        GUESSES:
+        GUESSES
       </Typography>
       {guesses}
     </Box>

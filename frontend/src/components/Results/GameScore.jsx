@@ -11,7 +11,7 @@ export default function GameScore(props) {
         sx={{ fontFamily: "Wild World", margin: "15px" }}
         variant={"h4"}
       >
-        CURRENT SCORE:
+        CURRENT SCORE
       </Typography>
       <Typography sx={{ margin: "auto" }}>{score}/3</Typography>
     </Stack>

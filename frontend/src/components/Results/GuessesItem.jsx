@@ -1,47 +1,28 @@
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 import React from "react";
+import Paper from '@mui/material/Paper';
+import Stack from "@mui/material/Stack";
+import { styled } from '@mui/material/styles';
 
 export default function Guesses(props) {
   const guessData = props.data;
 
   const directionClue = guessData.direction ? guessData.direction : "✔";
 
-  const countryStyle = {
-    border: 1,
-    borderRadius: "5px",
-    padding: "6px 13px 6px 13px",
-    margin: "2px 4px",
-    width: "55%",
-    height: "100%",
-    textAlign: "center",
-  };
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    fontWeight: "bold"
+  }));
 
-  const distanceStyle = {
-    border: 1,
-    borderRadius: "5px",
-    padding: "6px 13px 6px 13px",
-    margin: "2px 4px",
-    width: "30%",
-    height: "100%",
-    textAlign: "center",
-  };
-
-  const directionStyle = {
-    border: 1,
-    borderRadius: "5px",
-    padding: "6px 13px 6px 13px",
-    margin: "2px 4px",
-    width: "15%",
-    height: "100%",
-    textAlign: "center",
-  };
 
   return (
-    <Stack direction="row" spacing={1} sx={{ marginBottom: "5px" }}>
-      <Box sx={countryStyle}>{guessData.country}</Box>
-      <Box sx={distanceStyle}>{guessData.distanceAway}km</Box>
-      <Box sx={directionStyle}>{directionClue}</Box>
+    <Stack direction="row" spacing={1} sx={{ marginBottom: "5px" , padding: "5px"}}>
+      <Item sx={{width: "55%"}}>{guessData.country}</Item>
+      <Item sx={{width: "30%"}}>{guessData.distanceAway}km</Item>
+      <Item sx={{width: "15%"}}>{directionClue}</Item>
     </Stack>
   );
 }
