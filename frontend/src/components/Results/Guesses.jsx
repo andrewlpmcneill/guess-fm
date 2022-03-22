@@ -1,7 +1,7 @@
 import React from "react";
 import GuessesItem from "./GuessesItem";
 import styles from "./Guesses.module.css";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 export default function Guesses(props) {
   const guessesData = props.data;
@@ -14,7 +14,7 @@ export default function Guesses(props) {
 
   return (
     <Box>
-      <h2 className={styles.text}>Guesses:</h2>
+      <Typography sx={{fontFamily: 'Wild World'}} variant={'h4'}>Guesses:</Typography>
       {guesses}
     </Box>
   );
