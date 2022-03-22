@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Guesses from "./Guesses";
 import GameScore from "./GameScore";
-import { IconButton, Drawer, Box } from "@mui/material";
-import styles from "./Results.module.css";
+import IconButton from "@mui/material/IconButton";
+import Drawer from "@mui/material/Drawer";
+import Stack from "@mui/material/Stack";
+
 
 const drawerWidth = 300;
 
@@ -18,7 +20,6 @@ export default function Results(props) {
 
   return (
     <Drawer
-      className={styles.drawer}
       sx={{
         width: drawerWidth,
         flexShrink: 0,
@@ -29,11 +30,10 @@ export default function Results(props) {
       variant="persistent"
       anchor="right"
       open={openResults}
-      PaperProps={{ style: { height: "90vh" } }}
     >
-      <Box className={styles.drawerHeader}>
+      <Stack direction="row" justifyContent="flex-start">
         <IconButton onClick={handleOpenResults}>▶</IconButton>
-      </Box>
+      </Stack>
 
       <Guesses data={guesses} />
       <GameScore data={score} />

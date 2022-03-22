@@ -1,6 +1,5 @@
 import React from "react";
 import GuessesItem from "./GuessesItem";
-import styles from "./Guesses.module.css";
 import { Box, Typography } from "@mui/material";
 
 export default function Guesses(props) {
@@ -9,12 +8,12 @@ export default function Guesses(props) {
   const guesses = guessesData ? (
     guessesData.map((guess) => <GuessesItem key={guess.id} data={guess} />)
   ) : (
-    <p className={styles.text}>No guesses currently</p>
+    <Typography >No guesses currently</Typography>
   );
 
   return (
-    <Box>
-      <Typography sx={{fontFamily: 'Wild World'}} variant={'h4'}>Guesses:</Typography>
+    <Box sx={{height: "70%"}}>
+      <Typography sx={{fontFamily: 'Wild World'}} variant={'h4'}>GUESSES:</Typography>
       {guesses}
     </Box>
   );
