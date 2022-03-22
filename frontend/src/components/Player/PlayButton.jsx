@@ -1,5 +1,3 @@
-import { React, useState } from "react";
-import classNames from "classnames";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 
@@ -10,10 +8,10 @@ export default function PlayButton(props) {
   return (
     <div>
       {icon === "paused" && (
-        <PlayArrowIcon color="primary" fontSize="large" onClick={props.onClick} />
+        <PlayArrowIcon data-testid="play" color="primary" fontSize="large" onClick={props.onClick} />
       )}
       {icon === "playing" && (
-        <PauseIcon color="primary" fontSize="large" onClick={props.onClick} />
+        <PauseIcon data-testid="pause" color="primary" fontSize="large" onClick={props.onClick} />
       )}
     </div>
 
