@@ -1,10 +1,18 @@
-import React from "react";
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
 
 export default function PlayButton(props) {
 
-  return (
+  const icon = props.icon;
 
-    <div variant="" className="playButton">
+  return (
+    <div>
+      {icon === "paused" && (
+        <PlayArrowIcon data-testid="play" color="primary" fontSize="large" onClick={props.onClick} />
+      )}
+      {icon === "playing" && (
+        <PauseIcon data-testid="pause" color="primary" fontSize="large" onClick={props.onClick} />
+      )}
     </div>
 
   )
