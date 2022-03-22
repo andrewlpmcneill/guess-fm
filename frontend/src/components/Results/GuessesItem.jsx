@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import styles from "./GuessesItem.module.css";
+import { Box } from "@mui/material";
 
 export default function Guesses(props) {
   const guessData = props.data;
@@ -11,7 +12,7 @@ export default function Guesses(props) {
   );
 
   return (
-    <div className={styles.guessItem}>
+    <Box className={styles.guessItem}>
       <div className={`${styles.guessItem__column} ${styles.country}`}>
         <p>{guessData.country}</p>
       </div>
@@ -21,6 +22,6 @@ export default function Guesses(props) {
       <div className={`${styles.guessItem__column} ${styles.direction}`}>
         {directionClue}
       </div>
-    </div>
+    </Box>
   );
 }
