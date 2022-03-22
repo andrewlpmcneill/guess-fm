@@ -10,7 +10,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-export default function AlertDialogSlide(props) {
+export default function Announcement(props) {
   // Set open to true for testing purposes
   const [open, setOpen] = React.useState(true);
   const { round, onClick } = props;
@@ -32,7 +32,7 @@ export default function AlertDialogSlide(props) {
       >
         {/* Dynamically generate round number */}
         <DialogTitle sx={{m: 'auto', fontFamily: 'Wild World'}}>{`ROUND ${round}`}</DialogTitle>
-        <DialogActions>
+        <DialogActions sx={{p: 2}}>
           <Button onClick={handleClose} variant="contained" sx={{m: 'auto', fontFamily: 'Wild World'}}>START</Button>
         </DialogActions>
       </Dialog>
