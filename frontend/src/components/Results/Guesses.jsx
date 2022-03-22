@@ -8,13 +8,13 @@ export default function Guesses(props) {
   const guesses = guessesData ? (
     guessesData.map((guess) => <GuessesItem key={guess.id} data={guess} />)
   ) : (
-    <Typography sx={{ margin: "auto" }}>No guesses currently</Typography>
+    <Typography sx={{ textAlign: "center" }}>No guesses currently</Typography>
   );
 
   return (
     <Box sx={{ height: "70%" }}>
       <Typography
-        sx={{ fontFamily: "Wild World", margin: "15px" }}
+        sx={{ fontFamily: "Wild World", textAlign: "center", marginBottom: '10px' }}
         variant={"h4"}
       >
         GUESSES

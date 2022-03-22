@@ -8,8 +8,8 @@ export default function GameScore(props) {
   return (
     <Stack direction="column">
       <Typography
-        sx={{ fontFamily: "Wild World", margin: "15px" }}
-        variant={"h4"}
+        sx={{ fontFamily: "Wild World", marginBottom: "5px", textAlign:"center" }}
+        variant={"h5"}
       >
         CURRENT SCORE
       </Typography>
