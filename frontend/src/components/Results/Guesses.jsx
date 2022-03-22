@@ -1,6 +1,7 @@
 import React from "react";
 import GuessesItem from "./GuessesItem";
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography";
 
 export default function Guesses(props) {
   const guessesData = props.data;
