@@ -8,7 +8,7 @@ export default function Guesses(props) {
 
   const directionClue = guessData.direction ? guessData.direction : "✔";
   
-  const countryTheme = {
+  const countryStyle = {
     border: 1,
     borderRadius: "5px",
     padding: "6px 13px 6px 13px",
@@ -17,7 +17,7 @@ export default function Guesses(props) {
     height: "100%"
   }
 
-  const distanceTheme = {
+  const distanceStyle = {
     border: 1,
     borderRadius: "5px",
     padding: "6px 13px 6px 13px",
@@ -27,7 +27,7 @@ export default function Guesses(props) {
 
   }
 
-  const directionTheme = {
+  const directionStyle = {
     border: 1,
     borderRadius: "5px",
     padding: "6px 13px 6px 13px",
@@ -40,9 +40,9 @@ export default function Guesses(props) {
   return (
 
     <Stack direction="row" spacing={1}>
-      <Box sx={countryTheme}>{guessData.country}</Box>
-      <Box sx={distanceTheme}>{guessData.distanceAway}km</Box>
-      <Box sx={directionTheme}>{directionClue}</Box>
+      <Box sx={countryStyle}>{guessData.country}</Box>
+      <Box sx={distanceStyle}>{guessData.distanceAway}km</Box>
+      <Box sx={directionStyle}>{directionClue}</Box>
 
     </Stack>
 
