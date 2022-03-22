@@ -1,27 +1,49 @@
-import React, { Fragment } from "react";
-import styles from "./GuessesItem.module.css";
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
+import React from "react";
+
 
 export default function Guesses(props) {
   const guessData = props.data;
 
-  const directionClue = guessData.direction ? (
-    <p>{guessData.direction}</p>
-  ) : (
-    <p>✔</p>
-  );
+  const directionClue = guessData.direction ? guessData.direction : "✔";
+  
+  const countryTheme = {
+    border: 1,
+    borderRadius: "5px",
+    padding: "6px 13px 6px 13px",
+    margin: "2px 4px",
+    width: "55%",
+    height: "100%"
+  }
+
+  const distanceTheme = {
+    border: 1,
+    borderRadius: "5px",
+    padding: "6px 13px 6px 13px",
+    margin: "2px 4px",
+    width: "30%",
+    height: "100%"
+
+  }
+
+  const directionTheme = {
+    border: 1,
+    borderRadius: "5px",
+    padding: "6px 13px 6px 13px",
+    margin: "2px 4px",
+    width: "15%",
+    height: "100%"
+
+  }
 
   return (
-    <Box className={styles.guessItem}>
-      <div className={`${styles.guessItem__column} ${styles.country}`}>
-        <p>{guessData.country}</p>
-      </div>
-      <div className={`${styles.guessItem__column} ${styles.distanceAway}`}>
-        <p>{guessData.distanceAway}km </p>
-      </div>
-      <div className={`${styles.guessItem__column} ${styles.direction}`}>
-        {directionClue}
-      </div>
-    </Box>
+
+    <Stack direction="row" spacing={1}>
+      <Box sx={countryTheme}>{guessData.country}</Box>
+      <Box sx={distanceTheme}>{guessData.distanceAway}km</Box>
+      <Box sx={directionTheme}>{directionClue}</Box>
+
+    </Stack>
+
   );
 }

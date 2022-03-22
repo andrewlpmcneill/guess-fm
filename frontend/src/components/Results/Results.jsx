@@ -29,12 +29,15 @@ export default function Results(props) {
       variant="persistent"
       anchor="right"
       open={openResults}
+      PaperProps={{ style: { height: "90vh" } }}
     >
       <Box className={styles.drawerHeader}>
         <IconButton onClick={handleOpenResults}>▶</IconButton>
       </Box>
+
       <Guesses data={guesses} />
       <GameScore data={score} />
+
     </Drawer>
   );
 }
