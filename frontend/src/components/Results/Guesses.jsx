@@ -1,6 +1,7 @@
 import React from "react";
 import GuessesItem from "./GuessesItem";
 import styles from "./Guesses.module.css";
+import { Box } from "@mui/material";
 
 export default function Guesses(props) {
   const guessesData = props.data;
@@ -12,9 +13,9 @@ export default function Guesses(props) {
   );
 
   return (
-    <div>
+    <Box>
       <h2 className={styles.text}>Guesses:</h2>
       {guesses}
-    </div>
+    </Box>
   );
 }
