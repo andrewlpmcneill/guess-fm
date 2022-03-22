@@ -9,7 +9,7 @@ const drawerWidth = 300;
 export default function Results(props) {
   const { guesses, score, menuStatus } = props;
 
-  const [openResults, setOpenResults] = useState(menuStatus ? menuStatus : true);
+  const [openResults, setOpenResults] = useState(menuStatus === false ? menuStatus : true);
 
   const handleOpenResults = () => {
     setOpenResults(prev => !prev);
