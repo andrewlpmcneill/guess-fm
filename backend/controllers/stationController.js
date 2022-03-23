@@ -14,7 +14,7 @@ const randomStations = async(req, res) => {
       where:{
   
       },
-      limit: 5
+      limit: 3
     });
 
     res.json(myRandomStations);
