@@ -1,18 +1,17 @@
-import * as React from 'react';
+import { useState, forwardRef } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
 export default function Announcement(props) {
   // Set open to true for testing purposes
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
   const { round, onClick, play, clearGuesses } = props;
 
   const handleClose = () => {
