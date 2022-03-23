@@ -4,12 +4,12 @@ import DialogActions from '@mui/material/DialogActions';
 
 export default function DialogButton(props) {
 
-  const { onClick, action } = props;
+  const { onClick } = props;
 
   return (
     <DialogActions onClick={onClick}>
       <Button variant="contained" sx={{fontFamily: 'Wild World'}} >
-        {action}
+        {props.children}
       </Button>
     </DialogActions>
   )
