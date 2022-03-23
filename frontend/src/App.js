@@ -21,6 +21,7 @@ function App() {
   const updateRoundStatus = (guess) => {
     if (guesses.length === 4 || guess.distanceAway === 0) {
       setRound((prev) => prev + 1);
+      setAudio();
     }
   };
 
@@ -44,20 +45,20 @@ function App() {
     
     let distanceAway, guessCountry, direction;
     
-    if (lookup.byIso(country).country === gameData[0].country) {
+    if (lookup.byIso(country).country === gameData[round - 1].country) {
       distanceAway = 0;
-      guessCountry = gameData[0].country
+      guessCountry = gameData[round - 1].country
       direction = ""
     }
     else {
-      distanceAway = Math.round(getDistanceFromLatLonInKm(gameData[0].longitude, gameData[0].latitude, coords[0], coords[1]));
+      distanceAway = Math.round(getDistanceFromLatLonInKm(gameData[round - 1].longitude, gameData[round - 1].latitude, coords[0], coords[1]));
       guessCountry = lookup.byIso(country).country;
       direction = getCompassDirection(
         // guess coords
         { latitude: coords[0], longitude: coords[1] },
         // answer coords
         // Latitude = longitude and longitude = latitude (RADIO GARDEN ERROR)
-        { latitude: gameData[0].longitude, longitude: gameData[0].latitude });
+        { latitude: gameData[round - 1].longitude, longitude: gameData[round - 1].latitude });
     }
     return({
       id: 1,
@@ -80,12 +81,24 @@ function App() {
   // PLAYER STATE
   const { playing, value, click, handleChange, play, pause } = usePlayerData();
 
+  const setAudio = () => {
+    console.log("ROUND:", round);
+    setSource(gameData[round].mp3_link);
+
+    
+    
+    document.getElementById("mp3Player").load();
+  }
+
+  const [source, setSource] = useState("")
+
   return (
     <div className="App">
       <h3>GUESS FM</h3>
       <Box sx={{ position: "relative", overflow: "hidden" }}>
         <Map setMapData={setMapData} gameData={gameData} setCountry={setCountry} country={country} coords={coords} setCoords={setCoords} />
         <Dialog
+          setAudio={setAudio}
           round={round}
           play={play}
           pause={pause}
@@ -107,6 +120,9 @@ function App() {
           gameData={gameData}
           validateGuess={validateGuess}
           updateRoundStatus={updateRoundStatus}
+          source={source}
+          setAudio={setAudio}
+          round={round}
         />
       </Box>
     </div>
