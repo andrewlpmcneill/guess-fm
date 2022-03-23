@@ -83,10 +83,7 @@ function App() {
 
   const setAudio = () => {
     console.log("ROUND:", round);
-    setSource(gameData[round].mp3_link);
-
-    
-    
+    setSource(gameData[round].mp3_link);  
     document.getElementById("mp3Player").load();
   }
 
