@@ -6,6 +6,8 @@ import Volume from "./Volume";
 
 export default function Player(props) {
 
+  const { addGuess, handleClick, playing, value, handleChange, updateRoundStatus, validateGuess, gameData } = props;
+
   useEffect(() => {
     document.getElementById("mp3Player").volume = 0.3;
   }, [])
@@ -13,8 +15,10 @@ export default function Player(props) {
   const saveGuess = (event) => {
     event.preventDefault()
     // console.log(props.guess);
-    props.addGuess(props.guess);
-    props.updateRoundStatus(props.guess)
+    const guess = validateGuess();
+    console.log(guess)
+    addGuess(guess);
+    updateRoundStatus(guess)
   }
 
   return (
@@ -26,9 +30,9 @@ export default function Player(props) {
       alignItems="center"
       justifyContent="space-between"
     >
-      <PlayButton onClick={props.handleClick} icon={props.playing ? "playing" : "paused"} />
-      <audio id="mp3Player" src="http://radio.garden/api/ara/content/listen/Z8RjDwNU/channel.mp3" type="audio/mp3" />
-      <Volume value={props.value} onChange={props.handleChange}/>
+      <PlayButton onClick={handleClick} icon={playing ? "playing" : "paused"} />
+      <audio id="mp3Player" src="http://radio.garden/api/ara/content/listen/Ey0ePewU/channel.mp3" type="audio/mp3" />
+      <Volume value={value} onChange={handleChange}/>
       <Button fullWidth variant="contained" onClick={saveGuess}>
         Guess
       </Button>
