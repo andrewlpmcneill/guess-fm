@@ -10,15 +10,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 const drawerWidth = 300;
 
 export default function Results(props) {
-  const { guesses, score, menuStatus } = props;
-
-  const [openResults, setOpenResults] = useState(
-    menuStatus === false ? menuStatus : true
-  );
-
-  const handleOpenResults = () => {
-    setOpenResults((prev) => !prev);
-  };
+  const { guesses, onDrawerToggle, isDrawerOpen, score } = props;
 
 
   return (
@@ -34,10 +26,10 @@ export default function Results(props) {
         }}
         variant="persistent"
         anchor="right"
-        open={openResults}
+        open={isDrawerOpen}
       >
         <Stack direction="row" justifyContent="flex-start">
-          <IconButton onClick={handleOpenResults}>
+          <IconButton onClick={onDrawerToggle}>
             <ChevronRightIcon/>
           </IconButton>
         </Stack>
@@ -57,9 +49,9 @@ export default function Results(props) {
         }}
         variant="persistent"
         anchor="right"
-        open={!openResults}
+        open={!isDrawerOpen}
       >
-          <IconButton sx={{height:'100%'}} onClick={handleOpenResults}>
+          <IconButton sx={{height:'100%'}} onClick={onDrawerToggle}>
             <ChevronLeftIcon/>
           </IconButton>
  
