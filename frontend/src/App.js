@@ -5,83 +5,40 @@ import Player from "./components/Player/index";
 import Results from "./components/Results/index";
 import { Box } from "@mui/material";
 import Dialog from "./components/Dialog";
+import useDisplayMode from  "./hooks/useDisplayMode";
+import useRoundData from "./hooks/useRoundData";
+import useGuessesData from "./hooks/useGuessesData";
+import usePlayerData from "./hooks/usePlayerData";
 
-const DUMMY_GUESSES_DATA = [
-  { id: 1, country: "Singapore", distanceAway: 4500, direction: "N" },
-  { id: 2, country: "Zimbabwe", distanceAway: 6000, direction: "S" },
-  { id: 3, country: "Monstserrat", distanceAway: 3200, direction: "SW" },
-  { id: 4, country: "Italy", distanceAway: 1800, direction: "NE" },
-  { id: 5, country: "Norway", distanceAway: 0, direction: "" },
-];
 
 function App() {
-  // ROUND STATE
-  const [round, setRound] = useState(0);
+  
+  // Import state and functionality from useRoundData hook
+  const { round, setRound, startGame } = useRoundData(0)
 
-  const resetGame = () => {
-    setRound(1);
-  };
-
-  const autoplay = () => {
-    player.play();
-  };
 
   // Needs to be trigged by guess button
   const updateRoundStatus = (guess) => {
-    console.log(guess)
     if (guesses.length === 4 || guess.distanceAway === 0) {
       setRound((prev) => prev + 1);
     }
   };
 
+
   // RESULTS STATE
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen, toggleDrawer] = useDisplayMode(false);
+  
 
-  const openDrawer = () => {
-    setIsDrawerOpen(true);
-  };
-
-  const closeDrawer = () => {
-    setIsDrawerOpen(true);
-  };
-
-  const toggleDrawer = () => {
-    setIsDrawerOpen((prev) => !prev);
-  };
 
   // GUESSES STATE
-  const [guesses, setGuesses] = useState([]);
-
-  const clearGuesses = () => {
-    setGuesses([]);
-  };
-  const addGuess = (guess) => {
-    setGuesses((prev) => [...prev, guess]);
-  };
+  const {guesses, clearGuesses, addGuess} = useGuessesData([])
+  
 
   // MAP STATE
   const [mapData, setMapData] = useState();
 
   // PLAYER STATE
-  const [playing, setPlaying] = useState(true);
-  const [value, setValue] = useState(30);
-  const player = document.getElementById("mp3Player");
-
-  const click = () => {
-    if (playing) {
-      setPlaying(false);
-      player.pause();
-      return;
-    }
-    setPlaying(true);
-    player.play();
-    return;
-  };
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    player.volume = newValue / 100;
-  };
+  const { playing, value, click, handleChange, play, pause } = usePlayerData();
   //
 
   return (
@@ -91,8 +48,9 @@ function App() {
         <Map setMapData={setMapData} />
         <Dialog
           round={round}
-          autoplay={autoplay}
-          resetGame={resetGame}
+          play={play}
+          pause={pause}
+          startGame={startGame}
           guesses={guesses}
           clearGuesses={clearGuesses}
         />
