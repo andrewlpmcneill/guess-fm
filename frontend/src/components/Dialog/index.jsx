@@ -5,6 +5,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import Typography from '@mui/material/Typography';
 import DialogButton from './DialogButton'
+import Instructions from './Instructions';
+import Announcement from './Announcement';
+import GameOver from './GameOver'
 
 // Alter padding and styling of the content and bottom actions section of materialUI component
 const CustomDialog = styled(Dialog)(({ theme }) => ({
@@ -33,7 +36,7 @@ const CustomDialogTitle = (props) => {
 
 export default function CustomizedDialog(props) {
   // Props passed in to render Dialog box
-  const { title, action } = props;
+  const { round, autoplay, resetGame, nextRound } = props;
   // Track whether or not the dialog box is open
   const [open, setOpen] = useState(true);
 
@@ -43,20 +46,9 @@ export default function CustomizedDialog(props) {
 
   return (
     <div>
-      <CustomDialog
-        open={open}
-        fullWidth
-      >
-        <CustomDialogTitle id="customized-dialog-title" title={title}>
-        </CustomDialogTitle>
-        {/* Add margin around content */}
-        <DialogContent sx={{ m: 1}}>
-          <Typography >
-            {props.children}
-          </Typography>
-        </DialogContent>
-        <DialogButton onClick={handleClose} action={action} />
-      </CustomDialog>
+      {round === 0 && <Instructions round={round} nextRound={nextRound} />}
+      {round > 0 && round < 4 && <Announcement round={round} autoplay={autoplay} />}
+      {round > 3 && <GameOver />} 
     </div>
   );
 }
