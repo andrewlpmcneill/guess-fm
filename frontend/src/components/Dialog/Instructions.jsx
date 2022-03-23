@@ -33,13 +33,13 @@ const CustomDialogTitle = (props) => {
 
 export default function Instructions(props) {
   // Props passed in to render Dialog box
-  const { round, autoplay, resetGame, nextRound } = props;
+  const { round, setRound, autoplay, resetGame, nextRound } = props;
   // Track whether or not the dialog box is open
   const [open, setOpen] = useState(true);
 
   const handleClose = () => {
+    resetGame();
     setOpen(false);
-    nextRound();
   };
 
   return (

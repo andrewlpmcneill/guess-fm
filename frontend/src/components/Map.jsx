@@ -67,14 +67,25 @@ export default function SimpleMap(props){
   const getCountry = (lat, lng) => {
     return axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lng}&limit=1&appid=f89361fb753c9647ce4d1c6ca62fdc3c`)
       .then(response => {
+        let distanceAway, country, direction;
+        if (lookup.byIso(response.data[0].country).country === "Canada") {
+          distanceAway = 0;
+          country = "Canada"
+          direction = ""
+        }
+        else {
+          distanceAway = Math.round(getDistanceFromLatLonInKm(43.64, -79.37, lat, lng));
+          country = lookup.byIso(response.data[0].country).country;
+          direction = getCompassDirection(
+            { latitude: lat, longitude: lng },
+            { latitude: 43.64, longitude: -79.37 });
+        }
         props.setMapData({
           id: 1,
           // coords: coords,
-          distanceAway: Math.round(getDistanceFromLatLonInKm(43.64, -79.37, lat, lng)),
-          direction: getCompassDirection(
-            { latitude: lat, longitude: lng },
-            { latitude: 43.64, longitude: -79.37 }),
-          country: lookup.byIso(response.data[0].country).country
+          distanceAway: distanceAway,
+          direction: direction,
+          country: country,
         })
         response.data[0] ? setCountry(response.data[0].country) : setCountry('N/A');
       })

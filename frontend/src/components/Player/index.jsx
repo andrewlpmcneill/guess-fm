@@ -14,6 +14,7 @@ export default function Player(props) {
     event.preventDefault()
     // console.log(props.guess);
     props.addGuess(props.guess);
+    props.updateRoundStatus(props.guess)
   }
 
   return (

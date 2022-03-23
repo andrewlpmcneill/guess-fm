@@ -15,59 +15,58 @@ const DUMMY_GUESSES_DATA = [
 ];
 
 function App() {
-  
-  // DIALOG STATE
+  // ROUND STATE
   const [round, setRound] = useState(0);
-  
+
   const resetGame = () => {
     setRound(1);
-  }
-  
+  };
+
   const autoplay = () => {
     player.play();
-  }
+  };
 
-  const nextRound = () => {
-    if (guesses.length === 5 || guesses[guesses.length-1].distance === 0) {
-      setRound(prev => prev + 1);
-      console.log("new round")
+  // Needs to be trigged by guess button
+  const updateRoundStatus = (guess) => {
+    console.log(guess)
+    if (guesses.length === 4 || guess.distanceAway === 0) {
+      setRound((prev) => prev + 1);
     }
-  }
+  };
 
   // RESULTS STATE
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const openDrawer = () => {
     setIsDrawerOpen(true);
-  }
+  };
 
   const closeDrawer = () => {
     setIsDrawerOpen(true);
-  }
-  
-  const toggleDrawer = () =>{
-    setIsDrawerOpen(prev => !prev)
-  }
-  
+  };
+
+  const toggleDrawer = () => {
+    setIsDrawerOpen((prev) => !prev);
+  };
+
   // GUESSES STATE
-  const [guesses, setGuesses] = useState([])
-  
+  const [guesses, setGuesses] = useState([]);
+
   const clearGuesses = () => {
     setGuesses([]);
-  }
+  };
   const addGuess = (guess) => {
-    setGuesses(prev => [...prev, guess])
-  }
+    setGuesses((prev) => [...prev, guess]);
+  };
 
   // MAP STATE
   const [mapData, setMapData] = useState();
-
 
   // PLAYER STATE
   const [playing, setPlaying] = useState(true);
   const [value, setValue] = useState(30);
   const player = document.getElementById("mp3Player");
-  
+
   const click = () => {
     if (playing) {
       setPlaying(false);
@@ -77,22 +76,40 @@ function App() {
     setPlaying(true);
     player.play();
     return;
-  }
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
     player.volume = newValue / 100;
   };
-  // 
-  
+  //
+
   return (
     <div className="App">
       <h3>GUESS FM</h3>
       <Box sx={{ position: "relative", overflow: "hidden" }}>
-        <Map setMapData={setMapData}/>
-        <Dialog round={round} autoplay={autoplay} resetGame={resetGame} nextRound={nextRound} guesses={guesses}/>
-        <Results guesses={guesses} onDrawerToggle={toggleDrawer} isDrawerOpen={isDrawerOpen} />
-        <Player value={value} playing={playing} handleClick={click} handleChange={handleChange} addGuess={addGuess} guess={mapData}/>
+        <Map setMapData={setMapData} />
+        <Dialog
+          round={round}
+          autoplay={autoplay}
+          resetGame={resetGame}
+          guesses={guesses}
+          clearGuesses={clearGuesses}
+        />
+        <Results
+          guesses={guesses}
+          onDrawerToggle={toggleDrawer}
+          isDrawerOpen={isDrawerOpen}
+        />
+        <Player
+          value={value}
+          playing={playing}
+          handleClick={click}
+          handleChange={handleChange}
+          addGuess={addGuess}
+          guess={mapData}
+          updateRoundStatus={updateRoundStatus}
+        />
       </Box>
     </div>
   );
