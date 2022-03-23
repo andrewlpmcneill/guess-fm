@@ -13,12 +13,12 @@ const sequelize = new Sequelize('guessfm', 'labber', 'labber', {
 
 
 //import routes
-const gameRoutes  = require("./routes/games")
-const guessRoutes  = require("./routes/guesses")
-const resultRoutes  = require("./routes/results")
-const roundRoutes  = require("./routes/rounds")
-const stationRoutes  = require("./routes/stations")
-const userRoutes  = require("./routes/users")
+const gameRoutes  = require("./routes/games");
+const guessRoutes  = require("./routes/guesses");
+const resultRoutes  = require("./routes/results");
+const roundRoutes  = require("./routes/rounds");
+const stationRoutes  = require("./routes/stations");
+const userRoutes  = require("./routes/users");
 
 
 // middleware setup
@@ -34,12 +34,12 @@ app.get('/', (req, res) => {
   res.json({greetings: 'hello world'});
 });
 
-app.use('/games/', gameRoutes)
-app.use('/guesses/', guessRoutes)
-app.use('/results/', resultRoutes)
-app.use('/rounds/', roundRoutes)
-app.use('/stations/', stationRoutes)
-app.use('/users/', userRoutes)
+app.use('/games', gameRoutes);
+app.use('/guesses', guessRoutes);
+app.use('/results', resultRoutes);
+app.use('/rounds', roundRoutes);
+app.use('/stations', stationRoutes);
+app.use('/users', userRoutes);
 
 
 
