@@ -1,15 +1,10 @@
-import React, {useState} from "react";
-import Marker from './Marker'
+import Marker from './Marker';
 import GoogleMapReact from 'google-map-react';
-import axios from 'axios'
-import { getCompassDirection } from 'geolib'
-import { getToolbarUtilityClass } from "@mui/material";
-const lookup = require('country-code-lookup')
+import axios from 'axios';
 const mapsAPI = process.env.REACT_APP_GOOGLEMAPSAPIKEY;
 
 export default function SimpleMap(props){
   const {country, setCountry, coords, setCoords} = props;
-
 
   const defaultProps = {
     center: {
