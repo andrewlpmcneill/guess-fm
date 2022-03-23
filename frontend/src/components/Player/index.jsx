@@ -1,12 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import PlayButton from "./PlayButton";
 import Volume from "./Volume";
+import ReactAudioPlayer from 'react-audio-player';
 
 export default function Player(props) {
 
-  const { addGuess, handleClick, playing, value, handleChange, updateRoundStatus, validateGuess, gameData } = props;
+  const { addGuess, handleClick, playing, value, handleChange, updateRoundStatus, validateGuess, gameData, source, setAudio } = props;
 
   useEffect(() => {
     document.getElementById("mp3Player").volume = 0.3;
@@ -16,7 +17,6 @@ export default function Player(props) {
     event.preventDefault()
     // console.log(props.guess);
     const guess = validateGuess();
-    console.log(guess)
     addGuess(guess);
     updateRoundStatus(guess)
   }
@@ -31,7 +31,8 @@ export default function Player(props) {
       justifyContent="space-between"
     >
       <PlayButton onClick={handleClick} icon={playing ? "playing" : "paused"} />
-      <audio id="mp3Player" src="http://radio.garden/api/ara/content/listen/Ey0ePewU/channel.mp3" type="audio/mp3" />
+      <ReactAudioPlayer id="mp3Player" src={source} type="audio/mp3" />
+      {/* {audioPlayer} */}
       <Volume value={value} onChange={handleChange}/>
       <Button fullWidth variant="contained" onClick={saveGuess}>
         Guess
