@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import { Fragment } from "react";
 import Guesses from "./Guesses";
 import GameScore from "./GameScore";
 import IconButton from "@mui/material/IconButton";
