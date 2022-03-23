@@ -33,12 +33,13 @@ const CustomDialogTitle = (props) => {
 
 export default function GameOver(props) {
   // Props passed in to render Dialog box
-  const { round, autoplay, resetGame } = props;
+  const { round, startGame, pause } = props;
   // Track whether or not the dialog box is open
   const [open, setOpen] = useState(true);
 
   const handleClose = () => {
-    resetGame();
+    pause();
+    startGame();
     setOpen(false);
   };
 

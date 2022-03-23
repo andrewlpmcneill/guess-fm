@@ -13,11 +13,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function Announcement(props) {
   // Set open to true for testing purposes
   const [open, setOpen] = React.useState(true);
-  const { round, onClick, autoplay, clearGuesses } = props;
+  const { round, onClick, play, clearGuesses } = props;
 
   const handleClose = () => {
     setOpen(false);
-    autoplay();
+    play();
     clearGuesses();
   };
 
