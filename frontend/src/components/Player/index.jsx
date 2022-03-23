@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import PlayButton from "./PlayButton";
@@ -6,29 +6,15 @@ import Volume from "./Volume";
 
 export default function Player(props) {
 
-  const [playing, setPlaying] = useState(true);
-  const [value, setValue] = useState(30);
-  const player = document.getElementById("mp3Player");
-
   useEffect(() => {
     document.getElementById("mp3Player").volume = 0.3;
   }, [])
 
-  const click = () => {
-    if (playing) {
-      setPlaying(false);
-      player.pause();
-      return;
-    }
-    setPlaying(true);
-    player.play();
-    return;
+  const saveGuess = (event) => {
+    event.preventDefault()
+    // console.log(props.guess);
+    props.addGuess(props.guess);
   }
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    player.volume = newValue / 100;
-  };
 
   return (
 
@@ -39,15 +25,13 @@ export default function Player(props) {
       alignItems="center"
       justifyContent="space-between"
     >
-      <PlayButton onClick={click} icon={playing ? "playing" : "paused"} />
+      <PlayButton onClick={props.handleClick} icon={props.playing ? "playing" : "paused"} />
       <audio id="mp3Player" src="http://radio.garden/api/ara/content/listen/Z8RjDwNU/channel.mp3" type="audio/mp3" />
-      <Volume value={value} onChange={handleChange}/>
-      <Button fullWidth variant="contained">
+      <Volume value={props.value} onChange={props.handleChange}/>
+      <Button fullWidth variant="contained" onClick={saveGuess}>
         Guess
       </Button>
     </Stack>
-
-    
 
   )
 
