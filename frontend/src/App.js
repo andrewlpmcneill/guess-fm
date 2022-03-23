@@ -5,17 +5,14 @@ import Player from "./components/Player/index";
 import Results from "./components/Results/index";
 import { Box } from "@mui/material";
 import Dialog from "./components/Dialog";
-import useDisplayMode from  "./hooks/useDisplayMode";
+import useDisplayMode from "./hooks/useDisplayMode";
 import useRoundData from "./hooks/useRoundData";
 import useGuessesData from "./hooks/useGuessesData";
 import usePlayerData from "./hooks/usePlayerData";
 
-
 function App() {
-  
   // Import state and functionality from useRoundData hook
-  const { round, setRound, startGame } = useRoundData(0)
-
+  const { round, setRound, startGame } = useRoundData(0);
 
   // Needs to be trigged by guess button
   const updateRoundStatus = (guess) => {
@@ -24,15 +21,11 @@ function App() {
     }
   };
 
-
   // RESULTS STATE
   const [isDrawerOpen, setIsDrawerOpen, toggleDrawer] = useDisplayMode(false);
-  
-
 
   // GUESSES STATE
-  const {guesses, clearGuesses, addGuess} = useGuessesData([])
-  
+  const { guesses, clearGuesses, addGuess } = useGuessesData([]);
 
   // MAP STATE
   const [mapData, setMapData] = useState();
