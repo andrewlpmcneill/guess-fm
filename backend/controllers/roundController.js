@@ -2,8 +2,26 @@ const { Sequelize } = require('../models');
 const db = require('../models');
 const round = db.Round;
 
-const demoGreeting = (req,res) => {
-  res.json({greetings: "This is coming from the round controller"});
+const updateRounds = async(req, res) => {
+  try {
+    const result = req.body.result;
+    const roundID = req.body.round_id;
+    console.log(req.body);
+    const updatedRound = await round.update(
+      { result: result },
+      {
+        where: {
+          // eslint-disable-next-line camelcase
+          id: roundID
+        }
+      }
+    );
+    res.json(updatedRound);
+
+
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-module.exports = { demoGreeting };
+module.exports = { updateRounds };
