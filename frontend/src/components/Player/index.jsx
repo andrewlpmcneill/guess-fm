@@ -15,9 +15,12 @@ export default function Player(props) {
 
   const saveGuess = (event) => {
     event.preventDefault()
-    const guess = validateGuess();
-    addGuess(guess);
-    updateRoundStatus(guess)
+    const guess = validateGuess()
+    .then((guess) => {
+      addGuess(guess);
+      updateRoundStatus(guess)
+    });
+    
   }
 
   return (
