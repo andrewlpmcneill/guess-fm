@@ -61,14 +61,14 @@ function App() {
       setScore(prev => prev + 1)
     }
     else {
-      distanceAway = Math.round(getDistanceFromLatLonInKm(gameData[round - 1].longitude, gameData[round - 1].latitude, coords[0], coords[1]));
+      distanceAway = Math.round(getDistanceFromLatLonInKm(gameData[round - 1].latitude, gameData[round - 1].longitude, coords[0], coords[1]));
       guessCountry = lookup.byIso(country).country;
       direction = getCompassDirection(
         // guess coords
         { latitude: coords[0], longitude: coords[1] },
         // answer coords
         // Latitude = longitude and longitude = latitude (RADIO GARDEN ERROR)
-        { latitude: gameData[round - 1].longitude, longitude: gameData[round - 1].latitude });
+        { latitude: gameData[round - 1].latitude, longitude: gameData[round - 1].longitude });
     }
 
     setIsDrawerOpen(true);
