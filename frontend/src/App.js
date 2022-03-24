@@ -56,6 +56,9 @@ function App() {
       distanceAway = 0;
       guessCountry = gameData[round - 1].country
       direction = ""
+
+      //set new score
+      setScore(prev => prev + 1)
     }
     else {
       distanceAway = Math.round(getDistanceFromLatLonInKm(gameData[round - 1].longitude, gameData[round - 1].latitude, coords[0], coords[1]));
@@ -67,6 +70,9 @@ function App() {
         // Latitude = longitude and longitude = latitude (RADIO GARDEN ERROR)
         { latitude: gameData[round - 1].longitude, longitude: gameData[round - 1].latitude });
     }
+
+    setIsDrawerOpen(true);
+
     return({
       id: 1,
       distanceAway: distanceAway,
@@ -80,7 +86,7 @@ function App() {
   const [isDrawerOpen, setIsDrawerOpen, toggleDrawer] = useDisplayMode(false);
 
   // GUESSES STATE
-  const { guesses, clearGuesses, addGuess } = useGuessesData([]);
+  const { guesses, clearGuesses, addGuess, score, setScore } = useGuessesData([]);
 
   // MAP STATE
   const [mapData, setMapData] = useState();
@@ -110,11 +116,14 @@ function App() {
           game={game}
           guesses={guesses}
           clearGuesses={clearGuesses}
+          setScore={setScore}
+          score={score}
         />
         <Results
           guesses={guesses}
           onDrawerToggle={toggleDrawer}
           isDrawerOpen={isDrawerOpen}
+          score={score}
         />
         <Player
           value={value}

@@ -33,13 +33,14 @@ const CustomDialogTitle = (props) => {
 
 export default function GameOver(props) {
   // Props passed in to render Dialog box
-  const { round, startGame, pause, setAudio, setRound } = props;
+  const { round, startGame, pause, setAudio, setRound, setScore, score } = props;
   // Track whether or not the dialog box is open
   const [open, setOpen] = useState(true);
 
   const handleClose = () => {
     pause();
     setRound(0);
+    setScore(0);
     setAudio();
     setOpen(false);
   };
@@ -56,7 +57,7 @@ export default function GameOver(props) {
         {/* Add margin around content */}
         <DialogContent sx={{ m: 1}}>
           <Typography >
-            {"Your final score is X/3."}
+            {`Your final score is ${score}/3.`}
           </Typography>
         </DialogContent>
         <DialogButton onClick={handleClose}>{"PLAY AGAIN"}</DialogButton>
