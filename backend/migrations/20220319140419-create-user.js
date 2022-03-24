@@ -9,7 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       // eslint-disable-next-line camelcase
-      full_name: {
+      first_name: {
+        type: Sequelize.STRING
+      },
+      // eslint-disable-next-line camelcase
+      last_name: {
         type: Sequelize.STRING
       },
       email: {
