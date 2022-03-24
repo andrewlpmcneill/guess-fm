@@ -1,10 +1,9 @@
 const express = require("express");
-const guessController = require('../controllers/guessController')
+const guessController = require("../controllers/guessController");
 const router = express.Router();
 
+router.get("/", guessController.getGuesses);
 
-router.get('/', guessController.demoGreeting);
-
-router.post('/', guessController.validateAndInsertGuess)
+router.post("/", guessController.validateAndInsertGuess);
 
 module.exports = router;
