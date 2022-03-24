@@ -15,6 +15,14 @@ import { getCompassDirection } from "geolib";
 function App() {
   // Import state and functionality from useRoundData hook
   // const { round, setRound, startGame } = useRoundData(0);
+  const [state, setState] = useState({
+    playerId: null,
+    gameId: null,
+    resultsId: null,
+    stationId: null,
+    roundId: null,
+    guessId: null,
+  })
 
   // Needs to be trigged by guess button
   const updateRoundStatus = (guess) => {
