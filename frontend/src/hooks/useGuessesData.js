@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function useGuessesData(initial) {
   const [guesses, setGuesses] = useState(initial);
+  const [score, setScore] = useState(0);
 
   const clearGuesses = () => {
     setGuesses([]);
@@ -10,5 +11,5 @@ export default function useGuessesData(initial) {
     setGuesses((prev) => [...prev, guess]);
   };
 
-  return { guesses, clearGuesses, addGuess };
+  return { guesses, clearGuesses, addGuess, score, setScore };
 }
