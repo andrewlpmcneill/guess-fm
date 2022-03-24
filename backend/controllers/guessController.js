@@ -1,18 +1,28 @@
+/* eslint-disable camelcase */
 const { Sequelize } = require("../models");
 const axios = require("axios");
 const db = require("../models");
 const guess = db.Guess;
 const { validateGuess } = require("../helper/validateGuesses");
 
-const demoGreeting = (req, res) => {
-  res.json({ greetings: "This is coming from the guess controller" });
+
+const getGuesses = async (req, res) => {
+  
+  try {
+    const myGuesses = await guess.findAll({
+      raw: true,
+    });
+    res.json(myGuesses);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const validateAndInsertGuess = async (req, res) => {
   //lat1, lng1 = station coord
   //lat2, ln2 = guess coord
   try {
-    const { round, lat1, lng1, lat2, lng2 } = req.body;
+    const { round_id, lat1, lng1, lat2, lng2 } = req.body;
 
     const reverseCall1 = await axios.get(
       `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat1}&lon=${lng1}&limit=1&appid=f89361fb753c9647ce4d1c6ca62fdc3c`
@@ -36,14 +46,18 @@ const validateAndInsertGuess = async (req, res) => {
     console.log(guessResultObject);
 
     const guessExample = await guess.create({
-      round_id: round,
+      round_id,
       result: guessResultObject.distanceAway,
     });
-
-    res.json(guessResultObject);
+    res.json({
+      id: guessExample.dataValues.id,
+      country: guessResultObject.country,
+      distanceAway:guessResultObject.distanceAway,
+      direction: guessResultObject.direction
+    });
   } catch (err) {
     console.log(err);
   }
 };
 
-module.exports = { demoGreeting, validateAndInsertGuess };
+module.exports = { getGuesses, validateAndInsertGuess };

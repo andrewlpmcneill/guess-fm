@@ -6,6 +6,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { CircularProgress } from '@mui/material';
 
+
 // Sliding up transition component, passed to dialog box
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -14,13 +15,12 @@ const Transition = forwardRef(function Transition(props, ref) {
 export default function Announcement(props) {
   // Set open to true for testing purposes
   const [open, setOpen] = useState(true);
-  const { round, onClick, play, clearGuesses } = props;
+  const { round, onClick, play, clearGuesses, startRound } = props;
 
   // On close of round announcement - play audio and clear previous guesses
   const handleClose = () => {
     setOpen(false);
-    play();
-    clearGuesses();
+    startRound();
   };
 
   // Set short buffer on play button to give audio player time to load

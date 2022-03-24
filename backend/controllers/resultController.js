@@ -19,21 +19,17 @@ const updateResults = async(req, res) => {
         }
       }
     );
-    res.json(updatedResults);
+    res.json(updatedResults.dataValues);
   } catch (err) {
     console.log(err);
   }
 };
 
 
-const getResult = async (req, res) => {
+const getResults = async (req, res) => {
   try {
     const myResult = await result.findAll({
       raw: true,
-      where: {
-        // REMOVE HARDCODED ID
-        id: 1,
-      },
     });
     res.json(myResult);
   } catch (err) {
@@ -42,16 +38,17 @@ const getResult = async (req, res) => {
 };
 
 const createResult = async (req, res) => {
+  const { user_id, game_id } = req.body;
   try {
     const newResult = await result.create({
-      // FILL IN WITH REQUEST USER_ID AND REQUEST GAME_ID
-      user_id: 1,
-      game_id: 1,
+      user_id,
+      game_id
     });
-    res.json(newResult);
+    res.json(newResult.dataValues);
+    console.log(newResult.dataValues);
   } catch (err) {
     console.log(err);
   }
 };
 
-module.exports = { getResult, createResult, updateResults };
+module.exports = { getResults, createResult, updateResults };
