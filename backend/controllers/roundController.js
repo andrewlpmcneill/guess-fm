@@ -1,6 +1,18 @@
+/* eslint-disable camelcase */
 const { Sequelize } = require("../models");
 const db = require("../models");
 const round = db.Round;
+
+const getRounds = async (req, res) => {
+  try {
+    const myRound = await round.findAll({
+      raw: true,
+    });
+    res.json(myRound);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 const newRound = async (req, res) => {
   try {
@@ -39,4 +51,4 @@ const updateRounds = async (req, res) => {
   }
 };
 
-module.exports = { updateRounds, newRound };
+module.exports = { updateRounds, newRound, getRounds };
