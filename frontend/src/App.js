@@ -32,6 +32,67 @@ function App() {
     }
   };
 
+  const startGame = async() => {
+
+    try {
+      // Create game and grab game ID from the response
+      const postGame = await axios.post("/games", { creator_id: 1})
+      const gameId = postGame.data.id;
+      // Create result entry and grab result ID from the response
+      const postResult = await axios.post("/results", {
+        user_id: 1,
+        game_id: postGame.data.id
+      })
+      const resultsId = postResult.data.id;
+      // Set the radio stations for the game, start the game in round 1 and set state object
+      setAudio();
+      setRound(1);
+      setState((prev) => {
+        return {...prev,
+          gameId,
+          resultsId,
+          userId: 1,}
+      });  
+    } catch(err){
+      console.log(err)
+    }
+
+  }
+
+  const startRound = async() => {
+
+    try {
+      const postRound = await axios.post("/rounds", { 
+        user_id: state.userId, 
+        game_id: state.gameId,
+        station_id: gameData[0].id,
+      })
+      const stationId = postRound.data.station_id;
+      const roundId = postRound.data.id;
+      play();
+      clearGuesses();
+      setState((prev) => {
+        return {...prev, 
+        stationId,
+        roundId
+      }
+      })
+    } catch(err) {
+      console.log(err)
+    }
+  }
+  
+
+  // API CALL TO UPDATE ROUNDS TABLE
+  const updateRoundTable = result => {
+    axios.patch('/rounds', { result: null, roundID: state.roundId });
+  };
+
+  // API CALL TO UPDATE RESULTS TABLE
+  const updateResultsTable = result => {
+    axios.patch('/results', { results: null, game_id: state.gameId, user_id: state.playerId })
+  };
+
   const [game, setGame] = useState(0);
   const [round, setRound] = useState(0);
   const [gameData, setGameData] = useState([])
@@ -126,6 +187,10 @@ function App() {
           clearGuesses={clearGuesses}
           setScore={setScore}
           score={score}
+          state={state}
+          setState={setState}
+          startGame={startGame}
+          startRound={startRound}
         />
         <Results
           guesses={guesses}
