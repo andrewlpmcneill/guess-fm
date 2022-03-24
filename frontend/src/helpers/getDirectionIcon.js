@@ -16,11 +16,13 @@ const getDirectionIcon = (compassDirection) => {
       return <NorthIcon />;
     case "NNE":
     case "NE":
+    case "ENE":
       return <NorthEastIcon />;
     case "E":
       return <EastIcon />;
     case "SSE":
     case "SE":
+    case "ESE":
       return <SouthEastIcon />;
     case "S":
       return <SouthIcon />;
@@ -28,9 +30,11 @@ const getDirectionIcon = (compassDirection) => {
       return <WestIcon />;
     case "SSW":
     case "SW":
+    case "WSW":
       return <SouthWestIcon />;
     case "NNW":
     case "NW":
+    case "WNW":
       return <NorthWestIcon />;
     default:
       return <CelebrationIcon />;
