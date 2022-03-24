@@ -4,17 +4,17 @@ const round = db.Round;
 
 const newRound = async (req, res) => {
   try {
-    const { userId, gameId, stationId } = req.body;
+    const { user_id, game_id, station_id } = req.body;
 
     const newRound = await round.create({
-      user_id: userId,
-      game_id: gameId,
-      station_id: stationId,
+      user_id,
+      game_id,
+      station_id,
     });
 
     // console.log(newRound)
 
-    res.json({ id: newRound.id });
+    res.json(newRound.dataValues);
   } catch (err) {
     console.log(err);
   }
@@ -24,7 +24,6 @@ const updateRounds = async (req, res) => {
   try {
     const result = req.body.result;
     const roundID = req.body.round_id;
-    console.log(req.body);
     const updatedRound = await round.update(
       { result: result },
       {
