@@ -1,4 +1,4 @@
 INSERT INTO users
-  (full_name, email, password)
+  (first_name, last_name, email, password)
 VALUES
-  ('admin', 'default', 'password');
+  ('admin', 'McAdmin', 'default', 'password');
