@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.get('/', roundController.demoGreeting);
 
+router.post('/', roundController.newRound)
+
 module.exports = router;
