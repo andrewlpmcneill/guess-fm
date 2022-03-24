@@ -4,8 +4,17 @@ const db = require("../models");
 const guess = db.Guess;
 const { validateGuess } = require("../helper/validateGuesses");
 
-const demoGreeting = (req, res) => {
-  res.json({ greetings: "This is coming from the guess controller" });
+
+const getGuesses = async (req, res) => {
+  
+  try {
+    const myGuesses = await guess.findAll({
+      raw: true,
+    });
+    res.json(myGuesses);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const validateAndInsertGuess = async (req, res) => {
