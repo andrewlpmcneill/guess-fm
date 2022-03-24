@@ -6,7 +6,6 @@ import Results from "./components/Results/index";
 import { Box } from "@mui/material";
 import Dialog from "./components/Dialog";
 import useDisplayMode from "./hooks/useDisplayMode";
-import useRoundData from "./hooks/useRoundData";
 import useGuessesData from "./hooks/useGuessesData";
 import usePlayerData from "./hooks/usePlayerData";
 import getDistanceFromLatLonInKm from "./helpers/getDistanceFromCoords";
