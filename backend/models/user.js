@@ -15,7 +15,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init({
     // eslint-disable-next-line camelcase
-    full_name: DataTypes.STRING,
+    first_name: DataTypes.STRING,
+    // eslint-disable-next-line camelcase
+    last_name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING
   }, {
