@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.patch('/', roundController.updateRounds);
 
+router.post('/', roundController.newRound)
+
 module.exports = router;
