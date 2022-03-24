@@ -15,7 +15,7 @@ import { getCompassDirection } from "geolib";
 
 function App() {
   // Import state and functionality from useRoundData hook
-  const { round, setRound, startGame } = useRoundData(0);
+  // const { round, setRound, startGame } = useRoundData(0);
 
   // Needs to be trigged by guess button
   const updateRoundStatus = (guess) => {
@@ -25,15 +25,23 @@ function App() {
     }
   };
 
+  const [game, setGame] = useState(0);
+  const [round, setRound] = useState(0);
   const [gameData, setGameData] = useState([])
 
   useEffect(() => {
-    axios.get('/stations')
-      .then(response => {
-        console.log(response.data);
-        setGameData(response.data);
-      })
-  }, [])
+    if (round === 1) setGame(prev => prev + 1);
+  }, [round])
+
+  useEffect(() => {
+    if (game !== 1) {
+      axios.get('/stations')
+        .then(response => {
+          console.log(response.data);
+          setGameData(response.data);
+        })
+    }
+  }, [game])
 
   const lookup = require('country-code-lookup')
 
@@ -96,10 +104,11 @@ function App() {
         <Map setMapData={setMapData} gameData={gameData} setCountry={setCountry} country={country} coords={coords} setCoords={setCoords} />
         <Dialog
           setAudio={setAudio}
+          setRound={setRound}
           round={round}
           play={play}
           pause={pause}
-          startGame={startGame}
+          game={game}
           guesses={guesses}
           clearGuesses={clearGuesses}
         />
