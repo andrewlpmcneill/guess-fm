@@ -37,7 +37,7 @@ const validateAndInsertGuess = async (req, res) => {
 
     const guessExample = await guess.create({
       round_id: round,
-      result: guessResultObject.distanceAway
+      result: guessResultObject.distanceAway,
     });
 
     res.json(guessResultObject);
