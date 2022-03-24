@@ -70,6 +70,9 @@ function App() {
         // Latitude = longitude and longitude = latitude (RADIO GARDEN ERROR)
         { latitude: gameData[round - 1].longitude, longitude: gameData[round - 1].latitude });
     }
+
+    setIsDrawerOpen(true);
+
     return({
       id: 1,
       distanceAway: distanceAway,
@@ -114,6 +117,7 @@ function App() {
           guesses={guesses}
           clearGuesses={clearGuesses}
           setScore={setScore}
+          score={score}
         />
         <Results
           guesses={guesses}
