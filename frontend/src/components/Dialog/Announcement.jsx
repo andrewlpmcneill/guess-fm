@@ -1,10 +1,12 @@
-import { useState, forwardRef } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import { CircularProgress } from '@mui/material';
 
+// Sliding up transition component, passed to dialog box
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -14,11 +16,21 @@ export default function Announcement(props) {
   const [open, setOpen] = useState(true);
   const { round, onClick, play, clearGuesses } = props;
 
+  // On close of round announcement - play audio and clear previous guesses
   const handleClose = () => {
     setOpen(false);
     play();
     clearGuesses();
   };
+
+  // Set short buffer on play button to give audio player time to load
+  const [buffer ,setBuffer] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setBuffer(false);
+    },1000);
+  },[]);
 
   return (
     <div>
@@ -34,7 +46,10 @@ export default function Announcement(props) {
         {/* Dynamically generate round number */}
         <DialogTitle sx={{m: 'auto', fontFamily: 'Wild World'}}>{`ROUND ${round}`}</DialogTitle>
         <DialogActions sx={{p: 2}}>
-          <Button onClick={handleClose} variant="contained" sx={{m: 'auto', fontFamily: 'Wild World'}}>START</Button>
+          { buffer 
+            ? <CircularProgress sx={{m: 'auto'}} />
+            : <Button onClick={handleClose} variant="contained" sx={{m: 'auto', fontFamily: 'Wild World'}}>START</Button>
+          }
         </DialogActions>
       </Dialog>
     </div>
