@@ -1,9 +1,37 @@
-const { Sequelize } = require('../models');
-const db = require('../models');
+/* eslint-disable camelcase */
+const { Sequelize } = require("../models");
+const db = require("../models");
 const user = db.User;
 
-const demoGreeting = (req,res) => {
-  res.json({greetings: "This is coming from the users controller"});
+const getUser = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const myUser = await user.findAll({
+      raw: true,
+      where: {
+        id
+      },
+    });
+    res.json(myUser);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-module.exports = { demoGreeting };
+// TO BE COMPLETED - CREATING NEW USER
+const createUser = async (req, res) => {
+  const { first_name, last_name, email, password } = req.body;
+  try {
+    const newUser = await user.Create({
+      first_name,
+      last_name,
+      email,
+      password,
+    });
+    res.json(newUser);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports = { getUser, createUser };
