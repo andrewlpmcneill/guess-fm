@@ -19,6 +19,7 @@ export default function Dialog(props) {
     score,
     startGame,
     startRound,
+    updateResultsTable
   } = props;
 
   return (
@@ -70,6 +71,7 @@ export default function Dialog(props) {
           setRound={setRound}
           setScore={setScore}
           score={score}
+          updateResultsTable={updateResultsTable}
         />
       )}
     </div>
