@@ -39,7 +39,6 @@ export default function GameOver(props) {
 
   const handleClose = () => {
     pause();
-    // startGame();
     setRound(0);
     setAudio();
     setOpen(false);
