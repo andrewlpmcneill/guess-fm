@@ -3,6 +3,6 @@ const roundController = require('../controllers/roundController');
 const router = express.Router();
 
 
-router.get('/', roundController.demoGreeting);
+router.patch('/', roundController.updateRounds);
 
 module.exports = router;
