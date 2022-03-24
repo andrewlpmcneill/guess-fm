@@ -3,7 +3,10 @@ const userController = require("../controllers/userController");
 const router = express.Router();
 
 
+// Get dummy user at start of game
+router.get('/', userController.getUser);
 
-router.get('/', userController.demoGreeting);
+// Create user - NOT DONE
+router.post('/', userController.createUser);
 
 module.exports = router;
