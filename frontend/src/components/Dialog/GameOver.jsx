@@ -7,7 +7,7 @@ import DialogButton from './DialogButton'
 
 export default function GameOver(props) {
   // Props passed in to render Dialog box
-  const { round, pause, setAudio, setRound, setScore, score, updateResultsTable } = props;
+  const { pause, setRound, setScore, score, updateResultsTable } = props;
   // Track whether or not the dialog box is open
   const [open, setOpen] = useState(true);
 
@@ -16,7 +16,7 @@ export default function GameOver(props) {
     pause();
     setRound(0);
     setScore(0);
-    setAudio();
+    // loadAudio(gameData, round);
     setOpen(false);
   };
 

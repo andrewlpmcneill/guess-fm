@@ -7,12 +7,14 @@ import VolumeUp from '@mui/icons-material/VolumeUp'
 
 export default function Volume(props) {
 
+  const { handleChange, volume } = props;
+
   return (
 
     <Box sx={{ width: 220 }}>
       <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
         <VolumeDown />
-        <Slider aria-label="Volume" data-testid="slider" value={props.value} onChange={props.onChange} />
+        <Slider aria-label="Volume" data-testid="slider" value={volume} onChange={handleChange} />
         <VolumeUp />
       </Stack>
     </Box>
