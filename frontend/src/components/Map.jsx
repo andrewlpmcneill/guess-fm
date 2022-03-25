@@ -6,7 +6,7 @@ const mapsAPI = process.env.REACT_APP_GOOGLEMAPSAPIKEY;
 
 export default function SimpleMap(props){
   const [country, setCountry] = useState("");
-  const {coords, setCoords} = props;
+  const {coords, setCoords, assignCoords, gameData } = props;
 
   const defaultProps = {
     center: {
@@ -28,7 +28,7 @@ export default function SimpleMap(props){
   };
 
   const onClick = mapsMouseEvent => {
-    setCoords([mapsMouseEvent.lat, mapsMouseEvent.lng]);
+    assignCoords([mapsMouseEvent.lat, mapsMouseEvent.lng])
     getCountry(mapsMouseEvent.lat, mapsMouseEvent.lng);
   }
 
@@ -50,8 +50,8 @@ export default function SimpleMap(props){
         }}
       >
         <Marker
-          lat={coords[0]}
-          lng={coords[1]}
+          lat={gameData.coords[0]}
+          lng={gameData.coords[1]}
           icon={'https://i.imgur.com/DGy99y0.png'}
           text={country}
         />
