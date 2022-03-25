@@ -34,9 +34,9 @@ export default function usePlayerData() {
     setPlaying(false);
   }
 
-  const loadAudio = (gameData, round) => {
+  const loadAudio = (stations, round) => {
     if (round < 4) {
-      setSource(gameData[round].mp3_link);
+      setSource(stations[round].mp3_link);
       document.getElementById("mp3Player").load();
       setPlaying(false);
     }

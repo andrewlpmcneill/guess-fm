@@ -1,36 +1,90 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function useGuessesData(initial) {
-  const [guesses, setGuesses] = useState(initial);
-  const [score, setScore] = useState(0);
-  const [game, setGame] = useState(0);
-  const [round, setRound] = useState(0);
-  const [gameData, setGameData] = useState([]);
-  const [coords, setCoords] = useState([]);
+export default function useGameData() {
+  const [gameData, setGameData] = useState({
+    guesses: [],
+    score: 0,
+    game: 0,
+    round: 0,
+    stations: [],
+    coords: [],
+  });
 
   useEffect(() => {
-    if (game !== 1) {
-      axios.get("/stations").then(response => {
-        console.log(response.data);
-        setGameData(response.data);
+    if (gameData.game !== 1) {
+      axios.get("/stations").then((response) => {
+        setGameData((prev) => {return {...gameData, stations: response.data}})
       });
     }
-  }, [game]);
+  }, [gameData.game]);
 
   useEffect(() => {
-    if (round === 1) setGame(prev => prev + 1);
-  }, [round]);
+    if (gameData.round === 1) {
+      setGameData((prev) => {
+        return {...prev, game: prev.game + 1}
+      })
+    };
+  }, [gameData.round]);
 
   // Set guesses array back to empty
   const clearGuesses = () => {
-    setGuesses([]);
+    setGameData((prev) => {
+      return {...prev, guesses: []};
+    })
+
   };
 
   // Update guess state
   const addGuess = (guess) => {
-    setGuesses((prev) => [...prev, guess]);
+    
+    const guessesCopy = [...gameData.guesses]
+    guessesCopy.push(guess);
+    setGameData((prev) => {
+      return {...prev, guesses: guessesCopy}
+    })
   };
 
-  return { guesses, clearGuesses, addGuess, score, setScore, game, setGame, round, setRound, gameData, setGameData, coords, setCoords };
+  const addScore = () => {
+    setGameData ((prev) => {
+      return {...prev, score: prev.score + 1}
+    })
+  }
+
+  const clearScore = () => {
+    setGameData ((prev) => {
+      return {...prev, score: 0} 
+    })
+  }
+
+  const nextRound = () => {
+    setGameData ((prev) => {
+      return {...prev, round: prev.round + 1}
+    })
+  }
+
+  const clearRound = () => {
+    setGameData ((prev) => {
+      return {...prev, round: 0} 
+    })
+  }
+
+  const assignCoords = (val) => {
+  setGameData((prev) => {
+    return {...prev, coords:[val[0], val[1]]}
+  } )
+  }
+
+
+  return {
+    clearGuesses,
+    addGuess,
+    gameData,
+    setGameData,
+    addScore,
+    clearScore,
+    nextRound,
+    clearRound,
+    assignCoords
+  };
 }

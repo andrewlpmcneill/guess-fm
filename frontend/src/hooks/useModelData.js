@@ -16,13 +16,11 @@ export default function useModelData(initial) {
   const createGame = async (userId) => {
     try {
       // Create game and grab game ID from the response
-      // ** CHANGE HARDCODED CREATOR_ID VALUE **
       const postGame = await axios.post("/games", { creator_id: userId });
       const gameId = postGame.data.id;
       // Create result entry and grab result ID from the response
-      // ** CHANGE HARDCODED USER_ID VALUE **
       const postResult = await axios.post("/results", {
-        user_id: 1,
+        user_id: userId,
         game_id: postGame.data.id,
       });
       const resultsId = postResult.data.id;

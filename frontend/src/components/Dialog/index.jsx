@@ -13,19 +13,22 @@ export default function Dialog(props) {
     nextRound,
     clearGuesses,
     loadAudio,
-    gameData,
+    stations,
     setRound,
     game,
     setScore,
     score,
     createGame,
     createRound,
-    updateResultsTable
+    updateResultsTable, 
+    clearScore, 
+    gameData,
+    clearRound,
   } = props;
 
   return (
     <div>
-      {round === 0 && (
+      {gameData.round === 0 && (
         <Instructions
           modelState={modelState}
           setModelState={setModelState}
@@ -35,32 +38,22 @@ export default function Dialog(props) {
           loadAudio={loadAudio}
           setRound={setRound}
           game={game}
+          stations={stations}
           gameData={gameData}
         />
       )}
-      {round === 1 && (
+      {gameData.round === 1 && (
         <Announcement
           round={round}
           play={play}
           clearGuesses={clearGuesses}
           createRound={createRound}
           modelState={modelState}
+          stations={stations}
           gameData={gameData}
         />
       )}
-      {round === 2 && (
-        <Announcement
-          open={true}
-          round={round}
-          play={play}
-          clearGuesses={clearGuesses}
-          loadAudio={loadAudio}
-          createRound={createRound}
-          modelState={modelState}
-          gameData={gameData}
-        />
-      )}
-      {round === 3 && (
+      {gameData.round === 2 && (
         <Announcement
           open={true}
           round={round}
@@ -69,10 +62,24 @@ export default function Dialog(props) {
           loadAudio={loadAudio}
           createRound={createRound}
           modelState={modelState}
+          stations={stations}
           gameData={gameData}
         />
       )}
-      {round > 3 && (
+      {gameData.round === 3 && (
+        <Announcement
+          open={true}
+          round={round}
+          play={play}
+          clearGuesses={clearGuesses}
+          loadAudio={loadAudio}
+          createRound={createRound}
+          modelState={modelState}
+          stations={stations}
+          gameData={gameData}
+        />
+      )}
+      {gameData.round > 3 && (
         <GameOver
           pause={pause}
           loadAudio={loadAudio}
@@ -81,7 +88,10 @@ export default function Dialog(props) {
           score={score}
           updateResultsTable={updateResultsTable}
           modelState={modelState}
+          stations={stations}
           gameData={gameData}
+          clearScore={clearScore}
+          clearRound={clearRound}
         />
       )}
     </div>
