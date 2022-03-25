@@ -38,9 +38,10 @@ export default function usePlayerData() {
     if (round < 4) {
       setSource(gameData[round].mp3_link);
       document.getElementById("mp3Player").load();
+      setPlaying(false);
     }
   };
 
-  return { playing, volume, click, handleChange, play, pause, source, loadAudio }
+  return { playing, volume, click, handleChange, play, pause, source, loadAudio, setPlaying }
 
 }
