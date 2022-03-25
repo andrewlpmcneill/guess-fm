@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function usePlayerData() {
 
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(30);
   const [source, setSource] = useState("");
   
@@ -26,10 +26,12 @@ export default function usePlayerData() {
   
   const play = () => {
     player.play();
+    setPlaying(true);
   };
 
   const pause = () => {
     player.pause();
+    setPlaying(false);
   }
 
   const loadAudio = (gameData, round) => {
