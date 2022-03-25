@@ -7,27 +7,16 @@ import ReactAudioPlayer from 'react-audio-player';
 
 export default function Player(props) {
 
-  const { addGuess, handleClick, playing, value, handleChange, updateRoundStatus, validateGuess, source } = props;
+  const { handleClick, playing, value, handleChange, updateRoundStatus, validateGuess, source } = props;
 
   useEffect(() => {
     document.getElementById("mp3Player").volume = 0.3;
   }, [])
 
-  const saveGuess = (event) => {
-    event.preventDefault()
-    const guess = validateGuess()
-    .then((guess) => {
-      addGuess(guess);
-      updateRoundStatus(guess)
-    });
-    
-  }
-
   return (
 
     <Stack
       direction="row"
-      m="0 2em"
       spacing={2}
       alignItems="center"
       justifyContent="space-between"
@@ -36,9 +25,6 @@ export default function Player(props) {
       <ReactAudioPlayer id="mp3Player" src={source} type="audio/mp3" />
       {/* {audioPlayer} */}
       <Volume value={value} onChange={handleChange}/>
-      <Button fullWidth variant="contained" onClick={saveGuess}>
-        Guess
-      </Button>
     </Stack>
 
   )
