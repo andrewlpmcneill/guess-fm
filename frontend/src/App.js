@@ -3,14 +3,13 @@ import Map from "./components/Map";
 import "./App.css";
 import Player from "./components/Player/index";
 import Results from "./components/Results/index";
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import Dialog from "./components/Dialog";
 import useDisplayMode from "./hooks/useDisplayMode";
 import useGuessesData from "./hooks/useGuessesData";
 import usePlayerData from "./hooks/usePlayerData";
-import getDistanceFromLatLonInKm from "./helpers/getDistanceFromCoords";
 import axios from "axios";
-import { getCompassDirection } from "geolib";
+import Button  from "@mui/material/Button";
 
 function App() {
   // Import state and functionality from useRoundData hook
@@ -24,18 +23,39 @@ function App() {
     guessId: null,
   });
 
+  const [game, setGame] = useState(0);
+  const [round, setRound] = useState(0);
+  const [gameData, setGameData] = useState([]);
+  
+  // RESULTS STATE
+  const [isDrawerOpen, setIsDrawerOpen, toggleDrawer] = useDisplayMode(false);
+
+  // GUESSES STATE
+  const { guesses, clearGuesses, addGuess, score, setScore } = useGuessesData([]);
+    
+  // MAP STATE
+  const [mapData, setMapData] = useState();
+
+  // PLAYER STATE
+  const { playing, value, click, handleChange, play, pause } = usePlayerData();
+
+  //GUESS COORDS STATE
+  const [coords, setCoords] = useState([]);
+
+  //SOURCE STATE
+  const [source, setSource] = useState("");
+
+    
+
   // Needs to be trigged by guess button
   const updateRoundStatus = (guess) => {
-    if (guesses.length === 4) {
-      updateRoundTable("false");
-      setRound((prev) => prev + 1);
-      setAudio();
-    } 
-    if (guess.distanceAway === 0) {
-      updateRoundTable("true");
-      setRound((prev) => prev + 1);
+
+    if (guess.distanceAway === 0 || guesses.length === 4) {
+      updateRoundTable(guesses.length === 4 ? "false" : "true");
+      setRound((prev) => prev + 1)
       setAudio();
     }
+
   };
 
   const startGame = async () => {
@@ -90,6 +110,7 @@ function App() {
       })
       .then((response) => {
         console.log(response);
+
       });
   };
 
@@ -106,9 +127,6 @@ function App() {
       });
   };
 
-  const [game, setGame] = useState(0);
-  const [round, setRound] = useState(0);
-  const [gameData, setGameData] = useState([]);
 
   useEffect(() => {
     if (round === 1) setGame((prev) => prev + 1);
@@ -123,44 +141,6 @@ function App() {
     }
   }, [game]);
 
-  const lookup = require("country-code-lookup");
-
-  const [country, setCountry] = useState("");
-  const [coords, setCoords] = useState([]);
-
-  // const validateGuess =  () => {
-
-  //   let distanceAway, guessCountry, direction;
-
-  //   if (lookup.byIso(country).country === gameData[round - 1].country) {
-  //     distanceAway = 0;
-  //     guessCountry = gameData[round - 1].country
-  //     direction = ""
-
-  //     //set new score
-  //     setScore(prev => prev + 1)
-  //   }
-  //   else {
-  //     distanceAway = Math.round(getDistanceFromLatLonInKm(gameData[round - 1].latitude, gameData[round - 1].longitude, coords[0], coords[1]));
-  //     guessCountry = lookup.byIso(country).country;
-  //     direction = getCompassDirection(
-  //       // guess coords
-  //       { latitude: coords[0], longitude: coords[1] },
-  //       // answer coords
-  //       // Latitude = longitude and longitude = latitude (RADIO GARDEN ERROR)
-  //       { latitude: gameData[round - 1].latitude, longitude: gameData[round - 1].longitude });
-  //   }
-
-  //   setIsDrawerOpen(true);
-
-  //   return({
-  //     id: 1,
-  //     distanceAway: distanceAway,
-  //     direction: direction,
-  //     country: guessCountry,
-  //   })
-
-  // }
 
   const validateGuess = async () => {
     //round lat1 lng1 lat2 lgn2
@@ -195,19 +175,15 @@ function App() {
     }
   };
 
-  // RESULTS STATE
-  const [isDrawerOpen, setIsDrawerOpen, toggleDrawer] = useDisplayMode(false);
+  const saveGuess = (event) => {
+    event.preventDefault()
+    const guess = validateGuess()
+    .then((guess) => {
+      addGuess(guess);
+      updateRoundStatus(guess)
+    });
+  }
 
-  // GUESSES STATE
-  const { guesses, clearGuesses, addGuess, score, setScore } = useGuessesData(
-    []
-  );
-
-  // MAP STATE
-  const [mapData, setMapData] = useState();
-
-  // PLAYER STATE
-  const { playing, value, click, handleChange, play, pause } = usePlayerData();
 
   const setAudio = () => {
     console.log("ROUND:", round);
@@ -215,7 +191,6 @@ function App() {
     document.getElementById("mp3Player").load();
   };
 
-  const [source, setSource] = useState("");
 
   return (
     <div className="App">
@@ -224,8 +199,8 @@ function App() {
       <Map
         setMapData={setMapData}
         gameData={gameData}
-        setCountry={setCountry}
-        country={country}
+        // setCountry={setCountry}
+        // country={country}
         coords={coords}
         setCoords={setCoords}
       />
@@ -252,19 +227,30 @@ function App() {
           isDrawerOpen={isDrawerOpen}
           score={score}
         />
-        <Player
-          value={value}
-          playing={playing}
-          handleClick={click}
-          handleChange={handleChange}
-          addGuess={addGuess}
-          gameData={gameData}
-          validateGuess={validateGuess}
-          updateRoundStatus={updateRoundStatus}
-          source={source}
-          setAudio={setAudio}
-          round={round}
-        />
+        <Stack
+          direction="row"
+          m="0 2em"
+          spacing={2}
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Player
+            value={value}
+            playing={playing}
+            handleClick={click}
+            handleChange={handleChange}
+            addGuess={addGuess}
+            gameData={gameData}
+            validateGuess={validateGuess}
+            updateRoundStatus={updateRoundStatus}
+            source={source}
+            setAudio={setAudio}
+            round={round}
+          />
+          <Button fullWidth variant="contained" onClick={saveGuess}>
+            Guess
+          </Button>
+        </Stack>
       </Box>
     </div>
   );
