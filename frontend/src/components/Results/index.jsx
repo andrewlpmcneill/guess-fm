@@ -10,7 +10,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 const drawerWidth = 300;
 
 export default function Results(props) {
-  const { guesses, onDrawerToggle, isDrawerOpen, score } = props;
+  const { onDrawerToggle, isDrawerOpen, gameData } = props;
 
 
   return (
@@ -34,8 +34,8 @@ export default function Results(props) {
           </IconButton>
         </Stack>
 
-        <Guesses data={guesses} />
-        <GameScore data={score} />
+        <Guesses data={gameData.guesses} />
+        <GameScore data={gameData.score} />
       </Drawer>
 
       <Drawer
