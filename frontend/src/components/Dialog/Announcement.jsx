@@ -15,12 +15,17 @@ const Transition = forwardRef(function Transition(props, ref) {
 export default function Announcement(props) {
   // Set open to true for testing purposes
   const [open, setOpen] = useState(true);
-  const { round, onClick, play, clearGuesses, startRound } = props;
+  const { round, onClick, play, clearGuesses, createRound, gameData, modelState } = props;
 
   // On close of round announcement - play audio and clear previous guesses
   const handleClose = () => {
     setOpen(false);
-    startRound();
+    // GAME DATA IS STATIONS
+    createRound(modelState.userId, modelState.gameId, gameData[round - 1].id)
+    .then(() => {
+      play();
+      clearGuesses();
+    });
   };
 
   // Set short buffer on play button to give audio player time to load
