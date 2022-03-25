@@ -5,20 +5,21 @@ import GameOver from "./GameOver";
 export default function Dialog(props) {
   // Props passed in to render Dialog box
   const {
-    state,
-    setState,
+    modelState,
+    setModelState,
     round,
     play,
     pause,
     nextRound,
     clearGuesses,
-    setAudio,
+    loadAudio,
+    gameData,
     setRound,
     game,
     setScore,
     score,
-    startGame,
-    startRound,
+    createGame,
+    createRound,
     updateResultsTable
   } = props;
 
@@ -26,14 +27,15 @@ export default function Dialog(props) {
     <div>
       {round === 0 && (
         <Instructions
-          state={state}
-          setState={setState}
-          startGame={startGame}
+          modelState={modelState}
+          setModelState={setModelState}
+          createGame={createGame}
           round={round}
           nextRound={nextRound}
-          setAudio={setAudio}
+          loadAudio={loadAudio}
           setRound={setRound}
           game={game}
+          gameData={gameData}
         />
       )}
       {round === 1 && (
@@ -41,7 +43,9 @@ export default function Dialog(props) {
           round={round}
           play={play}
           clearGuesses={clearGuesses}
-          startRound={startRound}
+          createRound={createRound}
+          modelState={modelState}
+          gameData={gameData}
         />
       )}
       {round === 2 && (
@@ -50,8 +54,10 @@ export default function Dialog(props) {
           round={round}
           play={play}
           clearGuesses={clearGuesses}
-          setAudio={setAudio}
-          startRound={startRound}
+          loadAudio={loadAudio}
+          createRound={createRound}
+          modelState={modelState}
+          gameData={gameData}
         />
       )}
       {round === 3 && (
@@ -60,18 +66,22 @@ export default function Dialog(props) {
           round={round}
           play={play}
           clearGuesses={clearGuesses}
-          setAudio={setAudio}
-          startRound={startRound}
+          loadAudio={loadAudio}
+          createRound={createRound}
+          modelState={modelState}
+          gameData={gameData}
         />
       )}
       {round > 3 && (
         <GameOver
           pause={pause}
-          setAudio={setAudio}
+          loadAudio={loadAudio}
           setRound={setRound}
           setScore={setScore}
           score={score}
           updateResultsTable={updateResultsTable}
+          modelState={modelState}
+          gameData={gameData}
         />
       )}
     </div>

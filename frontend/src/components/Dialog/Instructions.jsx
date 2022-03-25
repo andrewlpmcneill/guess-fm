@@ -1,22 +1,26 @@
-import { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import Typography from '@mui/material/Typography';
 import DialogButton from './DialogButton'
-import axios from 'axios';
 
 export default function Instructions(props) {
   // Props passed in to render Dialog box
-  const { setAudio, setRound, state, setState, startGame } = props;
-  // Track whether or not the dialog box is open
-  const [open, setOpen] = useState(true);
-
+  const { loadAudio, setRound, modelState, createGame, round, gameData } = props;
+ 
+  const startGame = (userId) => {
+    console.log(userId);
+    createGame(userId)
+      .then(() => {
+        loadAudio(gameData, round);
+        setRound(1);
+      })
+  }
 
   return (
     <div>
       <Dialog
-        open={open}
+        open={true}
         fullWidth
       >
         <DialogTitle sx={{ m: 'auto', p: 2, fontFamily: 'Wild World' }}>
@@ -37,7 +41,7 @@ export default function Instructions(props) {
             {"3️⃣ - Repeat for 2 more stations to get your score out of 3!"}
           </Typography>
         </DialogContent>
-        <DialogButton onClick={startGame}>{"START GAME"}</DialogButton>
+        <DialogButton onClick={() => startGame(modelState.userId)}>{"START GAME"}</DialogButton>
       </Dialog>
     </div>
   );

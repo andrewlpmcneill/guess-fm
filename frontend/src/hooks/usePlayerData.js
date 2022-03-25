@@ -3,7 +3,8 @@ import { useState } from "react";
 export default function usePlayerData() {
 
   const [playing, setPlaying] = useState(true);
-  const [value, setValue] = useState(30);
+  const [volume, setVolume] = useState(30);
+  const [source, setSource] = useState("");
   
   const player = document.getElementById("mp3Player");
   
@@ -18,9 +19,9 @@ export default function usePlayerData() {
     return;
   };
   
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    player.volume = newValue / 100;
+  const handleChange = (event, newVolume) => {
+    setVolume(newVolume);
+    player.volume = newVolume / 100;
   };
   
   const play = () => {
@@ -31,6 +32,13 @@ export default function usePlayerData() {
     player.pause();
   }
 
-  return { playing, value, click, handleChange, play, pause }
+  const loadAudio = (gameData, round) => {
+    if (round < 4) {
+      setSource(gameData[round].mp3_link);
+      document.getElementById("mp3Player").load();
+    }
+  };
+
+  return { playing, volume, click, handleChange, play, pause, source, loadAudio }
 
 }
