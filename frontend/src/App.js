@@ -25,7 +25,7 @@ function App() {
   const { guesses, clearGuesses, addGuess, score, setScore, game, round, setRound, gameData, coords, setCoords } = useGameData([]);
 
   // PLAYER STATE
-  const { playing, volume, click, handleChange, play, pause, source, loadAudio } = usePlayerData();
+  const { playing, volume, click, handleChange, play, pause, source, loadAudio, setPlaying } = usePlayerData();
    
 
 
@@ -82,6 +82,7 @@ function App() {
             gameData={gameData}
             source={source}
             round={round}
+            setPlaying={setPlaying}
           />
           <GuessButton
             addGuess={addGuess}
