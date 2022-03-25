@@ -47,6 +47,7 @@ function App() {
     pause,
     source,
     loadAudio,
+    setPlaying
   } = usePlayerData();
 
   return (
@@ -91,6 +92,7 @@ function App() {
             handleChange={handleChange}
             addGuess={addGuess}
             source={source}
+            setPlaying={setPlaying}
           />
           <GuessButton
             addGuess={addGuess}

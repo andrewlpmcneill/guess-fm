@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function usePlayerData() {
 
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(30);
   const [source, setSource] = useState("");
   
@@ -26,19 +26,22 @@ export default function usePlayerData() {
   
   const play = () => {
     player.play();
+    setPlaying(true);
   };
 
   const pause = () => {
     player.pause();
+    setPlaying(false);
   }
 
   const loadAudio = (stations, round) => {
     if (round < 4) {
       setSource(stations[round].mp3_link);
       document.getElementById("mp3Player").load();
+      setPlaying(false);
     }
   };
 
-  return { playing, volume, click, handleChange, play, pause, source, loadAudio }
+  return { playing, volume, click, handleChange, play, pause, source, loadAudio, setPlaying }
 
 }
