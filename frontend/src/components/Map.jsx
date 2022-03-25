@@ -1,10 +1,12 @@
 import Marker from './Marker';
 import GoogleMapReact from 'google-map-react';
 import axios from 'axios';
+import { useState } from 'react';
 const mapsAPI = process.env.REACT_APP_GOOGLEMAPSAPIKEY;
 
 export default function SimpleMap(props){
-  const {country, setCountry, coords, setCoords} = props;
+  const [country, setCountry] = useState("");
+  const {coords, setCoords} = props;
 
   const defaultProps = {
     center: {
