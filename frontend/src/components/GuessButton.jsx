@@ -4,14 +4,8 @@ import axios from "axios";
 export default function GuessButton(props) {
   const {
     addGuess,
-    guesses,
     updateRoundTable,
-    setRound,
     loadAudio,
-    round,
-    coords,
-    stations,
-    setScore,
     setIsDrawerOpen,
     setModelState,
     modelState,
