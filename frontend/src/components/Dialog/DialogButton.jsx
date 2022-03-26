@@ -7,11 +7,9 @@ export default function DialogButton(props) {
   const { onClick } = props;
 
   return (
-    <DialogActions sx={{m: 'auto', paddingBottom: 2}} onClick={onClick}>
-      <Button variant="contained" sx={{fontFamily: 'Wild World'}} >
+      <Button variant="contained" onClick={onClick} sx={{fontFamily: 'Wild World'}} >
         {props.children}
       </Button>
-    </DialogActions>
   )
 
 }

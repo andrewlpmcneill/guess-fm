@@ -3,7 +3,9 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import Typography from "@mui/material/Typography";
-import DialogButton from "./DialogButton";
+import { DialogActions } from "@mui/material";
+import { Button } from "@mui/material";
+
 
 export default function GameOver(props) {
   // Props passed in to render Dialog box
@@ -35,7 +37,11 @@ export default function GameOver(props) {
         <DialogContent sx={{ m: "1", textAlign: "center" }}>
           <Typography>{`Your final score is ${gameData.score}/3.`}</Typography>
         </DialogContent>
-        <DialogButton onClick={handleClose}>{"PLAY AGAIN"}</DialogButton>
+        <DialogActions sx={{m: 'auto', paddingBottom: 2}} onClick={handleClose}>
+          <Button variant="contained" sx={{fontFamily: 'Wild World'}} >
+            {"PLAY AGAIN"}
+          </Button>
+        </DialogActions>
       </Dialog>
     </div>
   );
