@@ -18,7 +18,7 @@ export default function GuessButton(props) {
     event.preventDefault();
     validateGuess(gameData.stations, modelState, gameData.round, gameData.coords).then((guess) => {
       addGuess(guess);
-      if (guess.distanceAway === 0 || gameData.guesses.length === 4) {
+      if (guess.isCorrect || gameData.guesses.length === 4) {
         updateRoundTable(gameData.guesses.length === 4 ? "false" : "true");
         nextRound()
         loadAudio(gameData.stations, gameData.round);
@@ -38,7 +38,7 @@ export default function GuessButton(props) {
       });
 
       //rewards a point for correct guess
-      if (validatedGuessResponse.data.distanceAway === 0) {
+      if (validatedGuessResponse.data.isCorrect) {
         // setScore((prev) => prev + 1);
         addScore();
       }
