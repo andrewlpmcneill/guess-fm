@@ -27,7 +27,7 @@ export default function Player(props) {
         onClick={handleClick}
         icon={playing ? "playing" : "paused"}
       />
-      <ReactAudioPlayer
+      <audio
         id="mp3Player"
         src={source}
         type="audio/mp3"
