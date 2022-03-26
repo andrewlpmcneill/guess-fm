@@ -1,23 +1,40 @@
-const { Sequelize } = require('../models');
+const { Sequelize, sequelize } = require('../models');
 const db = require('../models');
 const station = db.Station;
 
-//retrieves five random stations from db
+
 const randomStations = async(req, res) => {
   try {
-    const myRandomStations = await station.findAll({
-      // attributes:[
-      //   [Sequelize.fn('DISTINCT', Sequelize.col('country')), 'country']
-      // ],
+    const randomStations = [];
+
+    //retrieves three random stations
+    const randomCountries = await (station).findAll({
+      attributes:['country'],
+      distinct: true,
       raw: true, //grabs only the data
+      group: 'country',
+      having: sequelize.literal('COUNT(*) > 5'),
       order: Sequelize.literal('random()'),
-      where:{
-  
-      },
       limit: 3
     });
 
-    res.json(myRandomStations);
+    //adds station data and appends to the array above
+    await Promise.all(
+      randomCountries.map( async (randomCountry) => {
+        const randomStation = await (station).findAll({
+          where:{
+            country: randomCountry.country
+          },
+          raw: true,
+          order: Sequelize.literal('random()'),
+          limit: 1
+        })
+        randomStations.push(randomStation[0]);
+      })
+    )
+    
+    res.json(randomStations)
+
 
   } catch (err) {
     console.log(err);
@@ -26,3 +43,4 @@ const randomStations = async(req, res) => {
 };
 
 module.exports = { randomStations };
+
