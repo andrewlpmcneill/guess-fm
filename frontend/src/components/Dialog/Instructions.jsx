@@ -6,8 +6,7 @@ import DialogButton from "./DialogButton";
 
 export default function Instructions(props) {
   // Props passed in to render Dialog box
-  const { loadAudio, modelState, createGame, round, stations, nextRound, gameData } =
-    props;
+  const { loadAudio, modelState, createGame, nextRound, gameData } = props;
 
   const startGame = (userId) => {
     createGame(userId).then(() => {
