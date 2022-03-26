@@ -53,11 +53,15 @@ const validateAndInsertGuess = async (req, res) => {
       id: guessExample.dataValues.id,
       country: guessResultObject.country,
       distanceAway:guessResultObject.distanceAway,
-      direction: guessResultObject.direction
+      direction: guessResultObject.direction,
+      isCorrect: guessResultObject.isCorrect
     });
   } catch (err) {
     console.log(err);
   }
 };
+
+
+
 
 module.exports = { getGuesses, validateAndInsertGuess };
