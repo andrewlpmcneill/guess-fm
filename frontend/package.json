@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^1.9.0",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^10.3.0",
     "@googlemaps/react-wrapper": "^1.1.27",
@@ -76,5 +77,5 @@
     "@storybook/testing-library": "^0.0.9",
     "webpack": "^5.70.0"
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://localhost:8080/"
 }
