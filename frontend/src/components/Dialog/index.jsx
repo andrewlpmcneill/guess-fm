@@ -23,6 +23,7 @@ export default function Dialog(props) {
     updateResultsTable, 
     clearScore, 
     gameData,
+    setGameData,
     clearRound,
   } = props;
 
@@ -40,6 +41,7 @@ export default function Dialog(props) {
           game={game}
           stations={stations}
           gameData={gameData}
+          setGameData={setGameData}
         />
       )}
       {gameData.round === 1 && (
