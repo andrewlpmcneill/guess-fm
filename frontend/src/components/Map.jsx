@@ -17,9 +17,10 @@ export default function SimpleMap(props){
   };
 
   const getCountry = (lat, lng) => {
-    return axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lng}&limit=1&appid=f89361fb753c9647ce4d1c6ca62fdc3c`)
+    return axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?types=country&access_token=pk.eyJ1IjoiamltbXljaHVrdyIsImEiOiJjbDE3YTlhc2wwNzhvM2NyaXlwZjVtank3In0.agubTUs2njHSbkSy7T51cA
+    `)
       .then(response => {
-        response.data[0] ? setCountry(response.data[0].country) : setCountry('N/A');
+        response.data.features.length ? setCountry(response.data.features[0].properties.short_code) : setCountry('N/A');
       })
   }
 

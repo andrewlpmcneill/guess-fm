@@ -24,15 +24,26 @@ const validateAndInsertGuess = async (req, res) => {
   try {
     const { round_id, lat1, lng1, lat2, lng2 } = req.body;
 
+    // const reverseCall1 = await axios.get(
+    //   `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat1}&lon=${lng1}&limit=1&appid=f89361fb753c9647ce4d1c6ca62fdc3c`
+    // );
+    // const reverseCall2 = await axios.get(
+    //   `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat2}&lon=${lng2}&limit=1&appid=f89361fb753c9647ce4d1c6ca62fdc3c`
+    // );
+
     const reverseCall1 = await axios.get(
-      `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat1}&lon=${lng1}&limit=1&appid=f89361fb753c9647ce4d1c6ca62fdc3c`
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng1},${lat1}.json?types=country&access_token=pk.eyJ1IjoiamltbXljaHVrdyIsImEiOiJjbDE3YTlhc2wwNzhvM2NyaXlwZjVtank3In0.agubTUs2njHSbkSy7T51cA
+      `
     );
     const reverseCall2 = await axios.get(
-      `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat2}&lon=${lng2}&limit=1&appid=f89361fb753c9647ce4d1c6ca62fdc3c`
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng2},${lat2}.json?types=country&access_token=pk.eyJ1IjoiamltbXljaHVrdyIsImEiOiJjbDE3YTlhc2wwNzhvM2NyaXlwZjVtank3In0.agubTUs2njHSbkSy7T51cA
+      `
     );
+    const country1 = reverseCall1.data.features[0].properties.short_code;
+    const country2 = reverseCall2.data.features[0].properties.short_code;
 
-    const country1 = reverseCall1.data[0].country;
-    const country2 = reverseCall2.data[0].country;
+    // const country1 = reverseCall1.data[0].country;
+    // const country2 = reverseCall2.data[0].country;
 
     const guessResultObject = validateGuess(
       lat1,
