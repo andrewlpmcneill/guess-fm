@@ -38,27 +38,24 @@ const randomStations = async (req, res) => {
   }
 };
 
-const replaceStation = async(req, res) => {
+const replaceStation = async (req, res) => {
+  try {
+    const country = req.body.country;
 
-  try{
-      const country = req.body.country;
-    
-      const substituteStation = await station.findAll({
-        where: {
-          country: country,
-        },
-        raw: true,
-        order: Sequelize.literal("random()"),
-        limit: 1,
-      });
-      
-      console.log(substituteStation)
-      res.json(substituteStation);
-    
-  }catch(err){
-    console.log(err)
+    const substituteStation = await station.findAll({
+      where: {
+        country: country,
+      },
+      raw: true,
+      order: Sequelize.literal("random()"),
+      limit: 1,
+    });
+
+    console.log(substituteStation);
+    res.json(substituteStation);
+  } catch (err) {
+    console.log(err);
   }
-
 };
 
 module.exports = { randomStations, replaceStation };
