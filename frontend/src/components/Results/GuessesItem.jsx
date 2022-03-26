@@ -8,6 +8,7 @@ export default function Guesses(props) {
   const guessData = props.data;
 
   //returns an icon component
+  const distance = guessData.isCorrect ? 0 : guessData.distanceAway;
   const directionClue = getDirectionIcon(guessData.direction);
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -26,7 +27,7 @@ export default function Guesses(props) {
       sx={{ marginBottom: "5px", padding: "5px" }}
     >
       <Item sx={{ width: "55%" }}>{guessData.country}</Item>
-      <Item sx={{ width: "30%" }}>{guessData.distanceAway}km</Item>
+      <Item sx={{ width: "30%" }}>{distance}km</Item>
       <Item sx={{ width: "15%" }}>{directionClue}</Item>
     </Stack>
   );
