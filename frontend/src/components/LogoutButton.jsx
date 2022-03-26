@@ -1,17 +1,18 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import Button from '@mui/material/Button';
 
-export default function LogoutButton() {
+export default function LogoutButton(props) {
   const { logout } = useAuth0();
   return (
-    <button
-      className="btn btn-danger btn-block"
+    <Button
+    sx={{fontFamily: 'Wild World', color: "#c9333b"}}
       onClick={() =>
         logout({
           returnTo: window.location.origin,
         })
       }
     >
-      Log Out
-    </button>
+      {props.children}
+    </Button>
   );
 };
