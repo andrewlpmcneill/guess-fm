@@ -2,17 +2,42 @@ import { useEffect } from "react";
 import Stack from '@mui/material/Stack'
 import PlayButton from "./PlayButton";
 import Volume from "./Volume";
-import ReactAudioPlayer from 'react-audio-player';
-import Pause from "@mui/icons-material/Pause";
 
 export default function Player(props) {
 
-  const { handleClick, playing, volume, handleChange, source, setPlaying } = props;
+  const { handleClick, playing, volume, handleChange, source, setSource, setPlaying, error, getNewStation, gameData, setGameData, play } = props;
   const player = document.getElementById("mp3Player");
 
+  // Volume Side Effect
   useEffect(() => {
     document.getElementById("mp3Player").volume = 0.3;
-  }, [])
+  }, []);
+
+  // mp3 Link Side Effect
+  useEffect(() => {
+    // get new station via getNewStation function
+    const currentRound = gameData.round - 1;
+    const currentStation = gameData.stations[currentRound];
+    if (currentStation === undefined) return;
+    const country = currentStation.country;
+    const stationID = currentStation.id
+    getNewStation(country, stationID)
+      .then(station => {
+        // update state
+        const stationsCopy = [...gameData.stations];
+        stationsCopy[currentRound] = station[0];
+        setGameData(prev => {
+          return {
+            ...prev,
+            stations: stationsCopy
+          }
+        })
+        // setSource, load player, play music
+        setSource(station[0].mp3_link);
+        player.load();
+        play();
+      });
+  }, [error])
 
 
   return (

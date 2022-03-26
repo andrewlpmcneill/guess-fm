@@ -46,8 +46,11 @@ function App() {
     play,
     pause,
     source,
+    setSource,
     loadAudio,
-    setPlaying
+    setPlaying,
+    error,
+    getNewStation
   } = usePlayerData();
 
   return (
@@ -92,7 +95,13 @@ function App() {
             handleChange={handleChange}
             addGuess={addGuess}
             source={source}
+            setSource={setSource}
             setPlaying={setPlaying}
+            error={error}
+            getNewStation={getNewStation}
+            gameData={gameData}
+            setGameData={setGameData}
+            play={play}
           />
           <GuessButton
             addGuess={addGuess}
