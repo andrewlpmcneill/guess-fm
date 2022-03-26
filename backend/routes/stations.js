@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.get('/', stationController.randomStations);
 
+router.post('/no-source', stationController.replaceStation)
+
 module.exports = router;
