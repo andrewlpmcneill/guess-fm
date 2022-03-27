@@ -18,11 +18,13 @@ export default function Instructions(props) {
     createGame,
     nextRound,
     gameData,
+    setIsInstructionsOpen
   } = props;
 
   const startGame = (userId) => {
     createGame(userId).then(() => {
       loadAudio(gameData.stations, gameData.round);
+      setIsInstructionsOpen(false)
       nextRound();
     });
   };

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Instructions from "./Instructions";
 import Announcement from "./Announcement";
 import GameOver from "./GameOver";
@@ -29,12 +30,14 @@ export default function Dialog(props) {
     getGameStatistics,
     isAboutOpen,
     setIsAboutOpen,
+    isInstructionsOpen,
+    setIsInstructionsOpen,
   } = props;
 
   return (
     <div>
       {setIsAboutOpen && <About isAboutOpen={isAboutOpen} setIsAboutOpen={setIsAboutOpen} />}
-      {gameData.round === 0 && (
+      {isInstructionsOpen && (
         <Instructions
           modelState={modelState}
           setModelState={setModelState}
@@ -47,6 +50,7 @@ export default function Dialog(props) {
           stations={stations}
           gameData={gameData}
           setGameData={setGameData}
+          setIsInstructionsOpen={setIsInstructionsOpen}
         />
       )}
       {gameData.round === 1 && (
@@ -101,6 +105,8 @@ export default function Dialog(props) {
           clearRound={clearRound}
           clearGuesses={clearGuesses}
           getGameStatistics={getGameStatistics}
+          nextRound={nextRound}
+          createGame={createGame}
         />
       )}
     </div>
