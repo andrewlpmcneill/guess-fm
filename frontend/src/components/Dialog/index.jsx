@@ -26,6 +26,7 @@ export default function Dialog(props) {
     gameData,
     setGameData,
     clearRound,
+    getGameStatistics,
     isAboutOpen,
     setIsAboutOpen,
   } = props;
@@ -99,6 +100,7 @@ export default function Dialog(props) {
           clearScore={clearScore}
           clearRound={clearRound}
           clearGuesses={clearGuesses}
+          getGameStatistics={getGameStatistics}
         />
       )}
     </div>

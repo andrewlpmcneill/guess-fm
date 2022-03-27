@@ -20,6 +20,7 @@ function App() {
     updateResultsTable,
     updateRoundTable,
     createRound,
+    getGameStatistics
   } = useModelData();
 
   // TOGGLE DISPLAY STATE
@@ -78,6 +79,7 @@ function App() {
           clearScore={clearScore}
           clearRound={clearRound}
           nextRound={nextRound}
+          getGameStatistics={getGameStatistics}
           isAboutOpen={isAboutOpen}
           setIsAboutOpen={setIsAboutOpen}
         />

@@ -3,6 +3,7 @@ import GoogleMapReact from "google-map-react";
 import axios from "axios";
 import { useState } from "react";
 const mapsAPI = process.env.REACT_APP_GOOGLEMAPSAPIKEY;
+const mapBoxAPI = process.env.REACT_APP_MAPBOXAPIKEY;
 
 export default function SimpleMap(props) {
   const [country, setCountry] = useState("");
@@ -122,16 +123,12 @@ export default function SimpleMap(props) {
     zoom: 3,
   };
   const getCountry = (lat, lng) => {
-    return axios
-      .get(
-        `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lng}&limit=1&appid=f89361fb753c9647ce4d1c6ca62fdc3c`
-      )
-      .then((response) => {
-        response.data[0]
-          ? setCountry(response.data[0].country)
-          : setCountry("N/A");
-      });
-  };
+    return axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?types=country&access_token=${mapBoxAPI}
+    `)
+      .then(response => {
+        response.data.features.length ? setCountry(response.data.features[0].properties.short_code) : setCountry('N/A');
+      })
+  }
 
   const handleApiLoaded = (map, maps) => {
     // use map and maps objects

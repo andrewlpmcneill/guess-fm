@@ -2,7 +2,7 @@ import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
-import Typography from "@mui/material/Typography";
+import FinalScore from "./FinalScore";
 import { DialogActions } from "@mui/material";
 import { Button } from "@mui/material";
 
@@ -15,10 +15,12 @@ export default function GameOver(props) {
     clearScore,
     gameData,
     clearRound,
-    clearGuesses
+    clearGuesses,
+    getGameStatistics
   } = props;
   // Track whether or not the dialog box is open
   const [open, setOpen] = useState(true);
+
 
   const handleClose = () => {
     updateResultsTable(gameData.score);
@@ -29,6 +31,7 @@ export default function GameOver(props) {
     setOpen(false);
   };
 
+
   return (
     <div>
       <Dialog open={open} fullWidth>
@@ -37,7 +40,9 @@ export default function GameOver(props) {
         </DialogTitle>
         {/* Add margin around content */}
         <DialogContent sx={{ m: "1", textAlign: "center" }}>
-          <Typography>{`Your final score is ${gameData.score}/3.`}</Typography>
+          
+          {/* <Typography>{`Your final score is ${gameData.score}/3.`}</Typography> */}
+          <FinalScore gameData={gameData} getGameStatistics={getGameStatistics}/>
         </DialogContent>
         <DialogActions sx={{m: 'auto', paddingBottom: 2}} onClick={handleClose}>
           <Button variant="contained" sx={{fontFamily: 'Wild World'}} >
