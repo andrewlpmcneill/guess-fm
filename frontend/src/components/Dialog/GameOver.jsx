@@ -17,7 +17,6 @@ export default function GameOver(props) {
     clearRound,
     clearGuesses,
     getGameStatistics,
-    loadAudio,
     nextRound,
     createGame
   } = props;
@@ -33,12 +32,13 @@ export default function GameOver(props) {
     clearGuesses();
     clearScore();
     clearRound();
-    // Round needs to be hardcoded to 0 in order to properly load first station
-    loadAudio(gameData.stations, 0);
     // Create a new game in DB and go to next round 
     createGame(userId).then(() => {
-      nextRound();
       setOpen(false);
+      // Slight delay before starting the next round
+      setTimeout(() => {
+        nextRound()
+      }, 250);
     });
     
   };
