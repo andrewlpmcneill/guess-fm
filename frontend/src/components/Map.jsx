@@ -85,7 +85,7 @@ export default function SimpleMap(props) {
     },
     {
       featureType: "road.highway",
-      elementType: "label",
+      elementType: "labels",
       stylers: [{ visibility: "off" }],
     },
     {
