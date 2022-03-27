@@ -98,6 +98,7 @@ export default function Dialog(props) {
           gameData={gameData}
           clearScore={clearScore}
           clearRound={clearRound}
+          clearGuesses={clearGuesses}
         />
       )}
     </div>
