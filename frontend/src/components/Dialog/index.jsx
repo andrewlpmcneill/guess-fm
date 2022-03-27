@@ -34,6 +34,10 @@ export default function Dialog(props) {
     setIsInstructionsOpen,
   } = props;
 
+  useEffect(() => {
+    loadAudio(gameData.stations, gameData.round)
+  }, [gameData.round])
+
   return (
     <div>
       {setIsAboutOpen && <About isAboutOpen={isAboutOpen} setIsAboutOpen={setIsAboutOpen} />}
