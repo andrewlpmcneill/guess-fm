@@ -23,7 +23,6 @@ export default function Instructions(props) {
 
   const startGame = (userId) => {
     createGame(userId).then(() => {
-      loadAudio(gameData.stations, gameData.round);
       setIsInstructionsOpen(false)
       nextRound();
     });
