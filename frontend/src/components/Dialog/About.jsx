@@ -55,7 +55,7 @@ export default function About(props) {
         </IconButton>
         <DialogTitle sx={{ m: "auto", p: 2, 
         textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b", letterSpacing: "2px" }}>
-          {"ABOUT GUESS FM"}
+          {"GUESS FM"}
         </DialogTitle>
         {/* Add margin around content */}
         <DialogContent sx={{ m: "auto", p: 2, textAlign: "center" }}>
@@ -68,7 +68,7 @@ export default function About(props) {
               justifyContent: 'space-between',
             }}>
             <Box>
-              <Card sx={{ m: "auto", p: 2, textAlign: "center", border: "none", boxShadow: "none" }}>
+              <Card sx={{ m: "auto", p: 2, textAlign: "center", border: "none", boxShadow: "none", fontSize: "18px" }}>
                 <CardContent sx={{
                     color: 'white'
                   }}>
@@ -110,7 +110,7 @@ export default function About(props) {
               </Card>
             </Box>
           </Box>
-          <Typography sx={{ m: "auto", paddingBottom: 2, textAlign: "center" }}>
+          <Typography sx={{ m: "auto", paddingBottom: 2, textAlign: "center", fontSize: "12px" }}>
             {"Guess FM was built by "}<Link href="https://github.com/andrewlpmcneill" >{"Andrew McNeill"}</Link>
             {", "}<Link href="https://github.com/ryjcm1">{"Jimmy Chuk"}</Link>{", and "}
             <Link href="https://github.com/seamusmcgill">{"Seamus McGill"}</Link>{"."}

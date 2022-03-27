@@ -9,7 +9,15 @@ import { Button } from "@mui/material";
 
 export default function GameOver(props) {
   // Props passed in to render Dialog box
-  const { pause, updateResultsTable, clearScore, gameData, clearRound, getGameStatistics } = props;
+  const {
+    pause,
+    updateResultsTable,
+    clearScore,
+    gameData,
+    clearRound,
+    clearGuesses,
+    getGameStatistics
+  } = props;
   // Track whether or not the dialog box is open
   const [open, setOpen] = useState(true);
 
@@ -18,6 +26,7 @@ export default function GameOver(props) {
     updateResultsTable(gameData.score);
     pause();
     clearRound();
+    clearGuesses();
     clearScore();
     setOpen(false);
   };

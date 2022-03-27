@@ -22,33 +22,45 @@ export default function SimpleMap(props) {
   };
 
   const styles = [
-    { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
-    { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-    { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+    { elementType: "geometry", stylers: [{ color: "#292621" }] },
+    { elementType: "labels.text.stroke", stylers: [{ color: "#fff" }] },
+    { elementType: "labels.text.fill", stylers: [{ color: "#C6CCB1" }] },
     {
       featureType: "administrative.locality",
       elementType: "labels.text.fill",
-      stylers: [{ color: "#d59563" }],
+      stylers: [{ visibility: "off", color: "#9393C2"  }],
+    },
+    // visibility: "off"
+    // color: "#9393C2"
+    {
+      featureType: "administrative.province",
+      stylers: [{ visibility: "off" }],
+    },
+    {
+      featureType: "administrative.country",
+      elementType: "geometry.stroke",
+      stylers: [{ "color": "#D27478" }]
     },
     {
       featureType: "poi",
       elementType: "labels.text.fill",
-      stylers: [{ color: "#d59563" }],
+      stylers: [{ color: "#ffffff" }],
     },
     {
       featureType: "poi.park",
       elementType: "geometry",
-      stylers: [{ color: "#263c3f" }],
+      stylers: [{ visibility: "off" }],
     },
     {
       featureType: "poi.park",
       elementType: "labels.text.fill",
-      stylers: [{ color: "#6b9a76" }],
+      stylers: [{ visibility: "off" }],
     },
     {
       featureType: "road",
       elementType: "geometry",
-      stylers: [{ color: "#38414e" }],
+      stylers: [{ visibility: "off" }],
+      // color: "#38414e"
     },
     {
       featureType: "road",
@@ -63,7 +75,8 @@ export default function SimpleMap(props) {
     {
       featureType: "road.highway",
       elementType: "geometry",
-      stylers: [{ color: "#746855" }],
+      stylers: [{ visibility: "off" }],
+      // color: "#2E2636"
     },
     {
       featureType: "road.highway",
@@ -72,8 +85,8 @@ export default function SimpleMap(props) {
     },
     {
       featureType: "road.highway",
-      elementType: "labels.text.fill",
-      stylers: [{ color: "#f3d19c" }],
+      elementType: "label",
+      stylers: [{ visibility: "off" }],
     },
     {
       featureType: "transit",
@@ -88,12 +101,12 @@ export default function SimpleMap(props) {
     {
       featureType: "water",
       elementType: "geometry",
-      stylers: [{ color: "#17263c" }],
+      stylers: [{ color: "#6E6E80" }],
     },
     {
       featureType: "water",
       elementType: "labels.text.fill",
-      stylers: [{ color: "#515c6d" }],
+      stylers: [{ color: "#252129" }],
     },
     {
       featureType: "water",
