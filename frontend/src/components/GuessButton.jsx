@@ -21,7 +21,6 @@ export default function GuessButton(props) {
       if (guess.isCorrect || gameData.guesses.length === 4) {
         updateRoundTable(gameData.guesses.length === 4 ? "false" : "true");
         nextRound()
-        loadAudio(gameData.stations, gameData.round);
       }
     });
   };
