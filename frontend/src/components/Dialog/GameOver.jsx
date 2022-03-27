@@ -14,7 +14,8 @@ export default function GameOver(props) {
     updateResultsTable,
     clearScore,
     gameData,
-    clearRound
+    clearRound,
+    clearGuesses
   } = props;
   // Track whether or not the dialog box is open
   const [open, setOpen] = useState(true);
@@ -22,7 +23,8 @@ export default function GameOver(props) {
   const handleClose = () => {
     updateResultsTable(gameData.score);
     pause();
-    clearRound()
+    clearRound();
+    clearGuesses();
     clearScore();
     setOpen(false);
   };
