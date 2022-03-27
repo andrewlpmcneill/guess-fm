@@ -26,6 +26,7 @@ function App() {
   // TOGGLE DISPLAY STATE
   const [isDrawerOpen, setIsDrawerOpen, toggleDrawer] = useDisplayMode(false);
   const [ isAboutOpen, setIsAboutOpen ] = useDisplayMode(false);
+  const [ isInstructionsOpen, setIsInstructionsOpen ] = useDisplayMode(true);
 
   // GAME STATE
   const {
@@ -82,6 +83,8 @@ function App() {
           getGameStatistics={getGameStatistics}
           isAboutOpen={isAboutOpen}
           setIsAboutOpen={setIsAboutOpen}
+          isInstructionsOpen={isInstructionsOpen}
+          setIsInstructionsOpen={setIsInstructionsOpen}
         />
         <Results
           guesses={gameData.guesses}
