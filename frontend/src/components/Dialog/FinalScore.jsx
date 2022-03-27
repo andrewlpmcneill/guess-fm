@@ -39,20 +39,14 @@ export default function FinalScore(prop) {
   let pinDistanceAway;
   let distanceAwayVisual;
 
-  if (
-    gameData.guesses.length >= 1 &&
-    gameData.guesses[gameData.guesses.length - 1].isCorrect
-  ) {
+  if (gameData.guesses[gameData.guesses.length - 1].isCorrect) {
     roundAnswer = `You got it in ${gameData.guesses.length} guesses. `;
     pinDistanceAway =
       gameData.guesses[gameData.guesses.length - 1].distanceAway;
     distanceAwayVisual = `📍${getTicksWithDistance(
       gameData.guesses[gameData.guesses.length - 1].distanceAway
     )}🌎`;
-  } else if (
-    gameData.guesses.length > 4 &&
-    !gameData.guesses[gameData.guesses.length - 1].isCorrect
-  ) {
+  } else {
     pinDistanceAway =
       gameData.guesses[gameData.guesses.length - 1].distanceAway;
     distanceAwayVisual = `📍${getTicksWithDistance(
@@ -83,7 +77,8 @@ export default function FinalScore(prop) {
             {roundAnswer}
           </Typography>
           <Typography mt={1}>
-            The station playing was <strong>{currentStation.station_title}</strong> in{" "}
+            The station playing was{" "}
+            <strong>{currentStation.station_title}</strong> in{" "}
             <strong>{currentStation.city}</strong>
           </Typography>
           <Typography mt={1}>

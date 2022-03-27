@@ -9,6 +9,7 @@ import useDisplayMode from "./hooks/useDisplayMode";
 import useGameData from "./hooks/useGameData";
 import usePlayerData from "./hooks/usePlayerData";
 import useModelData from "./hooks/useModelData";
+import NavBar from "./components/NavBar";
 
 function App() {
   // DATABASE STATE AND FUNCTIONS
@@ -24,6 +25,7 @@ function App() {
 
   // TOGGLE DISPLAY STATE
   const [isDrawerOpen, setIsDrawerOpen, toggleDrawer] = useDisplayMode(false);
+  const [ isAboutOpen, setIsAboutOpen ] = useDisplayMode(false);
 
   // GAME STATE
   const {
@@ -47,14 +49,20 @@ function App() {
     play,
     pause,
     source,
+    setSource,
     loadAudio,
-    setPlaying
+    setPlaying,
+    error,
+    getNewStation
   } = usePlayerData();
 
   return (
     <div className="App">
-      <h3>GUESS FM</h3>
       <Box sx={{ position: "relative", overflow: "hidden" }}>
+        <NavBar 
+          isAboutOpen={isAboutOpen}
+          setIsAboutOpen={setIsAboutOpen}
+        />
         <Map gameData={gameData} assignCoords={assignCoords} />
         <Dialog
           loadAudio={loadAudio}
@@ -72,6 +80,8 @@ function App() {
           clearRound={clearRound}
           nextRound={nextRound}
           getGameStatistics={getGameStatistics}
+          isAboutOpen={isAboutOpen}
+          setIsAboutOpen={setIsAboutOpen}
         />
         <Results
           guesses={gameData.guesses}
@@ -94,7 +104,13 @@ function App() {
             handleChange={handleChange}
             addGuess={addGuess}
             source={source}
+            setSource={setSource}
             setPlaying={setPlaying}
+            error={error}
+            getNewStation={getNewStation}
+            gameData={gameData}
+            setGameData={setGameData}
+            play={play}
           />
           <GuessButton
             addGuess={addGuess}

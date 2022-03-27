@@ -1,4 +1,4 @@
-import Announcement from '../components/Announcement';
+import Announcement from '../components/Dialog/Announcement';
 import { storiesOf } from "@storybook/react";
 
 storiesOf("Announcement", module)

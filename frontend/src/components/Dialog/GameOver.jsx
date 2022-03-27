@@ -2,8 +2,9 @@ import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
-import DialogButton from "./DialogButton";
 import FinalScore from "./FinalScore";
+import { DialogActions } from "@mui/material";
+import { Button } from "@mui/material";
 
 
 export default function GameOver(props) {
@@ -34,7 +35,11 @@ export default function GameOver(props) {
           {/* <Typography>{`Your final score is ${gameData.score}/3.`}</Typography> */}
           <FinalScore gameData={gameData} getGameStatistics={getGameStatistics}/>
         </DialogContent>
-        <DialogButton onClick={handleClose}>{"PLAY AGAIN"}</DialogButton>
+        <DialogActions sx={{m: 'auto', paddingBottom: 2}} onClick={handleClose}>
+          <Button variant="contained" sx={{fontFamily: 'Wild World'}} >
+            {"PLAY AGAIN"}
+          </Button>
+        </DialogActions>
       </Dialog>
     </div>
   );

@@ -68,6 +68,7 @@ export default function Announcement(props) {
     ).then(() => {
       play();
       clearGuesses();
+      console.log("made it here not doing anything")
     });
   };
 

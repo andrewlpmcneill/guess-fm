@@ -1,10 +1,12 @@
 import { useState } from "react";
+import axios from 'axios';
 
 export default function usePlayerData() {
 
   const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(30);
+  const [volume, setVolume] = useState(0.3);
   const [source, setSource] = useState("");
+  const [error, setError] = useState(0);
   
   const player = document.getElementById("mp3Player");
   
@@ -16,6 +18,7 @@ export default function usePlayerData() {
     }
     setPlaying(true);
     player.play();
+    player.volume = volume;
     return;
   };
   
@@ -23,10 +26,27 @@ export default function usePlayerData() {
     setVolume(newVolume);
     player.volume = newVolume / 100;
   };
+
+  const getNewStation = async (country, stationID) => {
+    try {
+      const postCountry = await axios.post('/stations/no-source', {
+        station_id: stationID,
+        country: country
+      });
+      return postCountry.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
   
   const play = () => {
-    player.play();
-    setPlaying(true);
+    player.play()
+      .catch(() => {
+        console.log('INVALID SOURCE DETECTED');
+        setError(prev => prev + 1);
+      })
+      setPlaying(true);
+      player.volume = volume;
   };
 
   const pause = () => {
@@ -42,6 +62,6 @@ export default function usePlayerData() {
     }
   };
 
-  return { playing, volume, click, handleChange, play, pause, source, loadAudio, setPlaying }
+  return { playing, volume, click, handleChange, play, pause, source, setSource, loadAudio, setPlaying, error, getNewStation }
 
 }
