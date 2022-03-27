@@ -6,4 +6,6 @@ router.get("/", guessController.getGuesses);
 
 router.post("/", guessController.validateAndInsertGuess);
 
+router.get("/games/:gameId", guessController.gameStatistics);
+
 module.exports = router;

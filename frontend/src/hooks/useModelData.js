@@ -1,8 +1,7 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
 
 export default function useModelData(initial) {
-
   const [modelState, setModelState] = useState({
     // Remove hardcoded userId
     userId: 1,
@@ -37,7 +36,7 @@ export default function useModelData(initial) {
     try {
       const postRound = await axios.post("/rounds", {
         user_id: userId,
-        game_id:  gameId,
+        game_id: gameId,
         station_id: stationId,
       });
       const roundId = postRound.data.id;
@@ -50,20 +49,19 @@ export default function useModelData(initial) {
   };
 
   // API CALL TO UPDATE ROUNDS TABLE
-  const updateRoundTable = result => {
+  const updateRoundTable = (result) => {
     axios
       .patch("/rounds", {
         result: result,
         round_id: modelState.roundId,
       })
-      .then(response => {
+      .then((response) => {
         console.log(response);
-
       });
   };
 
   // API CALL TO UPDATE RESULTS TABLE
-  const updateResultsTable = results => {
+  const updateResultsTable = (results) => {
     axios
       .patch("/results", {
         results: results,
@@ -75,5 +73,22 @@ export default function useModelData(initial) {
       });
   };
 
-  return { modelState, setModelState, createGame, updateResultsTable, updateRoundTable, createRound }
+  const getGameStatistics = async () => {
+    try {
+      const gameStats = await axios.get(`/guesses/games/${modelState.gameId}`);
+      return gameStats.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return {
+    modelState,
+    setModelState,
+    createGame,
+    updateResultsTable,
+    updateRoundTable,
+    createRound,
+    getGameStatistics,
+  };
 }

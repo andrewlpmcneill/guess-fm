@@ -4,7 +4,7 @@ import axios from 'axios';
 export default function usePlayerData() {
 
   const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(30);
+  const [volume, setVolume] = useState(0.3);
   const [source, setSource] = useState("");
   const [error, setError] = useState(0);
   
