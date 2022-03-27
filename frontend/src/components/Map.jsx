@@ -8,6 +8,18 @@ export default function SimpleMap(props) {
   const [country, setCountry] = useState("");
   const { assignCoords, gameData } = props;
 
+  const worldBounds = {
+    north: 85.00,
+    south: -85.00,
+    west: -180.00,
+    east: 180.00
+  }
+
+  const bounds = {
+    latLngBounds: worldBounds,
+    strictBounds: true
+  };
+
   const defaultProps = {
     center: {
       lat: 43.65381,
@@ -15,7 +27,6 @@ export default function SimpleMap(props) {
     },
     zoom: 3,
   };
-
   const getCountry = (lat, lng) => {
     return axios
       .get(
@@ -52,6 +63,7 @@ export default function SimpleMap(props) {
           zoomControlOptions: { position: 6 },
           streetViewControl: false,
           fullscreenControl: false,
+          restriction: bounds
         }}
       >
         <Marker
