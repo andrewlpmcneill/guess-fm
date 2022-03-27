@@ -20,7 +20,8 @@ export default function GuessButton(props) {
       addGuess(guess);
       if (guess.isCorrect || gameData.guesses.length === 4) {
         updateRoundTable(gameData.guesses.length === 4 ? "false" : "true");
-        nextRound()
+        setTimeout(() => {
+          nextRound()}, 250);
       }
     });
   };
