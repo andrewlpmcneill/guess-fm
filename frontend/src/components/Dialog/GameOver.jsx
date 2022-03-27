@@ -16,19 +16,31 @@ export default function GameOver(props) {
     gameData,
     clearRound,
     clearGuesses,
-    getGameStatistics
+    getGameStatistics,
+    loadAudio,
+    nextRound,
+    createGame
   } = props;
   // Track whether or not the dialog box is open
   const [open, setOpen] = useState(true);
 
 
-  const handleClose = () => {
+  const handleClose = (userId) => {
+    // Add results to table and pause music
     updateResultsTable(gameData.score);
     pause();
-    clearRound();
+    // Clear guesses and rounds
     clearGuesses();
     clearScore();
-    setOpen(false);
+    clearRound();
+    // Round needs to be hardcoded to 0 in order to properly load first station
+    loadAudio(gameData.stations, 0);
+    // Create a new game in DB and go to next round 
+    createGame(userId).then(() => {
+      nextRound();
+      setOpen(false);
+    });
+    
   };
 
 
