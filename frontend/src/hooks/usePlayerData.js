@@ -55,8 +55,8 @@ export default function usePlayerData() {
   }
 
   const loadAudio = (stations, round) => {
-    if (round < 4) {
-      setSource(stations[round].mp3_link);
+    if (round > 0 && round < 4) {
+      setSource(stations[round - 1].mp3_link);
       document.getElementById("mp3Player").load();
       setPlaying(false);
     }

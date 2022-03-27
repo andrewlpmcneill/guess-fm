@@ -12,20 +12,21 @@ export default function useGameData() {
   });
 
   useEffect(() => {
-    if (gameData.game !== 1) {
+    if (gameData.round === 0 || (gameData.game === 0 && gameData.round === 0)) {
       axios.get("/stations").then((response) => {
         setGameData((prev) => {return {...gameData, stations: response.data}})
       });
     }
-  }, [gameData.game]);
-
-  useEffect(() => {
     if (gameData.round === 1) {
       setGameData((prev) => {
         return {...prev, game: prev.game + 1}
       })
     };
+    
   }, [gameData.round]);
+
+  // useEffect(() => {
+  // }, [gameData.round]);
 
   // Set guesses array back to empty
   const clearGuesses = () => {

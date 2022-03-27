@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Instructions from "./Instructions";
 import Announcement from "./Announcement";
 import GameOver from "./GameOver";
@@ -32,14 +33,20 @@ export default function Dialog(props) {
     setIsAboutOpen,
     isStatsOpen,
     setIsStatsOpen,
-    getLifeTimeStatistics
+    getLifeTimeStatistics,
+    isInstructionsOpen,
+    setIsInstructionsOpen,
   } = props;
+
+  useEffect(() => {
+    loadAudio(gameData.stations, gameData.round)
+  }, [gameData.round])
 
   return (
     <div>
       {isAboutOpen && <About isAboutOpen={isAboutOpen} setIsAboutOpen={setIsAboutOpen} />}
       <LifeTimeStats isStatsOpen={isStatsOpen} setIsStatsOpen={setIsStatsOpen} getLifeTimeStatistics={getLifeTimeStatistics} modelState={modelState}/>
-      {gameData.round === 0 && (
+      {isInstructionsOpen && (
         <Instructions
           modelState={modelState}
           setModelState={setModelState}
@@ -52,6 +59,7 @@ export default function Dialog(props) {
           stations={stations}
           gameData={gameData}
           setGameData={setGameData}
+          setIsInstructionsOpen={setIsInstructionsOpen}
         />
       )}
       {gameData.round === 1 && (
@@ -106,6 +114,8 @@ export default function Dialog(props) {
           clearRound={clearRound}
           clearGuesses={clearGuesses}
           getGameStatistics={getGameStatistics}
+          nextRound={nextRound}
+          createGame={createGame}
         />
       )}
     </div>
