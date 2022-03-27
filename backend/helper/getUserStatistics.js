@@ -50,7 +50,7 @@ const getUserStatistics = (arrOfGames, arrOfRounds, arrOfGuesses) => {
     lifeTimeGames,
     lifeTimeRounds,
     lifeTimeGuesses,
-    totalRoundCleared: totalRoundScore,
+    totalRoundsCleared: totalRoundScore,
     percentRoundClear,
     averageGuessesPerRound,
     averageGuessDistanceAway,
