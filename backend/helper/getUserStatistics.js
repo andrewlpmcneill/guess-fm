@@ -42,9 +42,9 @@ const getUserStatistics = (arrOfGames, arrOfRounds, arrOfGuesses) => {
 
 
 
-  const percentRoundClear = Math.round(totalRoundScore/lifeTimeRounds * 10000) / 100;
-  const averageGuessDistanceAway = Math.round(totalDistanceAway/lifeTimeGuesses *100)/100;
-  const firstGuessAverageDistance = Math.round(firstGuessTotalDistance/ firstGuessArr.length *100)/100
+  const percentRoundClear = lifeTimeRounds ?  Math.round(totalRoundScore/lifeTimeRounds * 10000) / 100 : 0;
+  const averageGuessDistanceAway = lifeTimeGuesses ? Math.round(totalDistanceAway/lifeTimeGuesses *100)/100 : 0;
+  const firstGuessAverageDistance = firstGuessArr.length ? Math.round(firstGuessTotalDistance/ firstGuessArr.length *100)/100 : 0;
 
   return{
     lifeTimeGames,
