@@ -1,13 +1,13 @@
 /* eslint-disable camelcase */
-const { Sequelize } = require("../models");
+const { sequelize } = require("../models");
 const axios = require("axios");
 const db = require("../models");
 const guess = db.Guess;
+const round = db.Round;
 const { validateGuess } = require("../helper/validateGuesses");
-
+const { getGameStatistics } = require("../helper/getGameStatistics");
 
 const getGuesses = async (req, res) => {
-  
   try {
     const myGuesses = await guess.findAll({
       raw: true,
@@ -63,16 +63,42 @@ const validateAndInsertGuess = async (req, res) => {
     res.json({
       id: guessExample.dataValues.id,
       country: guessResultObject.country,
-      distanceAway:guessResultObject.distanceAway,
+      distanceAway: guessResultObject.distanceAway,
       direction: guessResultObject.direction,
-      isCorrect: guessResultObject.isCorrect
+      isCorrect: guessResultObject.isCorrect,
     });
   } catch (err) {
     console.log(err);
   }
 };
 
+const gameStatistics = async (req, res) => {
+  try {
+    const game_id = req.params.gameId;
 
+    //grabs all rounds related to the game
+    const allRoundsForOneGame = await round.findAll({
+      where: {
+        game_id: game_id,
+      },
+    });
 
+    //using helper function to calculate end score for the game
+    // const finalScore = totalScore(allGuessesForOneGame);
 
-module.exports = { getGuesses, validateAndInsertGuess };
+    const arrayOfRoundIds = allRoundsForOneGame.map((x) => x.id);
+
+    //grabs all guesses related to the game
+    const allGuessesForOneGame = await guess.findAll({
+      where: {
+        round_id: arrayOfRoundIds,
+      },
+    });
+
+    res.json(getGameStatistics(allGuessesForOneGame, allRoundsForOneGame));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports = { getGuesses, validateAndInsertGuess, gameStatistics };
