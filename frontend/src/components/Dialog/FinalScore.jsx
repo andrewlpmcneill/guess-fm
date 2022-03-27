@@ -8,38 +8,33 @@ import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/material";
 
 export default function FinalScore(prop) {
-  const {gameData, getGameStatistics} = prop;
+  const { gameData, getGameStatistics } = prop;
 
   const [expanded, setExpanded] = useState(false);
   const [finalResult, setFinalResult] = useState({
     averageDistance: 0,
     averageGuesses: 0,
-    totalScore: 0
-  })
+    totalScore: 0,
+  });
 
-  
   //make axios call to grab final game statistics from backend
-  useEffect(()=>{
-    getGameStatistics()
-    .then((res) => {
-      setFinalResult(res)
-    })
-  }, [getGameStatistics])
-  
+  useEffect(() => {
+    getGameStatistics().then((res) => {
+      setFinalResult(res);
+    });
+  }, [getGameStatistics]);
 
   //sets default state and opens accordion
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-  
 
   //rounding function
   const roundToTwo = (num) => {
-    return Math.round(num * 100) / 100
+    return Math.round(num * 100) / 100;
   };
 
-
-  const answer = gameData.stations[gameData.round - 2];
+  const currentStation = gameData.stations[gameData.round - 2];
   let roundAnswer = "";
   let pinDistanceAway;
   let distanceAwayVisual;
@@ -76,18 +71,20 @@ export default function FinalScore(prop) {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Typography sx={{ m: "auto", p: 0.5, fontSize: "1.4rem", fontWeight: "bold" }}>
+          <Typography
+            sx={{ m: "auto", p: 0.5, fontSize: "1.4rem", fontWeight: "bold" }}
+          >
             ROUND 3 - RESULTS
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            The correct answer was <strong>{answer.country}</strong>.{" "}
+            The correct answer was <strong>{currentStation.country}</strong>.{" "}
             {roundAnswer}
           </Typography>
           <Typography mt={1}>
-            The station playing was <strong>{answer.station_title}</strong> in{" "}
-            <strong>{answer.city}</strong>
+            The station playing was <strong>{currentStation.station_title}</strong> in{" "}
+            <strong>{currentStation.city}</strong>
           </Typography>
           <Typography mt={1}>
             Your pin was <strong>{pinDistanceAway} km</strong> away.
@@ -105,7 +102,9 @@ export default function FinalScore(prop) {
           aria-controls="panel2bh-content"
           id="panel2bh-header"
         >
-          <Typography sx={{ m: "auto", p: 0.5, fontSize: "1.4rem", fontWeight: "bold" }}>
+          <Typography
+            sx={{ m: "auto", p: 0.5, fontSize: "1.4rem", fontWeight: "bold" }}
+          >
             GAME STATISTICS
           </Typography>
         </AccordionSummary>
@@ -116,8 +115,10 @@ export default function FinalScore(prop) {
             justifyContent="space-evenly"
             alignItems="center"
           >
-            <Typography sx={{fontSize: "1.3rem"}}>Total Score:</Typography>
-            <Typography sx={{fontSize: "1.3rem"}}>{finalResult.totalScore}/3</Typography>
+            <Typography sx={{ fontSize: "1.3rem" }}>Total Score:</Typography>
+            <Typography sx={{ fontSize: "1.3rem" }}>
+              {finalResult.totalScore}/3
+            </Typography>
           </Stack>
           <Stack
             direction="row"
@@ -125,8 +126,12 @@ export default function FinalScore(prop) {
             justifyContent="space-evenly"
             alignItems="center"
           >
-            <Typography sx={{fontSize: "1.3rem"}}>Average Distance: </Typography>
-            <Typography sx={{fontSize: "1.3rem"}}>{roundToTwo(finalResult.averageDistance)} km</Typography>
+            <Typography sx={{ fontSize: "1.3rem" }}>
+              Average Distance:{" "}
+            </Typography>
+            <Typography sx={{ fontSize: "1.3rem" }}>
+              {roundToTwo(finalResult.averageDistance)} km
+            </Typography>
           </Stack>
           <Stack
             direction="row"
@@ -134,8 +139,12 @@ export default function FinalScore(prop) {
             justifyContent="space-evenly"
             alignItems="center"
           >
-            <Typography sx={{fontSize: "1.3rem"}}>Average Guesses: </Typography>
-            <Typography sx={{fontSize: "1.3rem"}}>{roundToTwo(finalResult.averageGuesses)} guesses</Typography>
+            <Typography sx={{ fontSize: "1.3rem" }}>
+              Average Guesses:{" "}
+            </Typography>
+            <Typography sx={{ fontSize: "1.3rem" }}>
+              {roundToTwo(finalResult.averageGuesses)} guesses
+            </Typography>
           </Stack>
         </AccordionDetails>
       </Accordion>
