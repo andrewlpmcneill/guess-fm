@@ -9,4 +9,6 @@ router.get('/', userController.getUser);
 // Create user - NOT DONE
 router.post('/', userController.createUser);
 
+router.get('/stats/:id', userController.getLifeTimeStatistics)
+
 module.exports = router;
