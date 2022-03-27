@@ -18,7 +18,8 @@ export default function GameOver(props) {
     clearGuesses,
     getGameStatistics,
     nextRound,
-    createGame
+    createGame,
+    modelState
   } = props;
   // Track whether or not the dialog box is open
   const [open, setOpen] = useState(true);
@@ -56,7 +57,7 @@ export default function GameOver(props) {
           {/* <Typography>{`Your final score is ${gameData.score}/3.`}</Typography> */}
           <FinalScore gameData={gameData} getGameStatistics={getGameStatistics}/>
         </DialogContent>
-        <DialogActions sx={{m: 'auto', paddingBottom: 2}} onClick={handleClose}>
+        <DialogActions sx={{m: 'auto', paddingBottom: 2}} onClick={() => handleClose(modelState.userId)}>
           <Button variant="contained" sx={{fontFamily: 'Wild World'}} >
             {"PLAY AGAIN"}
           </Button>
