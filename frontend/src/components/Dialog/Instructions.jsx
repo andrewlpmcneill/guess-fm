@@ -1,10 +1,9 @@
 import Dialog from "@mui/material/Dialog";
-import { Fragment, useState, useEffect } from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import Typography from "@mui/material/Typography";
 import DialogButton from "./DialogButton";
-import { DialogActions, Stack } from "@mui/material";
+import DialogActions from "@mui/material/DialogActions";
 
 export default function Instructions(props) {
   // Props passed in to render Dialog box
