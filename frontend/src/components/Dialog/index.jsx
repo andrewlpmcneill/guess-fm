@@ -1,6 +1,7 @@
 import Instructions from "./Instructions";
 import Announcement from "./Announcement";
 import GameOver from "./GameOver";
+import About from "./About"
 
 export default function Dialog(props) {
   // Props passed in to render Dialog box
@@ -25,10 +26,13 @@ export default function Dialog(props) {
     gameData,
     setGameData,
     clearRound,
+    isAboutOpen,
+    setIsAboutOpen,
   } = props;
 
   return (
     <div>
+      {setIsAboutOpen && <About isAboutOpen={isAboutOpen} setIsAboutOpen={setIsAboutOpen} />}
       {gameData.round === 0 && (
         <Instructions
           modelState={modelState}

@@ -5,7 +5,7 @@ import useGameData from '../hooks/useGameData';
 export default function LoginButton(props) {
   const { loginWithRedirect } = useAuth0();
   return (
-    <Button variant="contained" sx={{fontFamily: 'Wild World'}}
+    <Button sx={{fontFamily: 'Wild World', color: "#c9333b"}}
       onClick={() => {
         loginWithRedirect()
       }}
