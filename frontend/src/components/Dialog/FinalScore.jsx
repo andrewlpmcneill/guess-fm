@@ -112,7 +112,8 @@ export default function FinalScore(prop) {
           >
             <Typography sx={{ fontSize: "1.3rem" }}>Total Score:</Typography>
             <Typography sx={{ fontSize: "1.3rem" }}>
-              {finalResult.totalScore}/3
+              {/* Should technically use finalScore - gameData works better (for now) */}
+              {gameData.score}/3
             </Typography>
           </Stack>
           <Stack
