@@ -20,12 +20,14 @@ function App() {
     updateResultsTable,
     updateRoundTable,
     createRound,
-    getGameStatistics
+    getGameStatistics,
+    getLifeTimeStatistics
   } = useModelData();
 
   // TOGGLE DISPLAY STATE
   const [isDrawerOpen, setIsDrawerOpen, toggleDrawer] = useDisplayMode(false);
   const [ isAboutOpen, setIsAboutOpen ] = useDisplayMode(false);
+  const [ isStatsOpen, setIsStatsOpen] = useDisplayMode(false);
 
   // GAME STATE
   const {
@@ -62,6 +64,8 @@ function App() {
         <NavBar 
           isAboutOpen={isAboutOpen}
           setIsAboutOpen={setIsAboutOpen}
+          isStatsOpen={isStatsOpen}
+          setIsStatsOpen={setIsStatsOpen}
         />
         <Map gameData={gameData} assignCoords={assignCoords} />
         <Dialog
@@ -82,6 +86,9 @@ function App() {
           getGameStatistics={getGameStatistics}
           isAboutOpen={isAboutOpen}
           setIsAboutOpen={setIsAboutOpen}
+          isStatsOpen={isStatsOpen}
+          setIsStatsOpen={setIsStatsOpen}
+          getLifeTimeStatistics={getLifeTimeStatistics}
         />
         <Results
           guesses={gameData.guesses}
