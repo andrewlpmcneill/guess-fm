@@ -37,7 +37,8 @@ const AboutDialog = styled(Dialog)(({ theme }) => ({
 
 export default function LifeTimeStats(props) {
   // Props passed in to render Dialog box
-  const { isStatsOpen, setIsStatsOpen, getLifeTimeStatistics, modelState } = props;
+  const { isStatsOpen, setIsStatsOpen, getLifeTimeStatistics, modelState } =
+    props;
 
   //set default to 0 so props can render in component without causing an error
   const [lifeTimeStatsData, setLifeTimeStatsData] = useState({
@@ -50,16 +51,14 @@ export default function LifeTimeStats(props) {
     firstGuessAverageDistance: 0,
   });
 
-
   //Life time stats will update when game id changes
   useEffect(() => {
     getLifeTimeStatistics().then((res) => {
-
       //only sets user stats if they have games played
       if (!res.error) {
         setLifeTimeStatsData(res);
       }
-      console.log('this ran again')
+      console.log("this ran again");
     });
   }, [modelState.gameId]);
 
