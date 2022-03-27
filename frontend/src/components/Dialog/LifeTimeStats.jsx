@@ -58,9 +58,8 @@ export default function LifeTimeStats(props) {
       if (!res.error) {
         setLifeTimeStatsData(res);
       }
-      console.log("this ran again");
     });
-  }, [modelState.gameId]);
+  }, [modelState.gameId, getLifeTimeStatistics]);
 
   return (
     <div>

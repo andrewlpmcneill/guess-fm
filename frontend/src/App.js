@@ -63,9 +63,7 @@ function App() {
     <div className="App">
       <Box sx={{ position: "relative", overflow: "hidden" }}>
         <NavBar 
-          isAboutOpen={isAboutOpen}
           setIsAboutOpen={setIsAboutOpen}
-          isStatsOpen={isStatsOpen}
           setIsStatsOpen={setIsStatsOpen}
         />
         <Map gameData={gameData} assignCoords={assignCoords} />

@@ -5,7 +5,6 @@ export default function GuessButton(props) {
   const {
     addGuess,
     updateRoundTable,
-    loadAudio,
     setIsDrawerOpen,
     setModelState,
     modelState,

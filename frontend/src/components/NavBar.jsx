@@ -1,14 +1,13 @@
 import AppBar from '@mui/material/AppBar';
-import Box, { BoxProps }from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import InfoIcon from '@mui/icons-material/Info';
 import BarChartIcon from '@mui/icons-material/BarChart';
 
 export default function NavBar(props) {
 
-  const { isAboutOpen, setIsAboutOpen, isStatsOpen, setIsStatsOpen } = props;
+  const { setIsAboutOpen, setIsStatsOpen } = props;
 
   return (
     <Box sx={{ flexGrow: 1 }}>
