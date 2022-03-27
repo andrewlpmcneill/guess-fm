@@ -12,7 +12,7 @@ export default function useGameData() {
   });
 
   useEffect(() => {
-    if (gameData.round === 4 || (gameData.game === 0 && gameData.round === 0)) {
+    if (gameData.round === 0 || (gameData.game === 0 && gameData.round === 0)) {
       axios.get("/stations").then((response) => {
         setGameData((prev) => {return {...gameData, stations: response.data}})
       });
@@ -22,6 +22,7 @@ export default function useGameData() {
         return {...prev, game: prev.game + 1}
       })
     };
+    
   }, [gameData.round]);
 
   // useEffect(() => {
