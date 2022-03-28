@@ -48,12 +48,12 @@ export default function Player(props) {
 
     <Stack
       direction="column"
-      sx={{ backgroundColor: '#20202a', borderRadius: "15px", position: "absolute", mb: "17.5em", ml: "2em", p: "1em 1.5em" }}
+      sx={{ backgroundColor: '#20202a', borderRadius: "15px", position: "absolute", bottom: "2em", left: "4em", p: "1em 1.5em" }}
     >
       <Display />
       <Stack
         direction="row"
-        // spacing={2}
+        spacing={2}
         alignItems="center"
         justifyContent="space-between"
         // sx={{ width: "220px" }}
@@ -81,9 +81,6 @@ export default function Player(props) {
             });
           }}
         />
-        {/* <img src="./knob.svg" alt="" style={{
-          width: "40px", height: "40px"
-        }}/> */}
         <IconButton sx={{ color: "#FFFFFF" }}>
           <Mute handleMute={handleMute} muted={muted} />
         </IconButton>

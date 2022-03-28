@@ -102,7 +102,7 @@ function App() {
         />
         <Stack
           direction="row"
-          m="0 2em"
+          // m="0 2em"
           spacing={2}
           alignItems="center"
           justifyContent="space-between"
@@ -124,18 +124,23 @@ function App() {
             handleMute={handleMute}
             muted={muted}
           />
-          <GuessButton
-            addGuess={addGuess}
-            gameData={gameData}
-            updateRoundTable={updateRoundTable}
-            loadAudio={loadAudio}
-            addScore={addScore}
-            setIsDrawerOpen={setIsDrawerOpen}
-            setModelState={setModelState}
-            modelState={modelState}
-            setGameData={setGameData}
-            nextRound={nextRound}
-          />
+          <Stack
+            direction="column"
+            sx={{ backgroundColor: '#20202a', borderRadius: "15px", position: "absolute", right: "4em", bottom: "2em", p: "1em 1.5em", width: "300px" }}
+          >
+            <GuessButton
+              addGuess={addGuess}
+              gameData={gameData}
+              updateRoundTable={updateRoundTable}
+              loadAudio={loadAudio}
+              addScore={addScore}
+              setIsDrawerOpen={setIsDrawerOpen}
+              setModelState={setModelState}
+              modelState={modelState}
+              setGameData={setGameData}
+              nextRound={nextRound}
+            />
+          </Stack>
         </Stack>
       </Box>
     </div>
