@@ -1,4 +1,5 @@
 import { useState, useEffect, forwardRef } from "react";
+import { styled } from '@mui/material/styles';
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -12,17 +13,40 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+const CustomDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiPaper-root': {
+    backgroundColor: '#20202a',
+    borderRadius: "15px",
+    // Maybe not?
+    border: "1px solid #4D4D75",
+    // boxShadow: "0px 0px 10px 2px #9393C2"
+  },
+  '& .MuiDialogTitle-root': {
+    backgroundColor: '#20202a',
+    color: "#c9333b",
+    fontFamily: "Wild World",
+    m: "auto", p: 2
+  },
+  '& .MuiDialogContent-root': {
+    color: 'white',
+  },
+  '& .MuiButton-root': {
+    backgroundColor: "#c9333b",
+    '&:hover': {
+      backgroundColor: "#AB151D",
+    }
+  },
+}));
+
 export default function Announcement(props) {
-  // Set open to true for testing purposes
-  const [open, setOpen] = useState(true);
-  const { onClick, play, clearGuesses, createRound, modelState, gameData } =
+  const { onClick, play, clearGuesses, createRound, modelState, gameData, setAnnouncementOpen, open } =
     props;
 
   //conditional text display logic for the button
   const buttonTitle =
     gameData.round === 1 ? "START" : `START ROUND ${gameData.round}`;
 
-  
+  // Round - 2 represents the previous round
   const currentStation = gameData.stations[gameData.round - 2];
   let roundTitle;
   let roundAnswer = "";
@@ -59,7 +83,7 @@ export default function Announcement(props) {
 
   // On close of round announcement - play audio and clear previous guesses
   const handleClose = () => {
-    setOpen(false);
+    setAnnouncementOpen(false);
     clearGuesses();
     createRound(
       modelState.userId,
@@ -83,17 +107,16 @@ export default function Announcement(props) {
   return (
     <div>
       {/* Customize materialUI dialog box to  slide up and size*/}
-      <Dialog
+      <CustomDialog
         open={open}
         TransitionComponent={Transition}
         aria-describedby="alert-dialog-slide-description"
         fullWidth={true}
-        maxWidth={"xs"}
         onClick={onClick}
       >
         {/* Dynamically generate round number */}
         <DialogTitle
-          sx={{ m: "auto", fontFamily: "Wild World" }}
+          sx={{ m: "auto", fontFamily: "Wild World", textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b", letterSpacing: "2px" }}
         >{`${roundTitle}`}</DialogTitle>
 
         {gameData.round > 1 && (
@@ -104,7 +127,7 @@ export default function Announcement(props) {
             </Typography>
             <Typography mt={1}>
               The station playing was <strong>{currentStation.station_title}</strong> in{" "}
-              <strong>{currentStation.city}</strong>
+              <strong>{currentStation.city}.</strong>
             </Typography>
             <Typography mt={1}>
               Your pin was <strong>{pinDistanceAway} km</strong> away.
@@ -126,7 +149,7 @@ export default function Announcement(props) {
             </Button>
           )}
         </DialogActions>
-      </Dialog>
+      </CustomDialog>
     </div>
   );
 }
