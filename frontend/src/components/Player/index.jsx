@@ -66,8 +66,8 @@ export default function Player(props) {
         borderRadius: "15px",
         border: "2px solid #4D4D75",
         position: "absolute",
-        mb: "17.5em",
-        ml: "2em",
+        bottom: "2em",
+        left: "4em",
         p: "1em 1.5em",
         boxShadow: "0px 0px 25px 4px rgba(0,0,0,0.4)",
       }}
