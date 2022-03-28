@@ -4,37 +4,41 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import getDirectionIcon from "../../helpers/getDirectionIcon";
 import CheckIcon from '@mui/icons-material/Check';
+import { Box } from "@mui/material";
 
 export default function Guesses(props) {
   const guessData = props.data;
 
   const country = guessData.fake ? "" : guessData.country;
-  const distance = guessData.fake ? "" : guessData.isCorrect ? <CheckIcon/> : `${guessData.distanceAway}km`;
+  const distance = guessData.fake ? "" : guessData.isCorrect ? <CheckIcon /> : `${guessData.distanceAway}km`;
   const directionClue = guessData.fake ? "" :  getDirectionIcon(guessData.direction);
 
   //returns an icon component
   // const distance = guessData.isCorrect ? <CheckIcon/> : `${guessData.distanceAway}km`;
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
+  const Item = styled(Box)(({ theme }) => ({
     padding: theme.spacing(1),
     textAlign: "center",
-    color: theme.palette.text.secondary,
-    fontWeight: "bold",
-    minHeight: "46.02px",
-    background: "rgba(32,32,42,0.5)"
+    color: "#F2F2F2",
+    minHeight: "44px",
+    background: "rgba(32,32,42,0.5)",
+    fontFamily: "Roboto",
+    fontSize: "14px",
+    borderRadius: "5px"
+
   }));
 
   return (
     <Stack
       direction="row"
       spacing={1}
-      sx={{ marginBottom: "5px", padding: "5px" }}
+      justifyContent="center"
+      alignContent="center"
+      sx={{ marginBottom: "5px", padding: "3px" }}
     >
-      <Item sx={{ width: "55%" }}>{country}</Item>
-      <Item sx={{ width: "30%" }}>{distance}</Item>
-      <Item sx={{ width: "15%" }}>{directionClue}</Item>
+      <Item sx={{ width: "50%", maxWidth: "50%" }}>{country}</Item>
+      <Item sx={{ width: "35%", maxWidth: "35%" }}>{distance}</Item>
+      <Item sx={{ width: "15%", maxWidth: "15%" }}>{directionClue}</Item>
     </Stack>
   );
 }
