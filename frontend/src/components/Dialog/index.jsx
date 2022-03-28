@@ -33,7 +33,12 @@ export default function Dialog(props) {
 
   return (
     <div>
-      {setIsAboutOpen && <About isAboutOpen={isAboutOpen} setIsAboutOpen={setIsAboutOpen} />}
+      {isAboutOpen && (
+        <About
+          isAboutOpen={isAboutOpen}
+          setIsAboutOpen={setIsAboutOpen}
+        />
+      )}
       {gameData.round === 0 && (
         <Instructions
           modelState={modelState}
