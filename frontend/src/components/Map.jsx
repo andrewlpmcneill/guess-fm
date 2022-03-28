@@ -158,11 +158,17 @@ export default function SimpleMap(props) {
           styles: styles
         }}
       >
-        <Marker
+        {/* <Marker
           lat={gameData.coords[0]}
           lng={gameData.coords[1]}
           icon={"https://i.imgur.com/DGy99y0.png"}
           text={country}
+        /> */}
+        <Marker
+          lat={gameData.coords[0]}
+          lng={gameData.coords[1]}
+          name="My Marker"
+          color="blue"
         />
       </GoogleMapReact>
     </div>
