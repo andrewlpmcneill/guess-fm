@@ -4,9 +4,10 @@ import axios from 'axios';
 export default function usePlayerData() {
 
   const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.3);
+  const [volume, setVolume] = useState(30);
   const [source, setSource] = useState("");
   const [error, setError] = useState(0);
+  const [muted, setMuted] = useState(false);
   
   const player = document.getElementById("mp3Player");
   
@@ -23,8 +24,19 @@ export default function usePlayerData() {
   };
   
   const handleChange = (event, newVolume) => {
+    if (muted) setMuted(false);
     setVolume(newVolume);
     player.volume = newVolume / 100;
+  };
+  
+  const handleMute = event => {
+    if (muted) {
+      setMuted(false);
+      player.volume = volume / 100;
+      return;
+    }
+    setMuted(true);
+    player.volume = 0;
   };
 
   const getNewStation = async (country, stationID) => {
@@ -62,6 +74,6 @@ export default function usePlayerData() {
     }
   };
 
-  return { playing, volume, click, handleChange, play, pause, source, setSource, loadAudio, setPlaying, error, getNewStation }
+  return { playing, volume, click, handleChange, play, pause, source, setSource, loadAudio, setPlaying, error, getNewStation, handleMute, muted }
 
 }
