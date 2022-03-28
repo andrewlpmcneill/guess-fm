@@ -10,6 +10,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'LCD Bold';
+  src: 
+url('../public/LCDBOLD.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
 	min-height: 100%;
 	background: #fff;
