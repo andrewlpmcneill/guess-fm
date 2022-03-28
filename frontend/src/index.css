@@ -18,6 +18,7 @@ url('../public/LCDBOLD.woff') format('woff');
   font-style: normal;
 }
 
+
 html, body {
 	min-height: 100%;
 	background: #fff;
@@ -25,11 +26,11 @@ html, body {
 }
 
 h1,h2,h3,h4 {
-  font-family: 'Wild World', Arial, sans-serif;
+  font-family: 'Wild World', Arial, sans-serif !important;
 }
 
-p {
-  font-family: 'Roboto', Arial, sans-serif;
+p, div {
+  /* font-family: 'IBM Plex Mono', monospace !important; */
 }
 
 	
