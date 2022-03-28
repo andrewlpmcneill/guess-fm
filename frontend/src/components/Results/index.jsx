@@ -1,64 +1,37 @@
-import { Fragment } from "react";
 import Guesses from "./Guesses";
 import GameScore from "./GameScore";
-import IconButton from "@mui/material/IconButton";
-import Drawer from "@mui/material/Drawer";
 import Stack from "@mui/material/Stack";
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-const drawerWidth = 300;
+
+const width = 300;
+const height = 550;
 
 export default function Results(props) {
-  const { onDrawerToggle, isDrawerOpen, gameData } = props;
-
+  const { gameData } = props;
 
   return (
-    <Fragment>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            position: "absolute"
-          }
-        }}
-        variant="persistent"
-        anchor="right"
-        open={isDrawerOpen}
-      >
-        <Stack direction="row" justifyContent="flex-start">
-          <IconButton onClick={onDrawerToggle}>
-            <ChevronRightIcon/>
-          </IconButton>
-        </Stack>
+    <Stack
+      direction="column"
+      justifyContent="center"
+      sx={{
+        padding: "0 1rem 1rem 1rem",
+        width: width,
+        minHeight: height,
+        position: "absolute",
+        zIndex: 1000,
+        right: "4em",
+        bottom: "8em",
+        background: "rgba(41,38,33,0.8)",
+        borderRadius: "15px",
+        backdropFilter: "blur(20px)",
+        border: "1px solid #4D4D75"
+      }}
+    >
+      <Stack direction="row" justifyContent="flex-start">
+      </Stack>
 
-        <Guesses data={gameData.guesses} />
-        <GameScore data={gameData.score} />
-      </Drawer>
-
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: 40,
-            position: "absolute"
-          }
-        }}
-        variant="persistent"
-        anchor="right"
-        open={!isDrawerOpen}
-      >
-          <IconButton sx={{height:'100%'}} onClick={onDrawerToggle}>
-            <ChevronLeftIcon/>
-          </IconButton>
- 
-
-      </Drawer>
-
-    </Fragment>
-
+      <Guesses data={gameData.guesses} />
+      <GameScore data={gameData.score} />
+    </Stack>
   );
 }

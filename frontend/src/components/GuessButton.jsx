@@ -6,7 +6,6 @@ export default function GuessButton(props) {
   const {
     addGuess,
     updateRoundTable,
-    setIsDrawerOpen,
     setModelState,
     modelState,
     gameData,
@@ -44,7 +43,6 @@ export default function GuessButton(props) {
       }
 
       //returns a valid guess response object
-      setIsDrawerOpen(true);
       setModelState((prev) => {
         return { ...prev, guessId: validatedGuessResponse.data.id };
       });
