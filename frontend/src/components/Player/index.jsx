@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 
 export default function Player(props) {
 
-  const { handleClick, playing, volume, handleChange, source, setSource, setPlaying, error, getNewStation, gameData, setGameData, play, muted, handleMute } = props;
+  const { handleClick, playing, volume, handleChange, source, setSource, setPlaying, error, getNewStation, gameData, setGameData, play, muted, handleMute, round } = props;
   const player = document.getElementById("mp3Player");
 
   // Volume Side Effect
@@ -50,7 +50,7 @@ export default function Player(props) {
       direction="column"
       sx={{ backgroundColor: '#20202a', borderRadius: "15px", position: "absolute", bottom: "2em", left: "4em", p: "1em 1.5em" }}
     >
-      <Display />
+      <Display round={round}/>
       <Stack
         direction="row"
         spacing={2}

@@ -123,6 +123,7 @@ function App() {
             play={play}
             handleMute={handleMute}
             muted={muted}
+            round={gameData.round}
           />
           <Stack
             direction="column"
