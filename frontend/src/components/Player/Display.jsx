@@ -11,7 +11,7 @@ export default function Display(props) {
 
   useEffect(() => {
     const newFrequency = getRandomFrequency();
-    const newText = `YOU ARE NOW LISTENING TO ${newFrequency} GUESS FM...ENJOY ROUND ${round === 0 ? 1 : round}!`;
+    const newText = `YOU ARE NOW LISTENING TO ${newFrequency} GUESS FM...RELAX, TUNE IN, AND DROP A PIN...ENJOY ROUND ${round === 0 ? 1 : round}!`;
     setText(newText);
   }, [round])
 

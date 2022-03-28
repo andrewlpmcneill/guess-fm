@@ -21,15 +21,6 @@ const CustomDialog = styled(Dialog)(({ theme }) => ({
     border: "1px solid #4D4D75",
     // boxShadow: "0px 0px 10px 2px #9393C2"
   },
-  '& .MuiDialogTitle-root': {
-    backgroundColor: '#20202a',
-    color: "#c9333b",
-    fontFamily: "Wild World",
-    m: "auto", p: 2
-  },
-  '& .MuiDialogContent-root': {
-    color: 'white',
-  },
   '& .MuiButton-root': {
     backgroundColor: "#c9333b",
     '&:hover': {
@@ -116,7 +107,7 @@ export default function Announcement(props) {
       >
         {/* Dynamically generate round number */}
         <DialogTitle
-          sx={{ m: "auto", fontFamily: "Wild World", textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b", letterSpacing: "2px" }}
+          sx={{textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b", letterSpacing: "2px" }}
         >{`${roundTitle}`}</DialogTitle>
 
         {gameData.round > 1 && (
