@@ -3,9 +3,6 @@ import GameScore from "./GameScore";
 import Stack from "@mui/material/Stack";
 
 
-const width = 300;
-const height = 550;
-
 export default function Results(props) {
   const { gameData } = props;
 
@@ -15,8 +12,8 @@ export default function Results(props) {
       justifyContent="center"
       sx={{
         padding: "0 1rem 1rem 1rem",
-        width: width,
-        minHeight: height,
+        width: 300,
+        minHeight: 500,
         position: "absolute",
         zIndex: 1000,
         right: "4em",
@@ -24,7 +21,7 @@ export default function Results(props) {
         background: "rgba(41,38,33,0.8)",
         borderRadius: "15px",
         backdropFilter: "blur(20px)",
-        border: "1px solid #4D4D75"
+        border: "1px solid #4D4D75",
       }}
     >
       <Stack direction="row" justifyContent="flex-start">
