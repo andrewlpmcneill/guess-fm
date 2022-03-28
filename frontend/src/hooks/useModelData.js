@@ -1,16 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function useModelData(initial) {
   const [modelState, setModelState] = useState({
-    // Remove hardcoded userId
-    userId: 1,
+    userId: null,
     gameId: null,
     resultsId: null,
     stationId: null,
     roundId: null,
     guessId: null,
   });
+  
+  // Get user ID for game and insert into localStorage
+  useEffect(() => {
+    if (!localStorage.userId) {
+      axios.post("/users", {first_name: null, last_name: null, email: null, password: null})
+        .then((response) => {
+          const newUserId = response.data.id;
+          localStorage.userId = newUserId;
+          setModelState((prev) => {
+            return {...prev, userId: newUserId}
+          })
+        })
+    } else {
+      setModelState((prev) => {
+        return {...prev, userId: localStorage.userId}
+      })
+    }
+  }, [])
 
   const createGame = async (userId) => {
     try {
@@ -25,7 +42,7 @@ export default function useModelData(initial) {
       const resultsId = postResult.data.id;
       // Set the radio stations for the game, start the game in round 1 and set state object
       setModelState((prev) => {
-        return { ...prev, gameId, resultsId, userId: 1 };
+        return { ...prev, gameId, resultsId, userId };
       });
     } catch (err) {
       console.log(err);
@@ -82,6 +99,17 @@ export default function useModelData(initial) {
     }
   };
 
+  const getLifeTimeStatistics = async () => {
+    try {
+      const lifeTimeStats = await axios.get(
+        `/users/stats/${modelState.userId}`
+      );
+      return lifeTimeStats.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return {
     modelState,
     setModelState,
@@ -90,5 +118,6 @@ export default function useModelData(initial) {
     updateRoundTable,
     createRound,
     getGameStatistics,
+    getLifeTimeStatistics,
   };
 }

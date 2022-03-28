@@ -5,7 +5,6 @@ export default function GuessButton(props) {
   const {
     addGuess,
     updateRoundTable,
-    loadAudio,
     setIsDrawerOpen,
     setModelState,
     modelState,
@@ -20,8 +19,8 @@ export default function GuessButton(props) {
       addGuess(guess);
       if (guess.isCorrect || gameData.guesses.length === 4) {
         updateRoundTable(gameData.guesses.length === 4 ? "false" : "true");
-        nextRound()
-        loadAudio(gameData.stations, gameData.round);
+        setTimeout(() => {
+          nextRound()}, 250);
       }
     });
   };

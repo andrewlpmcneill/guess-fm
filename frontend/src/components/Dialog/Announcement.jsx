@@ -60,6 +60,7 @@ export default function Announcement(props) {
   // On close of round announcement - play audio and clear previous guesses
   const handleClose = () => {
     setOpen(false);
+    clearGuesses();
     createRound(
       modelState.userId,
       modelState.gameId,
@@ -67,8 +68,6 @@ export default function Announcement(props) {
       gameData.stations[gameData.round - 1].id
     ).then(() => {
       play();
-      clearGuesses();
-      console.log("made it here not doing anything")
     });
   };
 

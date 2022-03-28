@@ -81,9 +81,9 @@ const gameStatistics = async (req, res) => {
       where: {
         game_id: game_id,
       },
-      raw: true
+      raw: true,
     });
-    console.log(allRoundsForOneGame)
+    console.log(allRoundsForOneGame);
     //using helper function to calculate end score for the game
     // const finalScore = totalScore(allGuessesForOneGame);
 
@@ -94,9 +94,9 @@ const gameStatistics = async (req, res) => {
       where: {
         round_id: arrayOfRoundIds,
       },
-      raw: true
+      raw: true,
     });
-    console.log(allGuessesForOneGame)
+    console.log(allGuessesForOneGame);
 
     res.json(getGameStatistics(allGuessesForOneGame, allRoundsForOneGame));
   } catch (err) {
