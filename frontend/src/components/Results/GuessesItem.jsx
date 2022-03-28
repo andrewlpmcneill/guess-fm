@@ -22,9 +22,9 @@ export default function Guesses(props) {
     color: "#F2F2F2",
     minHeight: "44px",
     background: "rgba(32,32,42,0.5)",
-    fontFamily: "Roboto",
     fontSize: "14px",
-    borderRadius: "5px"
+    borderRadius: "5px",
+    fontFamily: "IBM Plex Mono",
 
   }));
 
