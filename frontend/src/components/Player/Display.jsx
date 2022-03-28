@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
-import Ticker from "react-ticker";
+import getRandomFrequency from '../../helpers/getRandomFrequency';
+import Ticker from 'react-ticker';
 
 export default function Display(props) {
-  // const {  } = props;
-  const message = "YOU ARE NOW LISTENING TO 101.7 GUESS FM";
 
-  // useEffect(() => {
+  const { round } = props;
+  const message = "YOU ARE NOW LISTENING TO 101.7 GUESS FM... ENJOY THE GAME!";
+  const [text, setText] = useState(message);
 
-  // })
+  useEffect(() => {
+    const newFrequency = getRandomFrequency();
+    const newText = `YOU ARE NOW LISTENING TO ${newFrequency} GUESS FM...ENJOY ROUND ${round === 0 ? 1 : round}!`;
+    setText(newText);
+  }, [round])
 
   return (
     <Box
@@ -33,8 +38,7 @@ export default function Display(props) {
                 textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b",
               }}
             >
-              {message}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {text ? text : "PLACEHOLDER"}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
             {/* <img src="www.my-image-source.com/" alt=""/> */}
           </>

@@ -24,6 +24,7 @@ export default function Player(props) {
     play,
     muted,
     handleMute,
+    round
   } = props;
   const player = document.getElementById("mp3Player");
 
@@ -71,10 +72,10 @@ export default function Player(props) {
         boxShadow: "0px 0px 25px 4px rgba(0,0,0,0.4)",
       }}
     >
-      <Display />
+      <Display round={round}/>
       <Stack
         direction="row"
-        // spacing={2}
+        spacing={2}
         alignItems="center"
         justifyContent="space-between"
         // sx={{ width: "220px" }}
