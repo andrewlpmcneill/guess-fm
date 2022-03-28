@@ -14,6 +14,7 @@ const AboutDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
     backgroundColor: "#20202a",
     borderRadius: "15px",
+    border: "1px solid #4D4D75",
   },
   "& .MuiDialogTitle-root": {
     backgroundColor: "#20202a",
@@ -100,7 +101,7 @@ export default function LifeTimeStats(props) {
                   m: "auto",
                   p: 1,
                   textAlign: "center",
-                  border: "none",
+                  border: "none !important",
                   boxShadow: "none",
                   fontSize: "18px",
                 }}
@@ -126,7 +127,7 @@ export default function LifeTimeStats(props) {
                   m: "auto",
                   p: 1,
                   textAlign: "center",
-                  border: "none",
+                  border: "none !important",
                   boxShadow: "none",
                 }}
               >
@@ -150,7 +151,7 @@ export default function LifeTimeStats(props) {
                   m: "auto",
                   p: 1,
                   textAlign: "center",
-                  border: "none",
+                  border: "none !important",
                   boxShadow: "none",
                 }}
               >
@@ -182,7 +183,7 @@ export default function LifeTimeStats(props) {
                   m: "auto",
                   p: 1,
                   textAlign: "center",
-                  border: "none",
+                  border: "none !important",
                   boxShadow: "none",
                   fontSize: "18px",
                 }}
@@ -207,7 +208,7 @@ export default function LifeTimeStats(props) {
                   m: "auto",
                   p: 1,
                   textAlign: "center",
-                  border: "none",
+                  border: "none !important",
                   boxShadow: "none",
                 }}
               >
@@ -231,7 +232,7 @@ export default function LifeTimeStats(props) {
                   m: "auto",
                   p: 1,
                   textAlign: "center",
-                  border: "none",
+                  border: "none !important",
                   boxShadow: "none",
                 }}
               >
