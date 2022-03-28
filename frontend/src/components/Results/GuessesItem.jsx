@@ -8,9 +8,12 @@ import CheckIcon from '@mui/icons-material/Check';
 export default function Guesses(props) {
   const guessData = props.data;
 
+  const country = guessData.fake ? "" : guessData.country;
+  const distance = guessData.fake ? "" : guessData.isCorrect ? <CheckIcon/> : `${guessData.distanceAway}km`;
+  const directionClue = guessData.fake ? "" :  getDirectionIcon(guessData.direction);
+
   //returns an icon component
-  const distance = guessData.isCorrect ? <CheckIcon/> : `${guessData.distanceAway}km`;
-  const directionClue = getDirectionIcon(guessData.direction);
+  // const distance = guessData.isCorrect ? <CheckIcon/> : `${guessData.distanceAway}km`;
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -19,6 +22,7 @@ export default function Guesses(props) {
     textAlign: "center",
     color: theme.palette.text.secondary,
     fontWeight: "bold",
+    minHeight: "46.02px"
   }));
 
   return (
@@ -27,7 +31,7 @@ export default function Guesses(props) {
       spacing={1}
       sx={{ marginBottom: "5px", padding: "5px" }}
     >
-      <Item sx={{ width: "55%" }}>{guessData.country}</Item>
+      <Item sx={{ width: "55%" }}>{country}</Item>
       <Item sx={{ width: "30%" }}>{distance}</Item>
       <Item sx={{ width: "15%" }}>{directionClue}</Item>
     </Stack>
