@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Instructions from "./Instructions";
 import Announcement from "./Announcement";
 import GameOver from "./GameOver";
@@ -40,7 +40,12 @@ export default function Dialog(props) {
 
   useEffect(() => {
     loadAudio(gameData.stations, gameData.round)
+    if (gameData.round === 1 || gameData.round === 2 || gameData.round === 3) {
+      setAnnouncementOpen(true);
+    }
   }, [gameData.round])
+
+  const [ isAnnouncementOpen, setAnnouncementOpen ] = useState(false)
 
   return (
     <div>
@@ -62,8 +67,9 @@ export default function Dialog(props) {
           setIsInstructionsOpen={setIsInstructionsOpen}
         />
       )}
-      {gameData.round === 1 && (
+      {isAnnouncementOpen && (
         <Announcement
+          open={isAnnouncementOpen}
           round={round}
           play={play}
           clearGuesses={clearGuesses}
@@ -71,32 +77,7 @@ export default function Dialog(props) {
           modelState={modelState}
           stations={stations}
           gameData={gameData}
-        />
-      )}
-      {gameData.round === 2 && (
-        <Announcement
-          open={true}
-          round={round}
-          play={play}
-          clearGuesses={clearGuesses}
-          loadAudio={loadAudio}
-          createRound={createRound}
-          modelState={modelState}
-          stations={stations}
-          gameData={gameData}
-        />
-      )}
-      {gameData.round === 3 && (
-        <Announcement
-          open={true}
-          round={round}
-          play={play}
-          clearGuesses={clearGuesses}
-          loadAudio={loadAudio}
-          createRound={createRound}
-          modelState={modelState}
-          stations={stations}
-          gameData={gameData}
+          setAnnouncementOpen={setAnnouncementOpen}
         />
       )}
       {gameData.round > 3 && (
