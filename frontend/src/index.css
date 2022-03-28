@@ -145,3 +145,14 @@ body, ul, ol, dl {
     transform: translateY(0) rotate(-45deg);
   }
 }
+
+.gm-control-active {
+  background-color: #20202a !important;
+  
+}
+/* .gm-control-active img {
+  color: #000 !important;
+} */
+/* .gm-control-active {
+  background-color: #20202a !important;
+} */
