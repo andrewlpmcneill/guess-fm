@@ -99,6 +99,17 @@ export default function useModelData(initial) {
     }
   };
 
+  const getLifeTimeStatistics = async () => {
+    try {
+      const lifeTimeStats = await axios.get(
+        `/users/stats/${modelState.userId}`
+      );
+      return lifeTimeStats.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return {
     modelState,
     setModelState,
@@ -107,5 +118,6 @@ export default function useModelData(initial) {
     updateRoundTable,
     createRound,
     getGameStatistics,
+    getLifeTimeStatistics,
   };
 }

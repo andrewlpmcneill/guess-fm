@@ -6,7 +6,6 @@ const deg2rad = (deg) => {
   return deg * (Math.PI / 180);
 };
 
-
 //calculates the distance between two coordinates
 const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
   const R = 6371; // Radius of the earth in km
@@ -23,14 +22,13 @@ const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
   return d;
 };
 
-
-//returns a validated guess object that contains information on the 
+//returns a validated guess object that contains information on the
 const validateGuess = (lat1, lng1, lat2, lng2, country1, country2) => {
   let distanceAway, guessCountry, direction, isCorrect;
 
   if (country1 === country2) {
     isCorrect = true;
-    direction = ""
+    direction = "";
   } else {
     isCorrect = false;
     direction = getCompassDirection(
@@ -41,16 +39,14 @@ const validateGuess = (lat1, lng1, lat2, lng2, country1, country2) => {
       { latitude: lat1, longitude: lng1 }
     );
   }
-  distanceAway = Math.round(
-    getDistanceFromLatLonInKm(lat1, lng1, lat2, lng2)
-  );
+  distanceAway = Math.round(getDistanceFromLatLonInKm(lat1, lng1, lat2, lng2));
   guessCountry = lookup.byIso(country2).country; //display full name
 
   return {
     distanceAway: distanceAway,
     direction: direction,
     country: guessCountry,
-    isCorrect: isCorrect
+    isCorrect: isCorrect,
   };
 };
 

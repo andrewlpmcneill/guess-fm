@@ -3,6 +3,7 @@ import Instructions from "./Instructions";
 import Announcement from "./Announcement";
 import GameOver from "./GameOver";
 import About from "./About"
+import LifeTimeStats from "./LifeTimeStats"
 
 export default function Dialog(props) {
   // Props passed in to render Dialog box
@@ -30,6 +31,9 @@ export default function Dialog(props) {
     getGameStatistics,
     isAboutOpen,
     setIsAboutOpen,
+    isStatsOpen,
+    setIsStatsOpen,
+    getLifeTimeStatistics,
     isInstructionsOpen,
     setIsInstructionsOpen,
   } = props;
@@ -45,7 +49,8 @@ export default function Dialog(props) {
 
   return (
     <div>
-      {setIsAboutOpen && <About isAboutOpen={isAboutOpen} setIsAboutOpen={setIsAboutOpen} />}
+      {isAboutOpen && <About isAboutOpen={isAboutOpen} setIsAboutOpen={setIsAboutOpen} />}
+      <LifeTimeStats isStatsOpen={isStatsOpen} setIsStatsOpen={setIsStatsOpen} getLifeTimeStatistics={getLifeTimeStatistics} modelState={modelState}/>
       {isInstructionsOpen && (
         <Instructions
           modelState={modelState}
