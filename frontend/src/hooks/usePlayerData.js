@@ -19,7 +19,7 @@ export default function usePlayerData() {
     }
     setPlaying(true);
     player.play();
-    player.volume = volume;
+    player.volume = volume / 100;
     return;
   };
   
