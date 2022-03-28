@@ -58,7 +58,7 @@ export default function usePlayerData() {
         setError(prev => prev + 1);
       })
       setPlaying(true);
-      player.volume = volume;
+      player.volume = volume / 100;
   };
 
   const pause = () => {

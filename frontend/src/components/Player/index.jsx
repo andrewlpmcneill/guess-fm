@@ -80,10 +80,12 @@ export default function Player(props) {
         justifyContent="space-between"
         // sx={{ width: "220px" }}
       >
-        <IconButton sx={{ color: "#FFFFFF" }}>
+        <IconButton
+        sx={{ color: "#FFFFFF" }}
+        onClick={handleClick}>
           <PlayButton
-            onClick={handleClick}
-            icon={playing ? "playing" : "paused"}
+            playing={playing}
+            player={player}
           />
         </IconButton>
         <Typography
