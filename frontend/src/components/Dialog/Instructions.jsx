@@ -1,11 +1,11 @@
 import Dialog from "@mui/material/Dialog";
 import { styled } from "@mui/material/styles";
-import { Fragment, useState, useEffect } from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import Typography from "@mui/material/Typography";
 import DialogButton from "./DialogButton";
 import DialogActions from "@mui/material/DialogActions";
+import { Grid } from "@mui/material";
 
 export default function Instructions(props) {
   // Props passed in to render Dialog box
@@ -17,16 +17,6 @@ export default function Instructions(props) {
       borderRadius: "15px",
       // Maybe not?
       border: "1px solid #4D4D75",
-    },
-    "& .MuiDialogTitle-root": {
-      backgroundColor: "#20202a",
-      color: "#c9333b",
-      fontFamily: "Wild World",
-      m: "auto",
-      p: 2,
-    },
-    "& .MuiDialogContent-root": {
-      color: "white",
     },
     "& .MuiButton-root": {
       backgroundColor: "#c9333b",
@@ -45,32 +35,66 @@ export default function Instructions(props) {
 
   return (
     <div>
-      <CustomDialog open={true} fullWidth>
-        <DialogTitle
-          sx={{
-            m: "auto",
-            p: 2,
-            fontFamily: "Wild World",
-            textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b",
-            letterSpacing: "2px",
-          }}
-        >
+      <CustomDialog open={true} fullWidth={true} maxWidth={"md"}>
+        <DialogTitle sx={{textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b",
+          letterSpacing: "2px"}}>
           {`WELCOME TO GUESS FM`}
         </DialogTitle>
         {/* Add margin around content */}
-        <DialogContent sx={{ m: "1", textAlign: "center" }}>
-          <Typography sx={{marginBottom: 1}}>{"HOW TO PLAY: "}</Typography>
-          <Typography>
-            {
-              "📡 - A random radio station from somewhere in the world will play."
-            }
-          </Typography>
-          <Typography>
-            {"🏴‍☠️ - You get 5 tries to guess what country it’s in."}
-          </Typography>
-          <Typography>
-            {"3️⃣ - Repeat for 2 more stations to get your score out of 3!"}
-          </Typography>
+        <DialogContent sx={{textAlign: "center" }}>
+          {/* <Typography sx={{marginBottom: 2}}>{"HOW TO PLAY: "}</Typography> */}
+          <Grid sx={{ flexGrow: 1 }} container spacing={2} justifyContent={"flex-end"}>
+            <Grid item xs={3}>
+              <Typography sx={{textAlign: "right" }}>
+                {"1️⃣"}
+              </Typography>
+            </Grid>
+            <Grid item xs={9} sx={{textAlign: "left" }}>
+              <Typography>
+                {"A random radio station from around the world will play."}
+              </Typography>
+            </Grid>
+            <Grid item xs={3} sx={{textAlign: "right" }}>
+              <Typography>
+                {"2️⃣"}
+              </Typography>
+            </Grid>
+            <Grid item xs={9} sx={{textAlign: "left" }}>
+              <Typography>
+                {"Drop a pin in the country you think it’s from."}
+              </Typography>
+            </Grid>
+            <Grid item xs={3} sx={{textAlign: "right" }}>
+              <Typography>
+                {"3️⃣"}
+              </Typography>
+            </Grid>
+            <Grid item xs={9} sx={{textAlign: "left" }}>
+              <Typography>
+                {"Use the guess button to submit your answer."}
+              </Typography>
+            </Grid>
+            <Grid item xs={3} sx={{textAlign: "right" }}>
+              <Typography>
+                {"4️⃣"}
+              </Typography>
+            </Grid>
+            <Grid item xs={9} sx={{textAlign: "left" }}>
+              <Typography>
+                {"Distance and direction hints show after each wrong guess."}
+              </Typography>
+            </Grid>
+            <Grid item xs={3} sx={{textAlign: "right" }}>
+              <Typography>
+                {"5️⃣"}
+              </Typography>
+            </Grid>
+            <Grid item xs={9} sx={{textAlign: "left" }}>
+              <Typography>
+                {"There are 3 rounds in a game."}
+              </Typography>
+            </Grid>
+          </Grid>
         </DialogContent>
         <DialogActions
           sx={{
