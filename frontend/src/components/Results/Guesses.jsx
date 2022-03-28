@@ -31,7 +31,7 @@ export default function Guesses(props) {
           marginBottom: "1rem",
           paddingTop: "1rem",
           color: "#F2F2F2",
-          textShadow: "3px 3px 4px black",
+          // textShadow: "3px 3px 4px black",
         }}
         variant="h6"
       >

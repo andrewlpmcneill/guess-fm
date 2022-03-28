@@ -16,7 +16,7 @@ export default function Results(props) {
         minHeight: 500,
         position: "absolute",
         zIndex: 1000,
-        right: "4em",
+        right: "2em",
         bottom: "8em",
         background: "rgba(41,38,33,0.8)",
         borderRadius: "15px",
