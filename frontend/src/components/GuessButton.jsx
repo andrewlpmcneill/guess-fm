@@ -1,5 +1,4 @@
 import Button from "@mui/material/Button";
-import Stack from '@mui/material/Stack';
 import axios from "axios";
 
 export default function GuessButton(props) {
@@ -54,7 +53,7 @@ export default function GuessButton(props) {
 
   return (
 
-    <Button fullWidth variant="contained" onClick={saveGuess} sx={{ background: "#C9333B" }}>
+    <Button fullWidth variant="contained" onClick={saveGuess} sx={{ background: "#C9333B", fontFamily: "Wild World", '&:hover': { backgroundColor: "#AB151D" } }}>
       Guess
     </Button>
   
