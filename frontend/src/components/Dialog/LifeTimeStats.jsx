@@ -54,13 +54,15 @@ export default function LifeTimeStats(props) {
 
   //Life time stats will update when game id changes
   useEffect(() => {
-    getLifeTimeStatistics().then((res) => {
-      //only sets user stats if they have games played
-      if (!res.error) {
-        setLifeTimeStatsData(res);
-      }
-    });
-  }, [modelState.gameId, getLifeTimeStatistics]);
+    if (modelState.userId) {
+      getLifeTimeStatistics().then((res) => {
+        //only sets user stats if they have games played
+        if (!res.error) {
+          setLifeTimeStatsData(res);
+        }
+      });
+    }
+  }, [modelState.gameId]);
 
   return (
     <div>
