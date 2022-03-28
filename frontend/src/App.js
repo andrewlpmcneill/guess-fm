@@ -56,7 +56,9 @@ function App() {
     loadAudio,
     setPlaying,
     error,
-    getNewStation
+    getNewStation,
+    handleMute,
+    muted
   } = usePlayerData();
 
   return (
@@ -119,6 +121,8 @@ function App() {
             gameData={gameData}
             setGameData={setGameData}
             play={play}
+            handleMute={handleMute}
+            muted={muted}
           />
           <GuessButton
             addGuess={addGuess}

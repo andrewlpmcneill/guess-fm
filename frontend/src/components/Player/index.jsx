@@ -1,11 +1,15 @@
 import { useEffect } from "react";
-import Stack from '@mui/material/Stack'
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
 import PlayButton from "./PlayButton";
 import Volume from "./Volume";
+import Mute from "./Mute";
+import Display from "./Display";
+import IconButton from '@mui/material/IconButton';
 
 export default function Player(props) {
 
-  const { handleClick, playing, volume, handleChange, source, setSource, setPlaying, error, getNewStation, gameData, setGameData, play } = props;
+  const { handleClick, playing, volume, handleChange, source, setSource, setPlaying, error, getNewStation, gameData, setGameData, play, muted, handleMute } = props;
   const player = document.getElementById("mp3Player");
 
   // Volume Side Effect
@@ -39,37 +43,52 @@ export default function Player(props) {
       });
   }, [error])
 
-
+  
   return (
 
     <Stack
-      direction="row"
-      spacing={2}
-      alignItems="center"
-      justifyContent="space-between"
+      direction="column"
+      sx={{ backgroundColor: '#20202a', borderRadius: "15px", position: "absolute", mb: "17.5em", ml: "2em", p: "1em 1.5em" }}
     >
-      <PlayButton
-        onClick={handleClick}
-        icon={playing ? "playing" : "paused"}
-      />
-      <audio
-        id="mp3Player"
-        src={source}
-        type="audio/mp3"
-        onPause={() => {
-          navigator.mediaSession.setActionHandler('play', function() {
-            player.play();
-            setPlaying(true);
-          });
-        }} 
-        onPlay={() => {
-          navigator.mediaSession.setActionHandler('pause', function() {
-            player.pause();
-            setPlaying(false);
-          });
-        }}
-      />
-      <Volume volume={volume} handleChange={handleChange}/>
+      <Display />
+      <Stack
+        direction="row"
+        // spacing={2}
+        alignItems="center"
+        justifyContent="space-between"
+        // sx={{ width: "220px" }}
+      >
+        <IconButton sx={{ color: "#FFFFFF" }}>
+          <PlayButton
+            onClick={handleClick}
+            icon={playing ? "playing" : "paused"}
+          />
+        </IconButton>
+        <audio
+          id="mp3Player"
+          src={source}
+          type="audio/mp3"
+          onPause={() => {
+            navigator.mediaSession.setActionHandler('play', function() {
+              player.play();
+              setPlaying(true);
+            });
+          }} 
+          onPlay={() => {
+            navigator.mediaSession.setActionHandler('pause', function() {
+              player.pause();
+              setPlaying(false);
+            });
+          }}
+        />
+        {/* <img src="./knob.svg" alt="" style={{
+          width: "40px", height: "40px"
+        }}/> */}
+        <IconButton sx={{ color: "#FFFFFF" }}>
+          <Mute handleMute={handleMute} muted={muted} />
+        </IconButton>
+      </Stack>
+      <Volume volume={volume} handleChange={handleChange} muted={muted}/>
     </Stack>
 
   )
