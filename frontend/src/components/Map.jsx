@@ -120,7 +120,7 @@ export default function SimpleMap(props) {
       lat: 43.65381,
       lng: -79.388055,
     },
-    zoom: 3,
+    zoom: 4,
   };
   const getCountry = (lat, lng) => {
     return axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?types=country&access_token=${mapBoxAPI}
@@ -143,6 +143,7 @@ export default function SimpleMap(props) {
     // Important! Always set the container height explicitly
     <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
+        id="map"
         bootstrapURLKeys={{ key: mapsAPI }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
@@ -151,7 +152,7 @@ export default function SimpleMap(props) {
         onClick={onClick}
         options={{
           gestureHandling: "greedy",
-          zoomControlOptions: { position: 6 },
+          zoomControlOptions: { position: 6, id: "zoomControl" },
           streetViewControl: false,
           fullscreenControl: false,
           restriction: bounds,
