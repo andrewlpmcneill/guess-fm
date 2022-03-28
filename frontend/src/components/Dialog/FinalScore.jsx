@@ -1,21 +1,31 @@
 import { Fragment, useState, useEffect } from "react";
+import { styled } from "@mui/material";
 import getTicksWithDistance from "../../helpers/getTicksWithDistance";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Typography from "@mui/material/Typography";
+import { Table } from "@mui/material";
+import { TableBody } from "@mui/material";
+import { TableRow } from "@mui/material";
+import { TableCell } from "@mui/material";
 import { Stack } from "@mui/material";
 
 export default function FinalScore(prop) {
   const { gameData, getGameStatistics } = prop;
 
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState('panel1');
   const [finalResult, setFinalResult] = useState({
     averageDistance: 0,
     averageGuesses: 0,
     totalScore: 0,
   });
+
+  
+
+  const CustomAccordion = styled(Accordion)(({ theme }) => ({
+  }));
 
   //make axios call to grab final game statistics from backend
   useEffect(() => {
@@ -56,22 +66,24 @@ export default function FinalScore(prop) {
 
   return (
     <Fragment>
-      <Accordion
+      <CustomAccordion
         expanded={expanded === "panel1"}
         onChange={handleChange("panel1")}
+        sx={{ color: "white", backgroundColor: "#322D40"}}
       >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMoreIcon sx={{color: "white"}}/>}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
+          sx={{ color: "white", backgroundColor: "#322D40"}}
         >
           <Typography
-            sx={{ m: "auto", p: 0.5, fontSize: "1.4rem", fontWeight: "bold" }}
+            sx={{ m: "auto", p: 0.5, fontWeight: "bold", fontFamily: "Wild World" }}
           >
-            ROUND 3 - RESULTS
+            FINAL ROUND RESULTS
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{ color: "white", backgroundColor: "#322D40"}}>
           <Typography>
             The correct answer was <strong>{currentStation.country}</strong>.{" "}
             {roundAnswer}
@@ -86,64 +98,44 @@ export default function FinalScore(prop) {
           </Typography>
           <Typography mt={1}>{distanceAwayVisual}</Typography>
         </AccordionDetails>
-      </Accordion>
+      </CustomAccordion>
 
-      <Accordion
+      <CustomAccordion
         expanded={expanded === "panel2"}
         onChange={handleChange("panel2")}
       >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMoreIcon sx={{color: "white"}}/>}
           aria-controls="panel2bh-content"
           id="panel2bh-header"
+          sx={{ color: "white", backgroundColor: "#322D40"}}
         >
           <Typography
-            sx={{ m: "auto", p: 0.5, fontSize: "1.4rem", fontWeight: "bold" }}
+            sx={{ m: "auto", p: 0.5, fontWeight: "bold", fontFamily: "Wild World" }}
           >
             GAME STATISTICS
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Stack
-            direction="row"
-            spacing={8}
-            justifyContent="space-evenly"
-            alignItems="center"
-          >
-            <Typography sx={{ fontSize: "1.3rem" }}>Total Score:</Typography>
-            <Typography sx={{ fontSize: "1.3rem" }}>
-              {/* Should technically use finalScore - gameData works better (for now) */}
-              {gameData.score}/3
-            </Typography>
-          </Stack>
-          <Stack
-            direction="row"
-            spacing={8}
-            justifyContent="space-evenly"
-            alignItems="center"
-          >
-            <Typography sx={{ fontSize: "1.3rem" }}>
-              Average Distance:{" "}
-            </Typography>
-            <Typography sx={{ fontSize: "1.3rem" }}>
-              {roundToTwo(finalResult.averageDistance)} km
-            </Typography>
-          </Stack>
-          <Stack
-            direction="row"
-            spacing={8}
-            justifyContent="space-evenly"
-            alignItems="center"
-          >
-            <Typography sx={{ fontSize: "1.3rem" }}>
-              Average Guesses:{" "}
-            </Typography>
-            <Typography sx={{ fontSize: "1.3rem" }}>
-              {roundToTwo(finalResult.averageGuesses)} guesses
-            </Typography>
-          </Stack>
+        <AccordionDetails sx={{ color: "white", backgroundColor: "#322D40"}}>
+        <Table>
+          <TableBody>
+            <TableRow sx={{borderBottom: "none"}}>
+              <TableCell sx={{color: "white"}}>Total Score:</TableCell>
+              <TableCell sx={{color: "white"}} align="right">{gameData.score}/3</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell sx={{color: "white"}} >Average Distance:</TableCell>
+              <TableCell sx={{color: "white"}} align="right">{roundToTwo(finalResult.averageDistance)} km</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell sx={{color: "white"}}>Average Guesses:</TableCell>
+              <TableCell sx={{color: "white"}} align="right">{roundToTwo(finalResult.averageGuesses)} guesses</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+          
         </AccordionDetails>
-      </Accordion>
+      </CustomAccordion>
     </Fragment>
   );
 }

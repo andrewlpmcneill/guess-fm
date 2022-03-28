@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { styled } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -24,6 +25,31 @@ export default function GameOver(props) {
   // Track whether or not the dialog box is open
   const [open, setOpen] = useState(true);
 
+  const CustomDialog = styled(Dialog)(({ theme }) => ({
+    "& .MuiPaper-root": {
+      backgroundColor: "#20202a",
+      borderRadius: "15px",
+      border: "1px solid #4D4D75",
+      overflow: "hidden"
+    },
+    "& .MuiDialogTitle-root": {
+      backgroundColor: "#20202a",
+      color: "#c9333b",
+      fontFamily: "Wild World",
+      m: "auto",
+      p: 2,
+    },
+    "& .MuiDialogContent-root": {
+      color: "white",
+    },
+    "& .MuiButton-root": {
+      backgroundColor: "#c9333b",
+      "&:hover": {
+        backgroundColor: "#AB151D",
+      },
+    },
+  }));
+
 
   const handleClose = (userId) => {
     // Add results to table and pause music
@@ -47,9 +73,9 @@ export default function GameOver(props) {
 
   return (
     <div>
-      <Dialog open={open} fullWidth>
-        <DialogTitle sx={{ m: "auto", p: 2, fontFamily: "Wild World" }}>
-          {"WELL PLAYED!"}
+      <CustomDialog open={open} fullWidth sx={{border: "10px solid #4D4D75"}}>
+        <DialogTitle sx={{ m: "auto", p: 2, fontFamily: "Wild World", textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b", letterSpacing: "2px"}}>
+          {"GAME OVER"}
         </DialogTitle>
         {/* Add margin around content */}
         <DialogContent sx={{ m: "1", textAlign: "center" }}>
@@ -62,7 +88,7 @@ export default function GameOver(props) {
             {"PLAY AGAIN"}
           </Button>
         </DialogActions>
-      </Dialog>
+      </CustomDialog>
     </div>
   );
 }
