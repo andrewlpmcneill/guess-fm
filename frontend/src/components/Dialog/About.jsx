@@ -11,9 +11,10 @@ import { Link } from "@mui/material";
 import { CardContent } from "@mui/material";
 
 const AboutDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiPaper-root': {
+  '& .MuiPaper-root:first-of-type': {
     backgroundColor: '#20202a',
     borderRadius: "15px",
+    border: "1px solid #4D4D75",
   },
   '& .MuiDialogTitle-root': {
     backgroundColor: '#20202a',
@@ -39,7 +40,7 @@ export default function About(props) {
   const { isAboutOpen, setIsAboutOpen } = props
 
   return (
-    <div>
+    <div class="about">
       <AboutDialog open={isAboutOpen} fullWidth>
         <IconButton
           aria-label="close"
@@ -68,7 +69,7 @@ export default function About(props) {
               justifyContent: 'space-between',
             }}>
             <Box>
-              <Card sx={{ m: "auto", p: 2, textAlign: "center", border: "none", boxShadow: "none", fontSize: "18px" }}>
+              <Card sx={{ m: "auto", p: 2, textAlign: "center", border: "none!important", boxShadow: "none", fontSize: "18px" }}>
                 <CardContent sx={{
                     color: 'white'
                   }}>
@@ -82,7 +83,7 @@ export default function About(props) {
               </Card>
             </Box>
             <Box>
-              <Card sx={{ m: "auto", p: 2, textAlign: "center", border: "none", boxShadow: "none" }}>
+              <Card sx={{ m: "auto", p: 2, textAlign: "center", border: "none!important", boxShadow: "none" }}>
                 <CardContent sx={{
                     color: 'white',
                   }}>
@@ -96,7 +97,7 @@ export default function About(props) {
               </Card>
             </Box>
             <Box>
-              <Card sx={{ m: "auto", p: 2, textAlign: "center", border: "none", boxShadow: "none" }}>
+              <Card sx={{ m: "auto", p: 2, textAlign: "center", border: "none!important", boxShadow: "none" }}>
                 <CardContent sx={{
                     color: 'white',
                   }}>
