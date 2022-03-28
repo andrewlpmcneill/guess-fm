@@ -63,7 +63,7 @@ export default function Announcement(props) {
   ) {
     // let dataRound = gameData.round === 2 ? 1 : 2;
     roundTitle = "NICE ONE!";
-    roundAnswer = `You got it in ${gameData.guesses.length} guesses. `;
+    roundAnswer = `You got it in ${gameData.guesses.length} ${gameData.guesses.length === 1? "guess" : "guesses"}. `;
     pinDistanceAway =
       gameData.guesses[gameData.guesses.length - 1].distanceAway;
     distanceAwayVisual = `📍${getTicksWithDistance(
