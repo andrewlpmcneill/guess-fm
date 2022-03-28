@@ -8,10 +8,10 @@ export default function PlayButton(props) {
   return (
     <div>
       {icon === "paused" && (
-        <PlayArrowIcon data-testid="play" color="primary" fontSize="large" onClick={props.onClick} />
+        <PlayArrowIcon data-testid="play" color="primary" fontSize="large" onClick={props.onClick} sx={{ color: "#C9333B", cursor: "pointer" }} />
       )}
       {icon === "playing" && (
-        <PauseIcon data-testid="pause" color="primary" fontSize="large" onClick={props.onClick} />
+        <PauseIcon data-testid="pause" color="primary" fontSize="large" onClick={props.onClick} sx={{ color: "#C9333B", cursor: "pointer" }}/>
       )}
     </div>
 
