@@ -16,6 +16,7 @@ export default function NavBar(props) {
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
+          marginLeft: -1,
           marginRight: 2,
         }}>
           <Box component="img"
@@ -32,11 +33,11 @@ export default function NavBar(props) {
             src="https://i.postimg.cc/X774ff90/GUESS-FM-800-300-px.png">
           </Box>
           <Box>
-            <Button sx={{fontSize: "24px"}} onClick={() => setIsAboutOpen(true)}>
-              <InfoIcon sx={{color: "#c9333b"}} />
-            </Button>
             <Button sx={{fontSize: "24px"}} onClick={() => setIsStatsOpen(true)}>
               <BarChartIcon sx={{color: "#c9333b"}}/>
+            </Button>
+            <Button sx={{fontSize: "24px"}} onClick={() => setIsAboutOpen(true)}>
+              <InfoIcon sx={{color: "#c9333b"}} />
             </Button>
           </Box>
         </Toolbar>

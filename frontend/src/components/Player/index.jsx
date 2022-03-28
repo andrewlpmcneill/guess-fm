@@ -69,7 +69,6 @@ export default function Player(props) {
         bottom: "2em",
         left: "4em",
         p: "1em 1.5em",
-        boxShadow: "0px 0px 25px 4px rgba(0,0,0,0.4)",
       }}
     >
       <Display round={round}/>

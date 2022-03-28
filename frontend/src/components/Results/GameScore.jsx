@@ -5,10 +5,12 @@ import Typography from "@mui/material/Typography";
 export default function GameScore(props) {
   const score = props.data ? props.data : 0;
   const scoreStyle = {
-    fontFamily: "Wild World",
-    textShadow: "3px 3px 4px black",
+    fontFamily: "IBM Plex Mono",
+    fontWeight: "600",
+    // textShadow: "3px 3px 4px black",
     color: "#F2F2F2",
-    fontSize: "1.5rem"
+    fontSize: "2rem",
+    marginTop: "-0.3em"
   };
 
   return (
@@ -21,7 +23,7 @@ export default function GameScore(props) {
           color: "#F2F2F2",
           minHeight: "50px",
           position: "relative",
-          textShadow: "3px 3px 4px black",
+          // textShadow: "3px 3px 4px black",
         }}
         variant="h6"
       >

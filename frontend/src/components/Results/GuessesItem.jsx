@@ -35,8 +35,8 @@ export default function Guesses(props) {
       alignContent="center"
       sx={{ marginBottom: "5px", padding: "3px" }}
     >
-      <Item sx={{ width: "50%", maxWidth: "50%" }}>{country}</Item>
-      <Item sx={{ width: "35%", maxWidth: "35%" }}>{distance}</Item>
+      <Item sx={{ width: "50%", maxWidth: "50%", paddingTop: "12px" }}>{country}</Item>
+      <Item sx={{ width: "35%", maxWidth: "35%", paddingTop: "12px" }}>{distance}</Item>
       <Item sx={{ width: "15%", maxWidth: "15%" }}>{directionClue}</Item>
     </Stack>
   );
