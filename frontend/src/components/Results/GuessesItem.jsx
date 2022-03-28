@@ -20,7 +20,8 @@ export default function Guesses(props) {
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: "center",
-    color: theme.palette.text.secondary,
+    color: "#FFFFFF",
+    fontFamily: "IBM Plex Mono",
     fontWeight: "bold",
     minHeight: "46.02px",
     background: "rgba(32,32,42,0.5)"
