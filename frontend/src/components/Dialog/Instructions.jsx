@@ -1,4 +1,5 @@
 import Dialog from "@mui/material/Dialog";
+import { styled } from "@mui/material/styles";
 import { Fragment, useState, useEffect } from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -8,24 +9,52 @@ import { DialogActions, Stack } from "@mui/material";
 
 export default function Instructions(props) {
   // Props passed in to render Dialog box
-  const {
-    modelState,
-    createGame,
-    nextRound,
-    setIsInstructionsOpen
-  } = props;
+  const { modelState, createGame, nextRound, setIsInstructionsOpen } = props;
+
+  const CustomDialog = styled(Dialog)(({ theme }) => ({
+    "& .MuiPaper-root": {
+      backgroundColor: "#20202a",
+      borderRadius: "15px",
+      // Maybe not?
+      border: "1px solid #4D4D75",
+    },
+    "& .MuiDialogTitle-root": {
+      backgroundColor: "#20202a",
+      color: "#c9333b",
+      fontFamily: "Wild World",
+      m: "auto",
+      p: 2,
+    },
+    "& .MuiDialogContent-root": {
+      color: "white",
+    },
+    "& .MuiButton-root": {
+      backgroundColor: "#c9333b",
+      "&:hover": {
+        backgroundColor: "#AB151D",
+      },
+    },
+  }));
 
   const startGame = (userId) => {
     createGame(userId).then(() => {
-      setIsInstructionsOpen(false)
+      setIsInstructionsOpen(false);
       nextRound();
     });
   };
 
   return (
     <div>
-      <Dialog open={true} fullWidth>
-        <DialogTitle sx={{ m: "auto", p: 2, fontFamily: "Wild World" }}>
+      <CustomDialog open={true} fullWidth>
+        <DialogTitle
+          sx={{
+            m: "auto",
+            p: 2,
+            fontFamily: "Wild World",
+            textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b",
+            letterSpacing: "2px",
+          }}
+        >
           {`WELCOME TO GUESS FM`}
         </DialogTitle>
         {/* Add margin around content */}
@@ -54,7 +83,7 @@ export default function Instructions(props) {
             {"PLAY NOW"}
           </DialogButton>
         </DialogActions>
-      </Dialog>
+      </CustomDialog>
     </div>
   );
 }
