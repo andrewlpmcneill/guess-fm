@@ -33,7 +33,7 @@ export default function About(props) {
 
   return (
     <div class="about">
-        <AboutDialog open={isAboutOpen} fullWidth>
+        <AboutDialog open={isAboutOpen} fullWidth maxWidth={"sm"}>
           <IconButton
             aria-label="close"
             onClick={() => setIsAboutOpen(false)}
@@ -52,7 +52,7 @@ export default function About(props) {
           </DialogTitle>
           {/* Add margin around content */}
           <DialogContent sx={{ m: "auto", p: 2, textAlign: "center" }}>
-            <Typography sx={{letterSpacing: "0.2px", p: 2}}>
+            <Typography>
               {"Guess FM was built with the help of the  "}<Link href="http://radio.garden/" >{"Radio Garden"}</Link>
               {" "}<Link href="https://jonasrmichel.github.io/radio-garden-openapi/">{"API"}</Link>{"."}
             </Typography>
