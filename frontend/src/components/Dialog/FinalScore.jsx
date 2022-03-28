@@ -6,11 +6,9 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Typography from "@mui/material/Typography";
-import { Table } from "@mui/material";
-import { TableBody } from "@mui/material";
-import { TableRow } from "@mui/material";
-import { TableCell } from "@mui/material";
-import { Stack } from "@mui/material";
+import { Box } from "@mui/material";
+import { Card } from "@mui/material";
+import { CardContent } from "@mui/material";
 
 export default function FinalScore(prop) {
   const { gameData, getGameStatistics } = prop;
@@ -50,7 +48,7 @@ export default function FinalScore(prop) {
   let distanceAwayVisual;
 
   if (gameData.guesses[gameData.guesses.length - 1].isCorrect) {
-    roundAnswer = `You got it in ${gameData.guesses.length} guesses. `;
+    roundAnswer = `You got it in ${gameData.guesses.length} ${gameData.guesses.length === 1? "guess" : "guesses"}. `;
     pinDistanceAway =
       gameData.guesses[gameData.guesses.length - 1].distanceAway;
     distanceAwayVisual = `📍${getTicksWithDistance(
@@ -116,24 +114,53 @@ export default function FinalScore(prop) {
             GAME STATISTICS
           </Typography>
         </AccordionSummary>
-        <AccordionDetails sx={{ color: "white", backgroundColor: "#322D40"}}>
-        <Table>
-          <TableBody>
-            <TableRow sx={{borderBottom: "none"}}>
-              <TableCell sx={{color: "white"}}>Total Score:</TableCell>
-              <TableCell sx={{color: "white"}} align="right">{gameData.score}/3</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{color: "white"}} >Average Distance:</TableCell>
-              <TableCell sx={{color: "white"}} align="right">{roundToTwo(finalResult.averageDistance)} km</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{color: "white"}}>Average Guesses:</TableCell>
-              <TableCell sx={{color: "white"}} align="right">{roundToTwo(finalResult.averageGuesses)} guesses</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-          
+        <AccordionDetails sx={{ color: "white", backgroundColor: "#322D40!important", }}>
+        <Box sx={{
+              display: 'flex',
+            }}>
+            <Box>
+              <Card sx={{backgroundColor: "#322D40!important", m: "auto", p: 2, textAlign: "center", border: "none!important", boxShadow: "none", fontSize: "18px" }}>
+                <CardContent sx={{
+                    color: 'white'
+                  }}>
+                  <Typography sx={{fontSize: "24px", fontWeight: 600,}}>
+                    {gameData.score}/3
+                  </Typography>
+                  <Typography sx={{fontSize: "18px", fontWeight: 300,}}>
+                    {"Total Score"}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
+            <Box>
+              <Card sx={{backgroundColor: "#322D40!important", m: "auto", p: 2, textAlign: "center", border: "none!important", boxShadow: "none" }}>
+                <CardContent sx={{
+                    color: 'white',
+                  }}>
+                  <Typography sx={{fontSize: "24px", fontWeight: 600}}>
+                    {roundToTwo(finalResult.averageDistance)} km
+                  </Typography>
+                  <Typography sx={{fontSize: "18px", fontWeight: 300}}>
+                    {"Average Distance"}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
+            <Box>
+              <Card sx={{backgroundColor: "#322D40!important", m: "auto", p: 2, textAlign: "center", border: "none!important", boxShadow: "none" }}>
+                <CardContent sx={{
+                    color: 'white',
+                  }}>
+                  <Typography sx={{fontSize: "24px", fontWeight: 600,}}>
+                    {roundToTwo(finalResult.averageGuesses)}
+                  </Typography>
+                  <Typography sx={{fontSize: "18px", fontWeight: 300}}>
+                    {"Average Guesses"}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
+          </Box>
         </AccordionDetails>
       </CustomAccordion>
     </Fragment>
