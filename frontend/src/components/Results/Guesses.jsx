@@ -20,15 +20,11 @@ export default function Guesses(props) {
 
   const guesses = tempData.map(guess => <GuessesItem key={guess.id} data={guess} />)
 
-  // const guesses = guessesData ? (
-  //   guessesData.map((guess) => <GuessesItem key={guess.id} data={guess} />)
-  // ) : "";
-
 
   return (
-    <Box sx={{ height: "70%" }}>
+    <Box >
       <Typography
-        sx={{ fontFamily: "Wild World", textAlign: "center", marginBottom: '1rem', marginTop: '1rem', color:"#F2F2F2" }}
+        sx={{ fontFamily: "Wild World", textAlign: "center", marginBottom: '1rem', marginTop: '1rem', paddingTop: '1rem', color:"#F2F2F2", textShadow: "3px 3px 4px black" }}
         variant={"h5"}
       >
         GUESSES
