@@ -46,7 +46,7 @@ export default function Instructions(props) {
           <Grid sx={{ flexGrow: 1 }} container spacing={2} justifyContent={"flex-end"}>
             <Grid item xs={3}>
               <Typography sx={{textAlign: "right" }}>
-                {"1️⃣"}
+                {"1️⃣"}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </Typography>
             </Grid>
             <Grid item xs={9} sx={{textAlign: "left" }}>
@@ -56,7 +56,7 @@ export default function Instructions(props) {
             </Grid>
             <Grid item xs={3} sx={{textAlign: "right" }}>
               <Typography>
-                {"2️⃣"}
+                {"2️⃣"}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </Typography>
             </Grid>
             <Grid item xs={9} sx={{textAlign: "left" }}>
@@ -66,7 +66,7 @@ export default function Instructions(props) {
             </Grid>
             <Grid item xs={3} sx={{textAlign: "right" }}>
               <Typography>
-                {"3️⃣"}
+                {"3️⃣"}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </Typography>
             </Grid>
             <Grid item xs={9} sx={{textAlign: "left" }}>
@@ -76,7 +76,7 @@ export default function Instructions(props) {
             </Grid>
             <Grid item xs={3} sx={{textAlign: "right" }}>
               <Typography>
-                {"4️⃣"}
+                {"4️⃣"}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </Typography>
             </Grid>
             <Grid item xs={9} sx={{textAlign: "left" }}>
@@ -86,7 +86,7 @@ export default function Instructions(props) {
             </Grid>
             <Grid item xs={3} sx={{textAlign: "right" }}>
               <Typography>
-                {"5️⃣"}
+                {"5️⃣"}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </Typography>
             </Grid>
             <Grid item xs={9} sx={{textAlign: "left" }}>
