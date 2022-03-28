@@ -59,7 +59,7 @@ export default function Instructions(props) {
         </DialogTitle>
         {/* Add margin around content */}
         <DialogContent sx={{ m: "1", textAlign: "center" }}>
-          <Typography>{"HOW TO PLAY: "}</Typography>
+          <Typography sx={{marginBottom: 1}}>{"HOW TO PLAY: "}</Typography>
           <Typography>
             {
               "📡 - A random radio station from somewhere in the world will play."
