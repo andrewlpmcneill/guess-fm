@@ -22,7 +22,8 @@ export default function Guesses(props) {
     textAlign: "center",
     color: theme.palette.text.secondary,
     fontWeight: "bold",
-    minHeight: "46.02px"
+    minHeight: "46.02px",
+    background: "rgba(32,32,42,0.5)"
   }));
 
   return (
