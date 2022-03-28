@@ -48,7 +48,7 @@ export default function FinalScore(prop) {
   let distanceAwayVisual;
 
   if (gameData.guesses[gameData.guesses.length - 1].isCorrect) {
-    roundAnswer = `You got it in ${gameData.guesses.length} guesses. `;
+    roundAnswer = `You got it in ${gameData.guesses.length} ${gameData.guesses.length === 1? "guess" : "guesses"}. `;
     pinDistanceAway =
       gameData.guesses[gameData.guesses.length - 1].distanceAway;
     distanceAwayVisual = `📍${getTicksWithDistance(
