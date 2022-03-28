@@ -25,7 +25,6 @@ function App() {
   } = useModelData();
 
   // TOGGLE DISPLAY STATE
-  const [isDrawerOpen, setIsDrawerOpen, toggleDrawer] = useDisplayMode(false);
   const [ isAboutOpen, setIsAboutOpen ] = useDisplayMode(false);
   const [ isStatsOpen, setIsStatsOpen] = useDisplayMode(false);
   const [ isInstructionsOpen, setIsInstructionsOpen ] = useDisplayMode(true);
@@ -97,8 +96,6 @@ function App() {
           guesses={gameData.guesses}
           gameData={gameData}
           setGameData={setGameData}
-          onDrawerToggle={toggleDrawer}
-          isDrawerOpen={isDrawerOpen}
         />
         <Stack
           direction="row"
@@ -134,7 +131,6 @@ function App() {
               updateRoundTable={updateRoundTable}
               loadAudio={loadAudio}
               addScore={addScore}
-              setIsDrawerOpen={setIsDrawerOpen}
               setModelState={setModelState}
               modelState={modelState}
               setGameData={setGameData}
