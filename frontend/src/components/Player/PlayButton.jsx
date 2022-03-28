@@ -3,14 +3,14 @@ import PauseIcon from '@mui/icons-material/Pause';
 
 export default function PlayButton(props) {
 
-  const icon = props.icon;
+  const { playing, player } = props;
 
   return (
     <>
-      {icon === "paused" && (
+      {!playing && (
         <PlayArrowIcon data-testid="play" color="primary" fontSize="large" onClick={props.onClick} sx={{ color: "#C9333B", cursor: "pointer" }} />
       )}
-      {icon === "playing" && (
+      {playing && (
         <PauseIcon data-testid="pause" color="primary" fontSize="large" onClick={props.onClick} sx={{ color: "#C9333B", cursor: "pointer" }}/>
       )}
     </>
