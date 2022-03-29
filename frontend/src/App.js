@@ -150,7 +150,7 @@ function App() {
             />
             <Stack
               direction="column"
-              sx={{ backgroundColor: '#20202a', borderRadius: "15px", position: "absolute", right: "2em", bottom: "2em", p: "1em 1.5em", width: "300px" }}
+              sx={{ backgroundColor: '#20202a', borderRadius: "15px", border: "1px solid #4D4D75", position: "absolute", right: "2em", bottom: "2em", p: "1em 1.5em", width: "300px" }}
             >
               <GuessButton
                 addGuess={addGuess}
