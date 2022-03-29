@@ -24,7 +24,7 @@ export default function FinalScore(prop) {
     getGameStatistics().then((res) => {
       setFinalResult(res);
     });
-  }, [getGameStatistics]);
+  }, []);
 
   //sets default state and opens accordion
   const handleChange = (panel) => (event, isExpanded) => {
@@ -35,7 +35,7 @@ export default function FinalScore(prop) {
   const numberOfGuesses = gameData.guesses.length;
   const currentStation = gameData.stations[gameData.round - 2];
   const roundAnswer = gameData.guesses[numberOfGuesses - 1].isCorrect ? `You got it in ${numberOfGuesses} ${numberOfGuesses === 1? "guess" : "guesses"}. `: "";
-  const pinDistanceAway = gameData.guesses[numberOfGuesses - 1].isCorrect ? gameData.guesses[numberOfGuesses - 1].distanceAway : 0;
+  const pinDistanceAway = gameData.guesses[numberOfGuesses - 1].distanceAway;
   const distanceAwayVisual = `📍${getTicksWithDistance(gameData.guesses[numberOfGuesses - 1].distanceAway)}🌎`;
 
 
