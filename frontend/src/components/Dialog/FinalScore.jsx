@@ -1,14 +1,13 @@
 import { Fragment, useState, useEffect } from "react";
-import { styled } from "@mui/material";
 import getTicksWithDistance from "../../helpers/getTicksWithDistance";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/material";
-import { Card } from "@mui/material";
-import { CardContent } from "@mui/material";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 
 export default function FinalScore(prop) {
   const { gameData, getGameStatistics } = prop;
@@ -19,11 +18,6 @@ export default function FinalScore(prop) {
     averageGuesses: 0,
     totalScore: 0,
   });
-
-  
-
-  const CustomAccordion = styled(Accordion)(({ theme }) => ({
-  }));
 
   //make axios call to grab final game statistics from backend
   useEffect(() => {
@@ -37,34 +31,17 @@ export default function FinalScore(prop) {
     setExpanded(isExpanded ? panel : false);
   };
 
-  //rounding function
-  const roundToTwo = (num) => {
-    return Math.round(num * 100) / 100;
-  };
-
+  //sets round results data
+  const numberOfGuesses = gameData.guesses.length;
   const currentStation = gameData.stations[gameData.round - 2];
-  let roundAnswer = "";
-  let pinDistanceAway;
-  let distanceAwayVisual;
+  const roundAnswer = gameData.guesses[numberOfGuesses - 1].isCorrect ? `You got it in ${numberOfGuesses} ${numberOfGuesses === 1? "guess" : "guesses"}. `: "";
+  const pinDistanceAway = gameData.guesses[numberOfGuesses - 1].isCorrect ? gameData.guesses[numberOfGuesses - 1].distanceAway : 0;
+  const distanceAwayVisual = `📍${getTicksWithDistance(gameData.guesses[numberOfGuesses - 1].distanceAway)}🌎`;
 
-  if (gameData.guesses[gameData.guesses.length - 1].isCorrect) {
-    roundAnswer = `You got it in ${gameData.guesses.length} ${gameData.guesses.length === 1? "guess" : "guesses"}. `;
-    pinDistanceAway =
-      gameData.guesses[gameData.guesses.length - 1].distanceAway;
-    distanceAwayVisual = `📍${getTicksWithDistance(
-      gameData.guesses[gameData.guesses.length - 1].distanceAway
-    )}🌎`;
-  } else {
-    pinDistanceAway =
-      gameData.guesses[gameData.guesses.length - 1].distanceAway;
-    distanceAwayVisual = `📍${getTicksWithDistance(
-      gameData.guesses[gameData.guesses.length - 1].distanceAway
-    )}🌎`;
-  }
 
   return (
     <Fragment>
-      <CustomAccordion
+      <Accordion
         expanded={expanded === "panel1"}
         onChange={handleChange("panel1")}
         sx={{ color: "white", backgroundColor: "#322D40"}}
@@ -96,9 +73,9 @@ export default function FinalScore(prop) {
           </Typography>
           <Typography mt={1}>{distanceAwayVisual}</Typography>
         </AccordionDetails>
-      </CustomAccordion>
+      </Accordion>
 
-      <CustomAccordion
+      <Accordion
         expanded={expanded === "panel2"}
         onChange={handleChange("panel2")}
       >
@@ -118,7 +95,7 @@ export default function FinalScore(prop) {
         <Box sx={{
               display: 'flex',
             }}>
-            <Box>
+            <Box sx={{minWidth: "33%"}}>
               <Card sx={{backgroundColor: "#322D40!important", m: "auto", p: 2, textAlign: "center", border: "none!important", boxShadow: "none", fontSize: "18px" }}>
                 <CardContent sx={{
                     color: 'white'
@@ -132,13 +109,13 @@ export default function FinalScore(prop) {
                 </CardContent>
               </Card>
             </Box>
-            <Box>
+            <Box sx={{minWidth: "33%"}}>
               <Card sx={{backgroundColor: "#322D40!important", m: "auto", p: 2, textAlign: "center", border: "none!important", boxShadow: "none" }}>
                 <CardContent sx={{
                     color: 'white',
                   }}>
                   <Typography sx={{fontSize: "24px", fontWeight: 600}}>
-                    {roundToTwo(finalResult.averageDistance)} km
+                    {finalResult.averageDistance} km
                   </Typography>
                   <Typography sx={{fontSize: "18px", fontWeight: 300}}>
                     {"Average Distance"}
@@ -146,13 +123,13 @@ export default function FinalScore(prop) {
                 </CardContent>
               </Card>
             </Box>
-            <Box>
+            <Box sx={{minWidth: "33%"}}>
               <Card sx={{backgroundColor: "#322D40!important", m: "auto", p: 2, textAlign: "center", border: "none!important", boxShadow: "none" }}>
                 <CardContent sx={{
                     color: 'white',
                   }}>
                   <Typography sx={{fontSize: "24px", fontWeight: 600,}}>
-                    {roundToTwo(finalResult.averageGuesses)}
+                    {finalResult.averageGuesses}
                   </Typography>
                   <Typography sx={{fontSize: "18px", fontWeight: 300}}>
                     {"Average Guesses"}
@@ -162,7 +139,7 @@ export default function FinalScore(prop) {
             </Box>
           </Box>
         </AccordionDetails>
-      </CustomAccordion>
+      </Accordion>
     </Fragment>
   );
 }
