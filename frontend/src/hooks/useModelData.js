@@ -90,6 +90,7 @@ export default function useModelData(initial) {
       });
   };
 
+  //API CALL TO GRABS CURRENT ROUND STATS
   const getGameStatistics = async () => {
     try {
       const gameStats = await axios.get(`/guesses/games/${modelState.gameId}`);
@@ -99,6 +100,7 @@ export default function useModelData(initial) {
     }
   };
 
+  //API CALL TO GRAB USERS LIFETIME STATS
   const getLifeTimeStatistics = async () => {
     try {
       const lifeTimeStats = await axios.get(
