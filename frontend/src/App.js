@@ -30,6 +30,7 @@ function App() {
   const [isAboutOpen, setIsAboutOpen] = useDisplayMode(false);
   const [isStatsOpen, setIsStatsOpen] = useDisplayMode(false);
   const [isInstructionsOpen, setIsInstructionsOpen] = useDisplayMode(true);
+  const [isAnnouncementOpen, setAnnouncementOpen] = useDisplayMode(false);
 
   // GAME STATE
   const {
@@ -97,28 +98,27 @@ function App() {
           <Map gameData={gameData} assignCoords={assignCoords} />
           <Dialog
             loadAudio={loadAudio}
+            isAboutOpen={isAboutOpen}
+            setIsAboutOpen={setIsAboutOpen}
             play={play}
-            pause={pause}
             clearGuesses={clearGuesses}
-            gameData={gameData}
-            setGameData={setGameData}
-            modelState={modelState}
-            setModelState={setModelState}
-            createGame={createGame}
             createRound={createRound}
+            modelState={modelState}
+            gameData={gameData}
+            isAnnouncementOpen={isAnnouncementOpen}
+            setAnnouncementOpen={setAnnouncementOpen}
+            getGameStatistics={getGameStatistics}
+            pause={pause}
             updateResultsTable={updateResultsTable}
             clearScore={clearScore}
             clearRound={clearRound}
             nextRound={nextRound}
-            getGameStatistics={getGameStatistics}
-            isAboutOpen={isAboutOpen}
-            setIsAboutOpen={setIsAboutOpen}
+            createGame={createGame}
+            isInstructionsOpen={isInstructionsOpen}
+            setIsInstructionsOpen={setIsInstructionsOpen}
             isStatsOpen={isStatsOpen}
             setIsStatsOpen={setIsStatsOpen}
             getLifeTimeStatistics={getLifeTimeStatistics}
-            isInstructionsOpen={isInstructionsOpen}
-            setIsInstructionsOpen={setIsInstructionsOpen}
-            theme={theme}
           />
           <Results
             guesses={gameData.guesses}
