@@ -2,13 +2,20 @@ const express = require('express');
 const morgan = require('morgan');
 const { Sequelize } = require('sequelize');
 const db = require('./models');
+const dotenv = require('dotenv').config()
+
+const DBNAME = process.env.DBNAME
+const DBUSERNAME = process.env.DBUSERNAME
+const DBPASSWORD = process.env.DBPASSWORD
+const DBHOST = process.env.DBHOST
+const DBDIALECT = process.env.DBDIALECT
 
 const PORT = 8080;
 const ENVIRONMENT = 'dev';
 const app = express();
-const sequelize = new Sequelize('guessfm', 'labber', 'labber', {
-  host: 'localhost',
-  dialect: 'postgres'
+const sequelize = new Sequelize(DBNAME, DBUSERNAME, DBPASSWORD, {
+  host: DBHOST,
+  dialect: DBDIALECT
 });
 
 

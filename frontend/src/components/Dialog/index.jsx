@@ -1,32 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import Instructions from "./Instructions";
 import Announcement from "./Announcement";
 import GameOver from "./GameOver";
-import About from "./About"
-import LifeTimeStats from "./LifeTimeStats"
+import About from "./About";
+import LifeTimeStats from "./LifeTimeStats";
 
 export default function Dialog(props) {
   // Props passed in to render Dialog box
   const {
     modelState,
-    setModelState,
-    round,
     play,
     pause,
     nextRound,
     clearGuesses,
     loadAudio,
-    stations,
-    setRound,
-    game,
-    setScore,
-    score,
     createGame,
     createRound,
-    updateResultsTable, 
-    clearScore, 
+    updateResultsTable,
+    clearScore,
     gameData,
-    setGameData,
     clearRound,
     getGameStatistics,
     isAboutOpen,
@@ -36,46 +28,45 @@ export default function Dialog(props) {
     getLifeTimeStatistics,
     isInstructionsOpen,
     setIsInstructionsOpen,
+    isAnnouncementOpen,
+    setAnnouncementOpen,
   } = props;
 
   useEffect(() => {
-    loadAudio(gameData.stations, gameData.round)
+    loadAudio(gameData.stations, gameData.round);
     if (gameData.round === 1 || gameData.round === 2 || gameData.round === 3) {
       setAnnouncementOpen(true);
     }
-  }, [gameData.round])
+  }, [gameData.round]);
 
-  const [ isAnnouncementOpen, setAnnouncementOpen ] = useState(false)
 
   return (
     <div>
-      {isAboutOpen && <About isAboutOpen={isAboutOpen} setIsAboutOpen={setIsAboutOpen} />}
-      <LifeTimeStats isStatsOpen={isStatsOpen} setIsStatsOpen={setIsStatsOpen} getLifeTimeStatistics={getLifeTimeStatistics} modelState={modelState}/>
+      {isAboutOpen && (
+        <About isAboutOpen={isAboutOpen} setIsAboutOpen={setIsAboutOpen} />
+      )}
+      <LifeTimeStats
+        isStatsOpen={isStatsOpen}
+        setIsStatsOpen={setIsStatsOpen}
+        getLifeTimeStatistics={getLifeTimeStatistics}
+        modelState={modelState}
+      />
       {isInstructionsOpen && (
         <Instructions
           modelState={modelState}
-          setModelState={setModelState}
           createGame={createGame}
-          round={round}
           nextRound={nextRound}
-          loadAudio={loadAudio}
-          setRound={setRound}
-          game={game}
-          stations={stations}
-          gameData={gameData}
-          setGameData={setGameData}
+          open={isInstructionsOpen}
           setIsInstructionsOpen={setIsInstructionsOpen}
         />
       )}
       {isAnnouncementOpen && (
         <Announcement
           open={isAnnouncementOpen}
-          round={round}
           play={play}
           clearGuesses={clearGuesses}
           createRound={createRound}
           modelState={modelState}
-          stations={stations}
           gameData={gameData}
           setAnnouncementOpen={setAnnouncementOpen}
         />
@@ -83,20 +74,15 @@ export default function Dialog(props) {
       {gameData.round > 3 && (
         <GameOver
           pause={pause}
-          loadAudio={loadAudio}
-          setRound={setRound}
-          setScore={setScore}
-          score={score}
           updateResultsTable={updateResultsTable}
-          modelState={modelState}
-          stations={stations}
-          gameData={gameData}
           clearScore={clearScore}
+          gameData={gameData}
           clearRound={clearRound}
           clearGuesses={clearGuesses}
           getGameStatistics={getGameStatistics}
           nextRound={nextRound}
           createGame={createGame}
+          modelState={modelState}
         />
       )}
     </div>

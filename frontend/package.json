@@ -13,9 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
     "classnames": "^2.3.1",
-    "country-code-lookup": "^0.0.20",
     "cypress": "^9.5.2",
-    "geolib": "^3.3.3",
     "google-map-react": "^2.1.10",
     "google-maps-react-17": "^2.1.0",
     "jest": "^27.5.1",
@@ -75,6 +73,10 @@
     "@storybook/preset-create-react-app": "^4.1.0",
     "@storybook/react": "^6.4.19",
     "@storybook/testing-library": "^0.0.9",
+    "@testing-library/jest-dom": "^4.0.0",
+    "@testing-library/react": "^8.0.7",
+    "@testing-library/react-hooks": "^7.0.2",
+    "prop-types": "^15.8.1",
     "webpack": "^5.70.0"
   },
   "proxy": "http://localhost:8080/"

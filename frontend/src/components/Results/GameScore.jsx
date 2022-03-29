@@ -7,7 +7,6 @@ export default function GameScore(props) {
   const scoreStyle = {
     fontFamily: "IBM Plex Mono",
     fontWeight: "600",
-    // textShadow: "3px 3px 4px black",
     color: "#F2F2F2",
     fontSize: "2rem",
     marginTop: "-0.3em"
@@ -23,7 +22,6 @@ export default function GameScore(props) {
           color: "#F2F2F2",
           minHeight: "50px",
           position: "relative",
-          // textShadow: "3px 3px 4px black",
         }}
         variant="h6"
       >

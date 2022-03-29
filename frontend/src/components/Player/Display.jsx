@@ -5,14 +5,16 @@ import Ticker from 'react-ticker';
 
 export default function Display(props) {
 
-  const { round } = props;
-  const message = "YOU ARE NOW LISTENING TO 101.7 GUESS FM... ENJOY THE GAME!";
-  const [text, setText] = useState(message);
+  const { round, text, setText } = props;
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const newFrequency = getRandomFrequency();
     const newText = `YOU ARE NOW LISTENING TO ${newFrequency} GUESS FM...RELAX, TUNE IN, AND DROP A PIN...ENJOY ROUND ${round === 0 ? 1 : round}!`;
     setText(newText);
+    setTimeout(() => {
+      setReady(true)
+    }, 400)
   }, [round])
 
   return (
@@ -23,10 +25,15 @@ export default function Display(props) {
         backgroundColor: "#1B2126",
         border: "1px solid #4D4D75",
         paddingBottom: 1.5,
+
       }}
     >
-      <Ticker speed={5} mode="smooth" offset="run-in" height={30}>
-        {({ index }) => (
+      {ready && <Ticker
+      speed={5}
+      mode="smooth"
+      offset="run-in"
+      height={30}>
+      {({ index }) => (
           <>
             <p
               style={{
@@ -40,10 +47,9 @@ export default function Display(props) {
             >
               {text ? text : "PLACEHOLDER"}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
-            {/* <img src="www.my-image-source.com/" alt=""/> */}
           </>
         )}
-      </Ticker>
+      </Ticker>}
     </Box>
   );
 }

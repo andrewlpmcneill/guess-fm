@@ -9,7 +9,7 @@ import { Grid } from "@mui/material";
 
 export default function Instructions(props) {
   // Props passed in to render Dialog box
-  const { modelState, createGame, nextRound, setIsInstructionsOpen } = props;
+  const { modelState, createGame, nextRound, setIsInstructionsOpen, open } = props;
 
   const CustomDialog = styled(Dialog)(({ theme }) => ({
     "& .MuiPaper-root": {
@@ -26,7 +26,8 @@ export default function Instructions(props) {
     },
   }));
 
-  const startGame = (userId) => {
+  // Start game on PLAY NOW button pressed
+  const handleClick = (userId) => {
     createGame(userId).then(() => {
       setIsInstructionsOpen(false);
       nextRound();
@@ -35,7 +36,7 @@ export default function Instructions(props) {
 
   return (
     <div>
-      <CustomDialog open={true} fullWidth={true} maxWidth={"md"}>
+      <CustomDialog open={open} fullWidth={true} maxWidth={"md"}>
         <DialogTitle sx={{textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b",
           letterSpacing: "2px"}}>
           {`WELCOME TO GUESS FM`}
@@ -103,7 +104,7 @@ export default function Instructions(props) {
             justifyContent: "space-between",
           }}
         >
-          <DialogButton onClick={() => startGame(modelState.userId)}>
+          <DialogButton onClick={() => handleClick(modelState.userId)}>
             {"PLAY NOW"}
           </DialogButton>
         </DialogActions>

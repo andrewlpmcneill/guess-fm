@@ -14,9 +14,10 @@ const getGameStatistics = (arrOfGuesses, arrOfRounds) => {
     }
   });
 
+
   return {
-    averageDistance: totalDistance / numberOfGuesses,
-    averageGuesses: numberOfGuesses / numberOfRounds,
+    averageDistance: Math.round(totalDistance / numberOfGuesses * 100) / 100,
+    averageGuesses:   Math.round(numberOfGuesses / numberOfRounds * 100) / 100,
     totalScore: score,
   };
 };

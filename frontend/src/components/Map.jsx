@@ -1,12 +1,9 @@
 import Marker from "./Marker";
 import GoogleMapReact from "google-map-react";
-import axios from "axios";
-import { useState } from "react";
+
 const mapsAPI = process.env.REACT_APP_GOOGLEMAPSAPIKEY;
-const mapBoxAPI = process.env.REACT_APP_MAPBOXAPIKEY;
 
 export default function SimpleMap(props) {
-  const [country, setCountry] = useState("");
   const { assignCoords, gameData } = props;
 
   const worldBounds = {
@@ -122,13 +119,7 @@ export default function SimpleMap(props) {
     },
     zoom: 4,
   };
-  const getCountry = (lat, lng) => {
-    return axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?types=country&access_token=${mapBoxAPI}
-    `)
-      .then(response => {
-        response.data.features.length ? setCountry(response.data.features[0].properties.short_code) : setCountry('N/A');
-      })
-  }
+
 
   const handleApiLoaded = (map, maps) => {
     // use map and maps objects
@@ -136,7 +127,6 @@ export default function SimpleMap(props) {
 
   const onClick = (mapsMouseEvent) => {
     assignCoords([mapsMouseEvent.lat, mapsMouseEvent.lng]);
-    getCountry(mapsMouseEvent.lat, mapsMouseEvent.lng);
   };
 
   return (
@@ -159,12 +149,7 @@ export default function SimpleMap(props) {
           styles: styles
         }}
       >
-        {/* <Marker
-          lat={gameData.coords[0]}
-          lng={gameData.coords[1]}
-          icon={"https://i.imgur.com/DGy99y0.png"}
-          text={country}
-        /> */}
+
         <Marker
           lat={gameData.coords[0]}
           lng={gameData.coords[1]}

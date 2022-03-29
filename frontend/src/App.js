@@ -23,13 +23,14 @@ function App() {
     updateRoundTable,
     createRound,
     getGameStatistics,
-    getLifeTimeStatistics
+    getLifeTimeStatistics,
   } = useModelData();
 
   // TOGGLE DISPLAY STATE
-  const [ isAboutOpen, setIsAboutOpen ] = useDisplayMode(false);
-  const [ isStatsOpen, setIsStatsOpen] = useDisplayMode(false);
-  const [ isInstructionsOpen, setIsInstructionsOpen ] = useDisplayMode(true);
+  const [isAboutOpen, setIsAboutOpen] = useDisplayMode(false);
+  const [isStatsOpen, setIsStatsOpen] = useDisplayMode(false);
+  const [isInstructionsOpen, setIsInstructionsOpen] = useDisplayMode(true);
+  const [isAnnouncementOpen, setAnnouncementOpen] = useDisplayMode(false);
 
   // GAME STATE
   const {
@@ -48,7 +49,7 @@ function App() {
   const {
     playing,
     volume,
-    click,
+    handleClick,
     handleChange,
     play,
     pause,
@@ -59,7 +60,9 @@ function App() {
     error,
     getNewStation,
     handleMute,
-    muted
+    muted,
+    text,
+    setText,
   } = usePlayerData();
 
   const theme = createTheme({
@@ -67,56 +70,55 @@ function App() {
       MuiTypography: {
         defaultProps: {
           fontFamily: "IBM Plex Mono",
-          color: "white"
+          color: "white",
         },
         h6: {
           fontFamily: "Wild World",
-        }
+        },
       },
       MuiDialogTitle: {
         defaultProps: {
-          backgroundColor: '#20202a',
+          backgroundColor: "#20202a",
           color: "#c9333b",
-          m: "auto", 
+          m: "auto",
           p: 2,
         },
       },
-    }
-  })
+    },
+  });
 
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <Box sx={{ position: "relative", overflow: "hidden" }}>
-          <NavBar 
+          <NavBar
             setIsAboutOpen={setIsAboutOpen}
             setIsStatsOpen={setIsStatsOpen}
           />
           <Map gameData={gameData} assignCoords={assignCoords} />
           <Dialog
             loadAudio={loadAudio}
+            isAboutOpen={isAboutOpen}
+            setIsAboutOpen={setIsAboutOpen}
             play={play}
-            pause={pause}
             clearGuesses={clearGuesses}
-            gameData={gameData}
-            setGameData={setGameData}
-            modelState={modelState}
-            setModelState={setModelState}
-            createGame={createGame}
             createRound={createRound}
+            modelState={modelState}
+            gameData={gameData}
+            isAnnouncementOpen={isAnnouncementOpen}
+            setAnnouncementOpen={setAnnouncementOpen}
+            getGameStatistics={getGameStatistics}
+            pause={pause}
             updateResultsTable={updateResultsTable}
             clearScore={clearScore}
             clearRound={clearRound}
             nextRound={nextRound}
-            getGameStatistics={getGameStatistics}
-            isAboutOpen={isAboutOpen}
-            setIsAboutOpen={setIsAboutOpen}
+            createGame={createGame}
+            isInstructionsOpen={isInstructionsOpen}
+            setIsInstructionsOpen={setIsInstructionsOpen}
             isStatsOpen={isStatsOpen}
             setIsStatsOpen={setIsStatsOpen}
             getLifeTimeStatistics={getLifeTimeStatistics}
-            isInstructionsOpen={isInstructionsOpen}
-            setIsInstructionsOpen={setIsInstructionsOpen}
-            theme={theme}
           />
           <Results
             guesses={gameData.guesses}
@@ -133,7 +135,7 @@ function App() {
             <Player
               volume={volume}
               playing={playing}
-              handleClick={click}
+              handleClick={handleClick}
               handleChange={handleChange}
               addGuess={addGuess}
               source={source}
@@ -147,10 +149,21 @@ function App() {
               handleMute={handleMute}
               muted={muted}
               round={gameData.round}
+              text={text}
+              setText={setText}
             />
             <Stack
               direction="column"
-              sx={{ backgroundColor: '#20202a', borderRadius: "15px", border: "1px solid #4D4D75", position: "absolute", right: "2em", bottom: "2em", p: "1em 1.5em", width: "300px" }}
+              sx={{
+                backgroundColor: "#20202a",
+                borderRadius: "15px",
+                border: "1px solid #4D4D75",
+                position: "absolute",
+                right: "2em",
+                bottom: "2em",
+                p: "1em 1.5em",
+                width: "300px",
+              }}
             >
               <GuessButton
                 addGuess={addGuess}
