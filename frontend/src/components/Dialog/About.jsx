@@ -29,25 +29,39 @@ const AboutDialog = styled(Dialog)(({ theme }) => ({
 
 export default function About(props) {
   // Props passed in to render Dialog box
-  const { isAboutOpen, setIsAboutOpen, theme } = props
+  const { isAboutOpen, setIsAboutOpen } = props
 
   return (
-    <div class="about">
-        <AboutDialog open={isAboutOpen} fullWidth maxWidth={"sm"}>
+    <div
+      class="about"
+    >
+        <AboutDialog
+          open={isAboutOpen}
+          fullWidth maxWidth={"sm"}
+        >
           <IconButton
             aria-label="close"
             onClick={() => setIsAboutOpen(false)}
-            sx={{
-              position: 'absolute',
-              left: 8,
-              top: 8,
-              color: "#AB151D",
-            }}
+            sx={
+              {
+                position: 'absolute',
+                left: 8,
+                top: 8,
+                color: "#AB151D",
+              }
+            }
           >
             <CloseIcon />
           </IconButton>
-          <DialogTitle sx={{ m: "auto", p: 2, 
-          textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b", letterSpacing: "2px" }}>
+          <DialogTitle
+            sx={
+              { m: "auto",
+                p: 2, 
+                textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b",
+                letterSpacing: "2px"
+              }
+            }
+          >
             {"GUESS FM"}
           </DialogTitle>
           {/* Add margin around content */}

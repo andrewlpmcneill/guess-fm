@@ -26,7 +26,8 @@ export default function Instructions(props) {
     },
   }));
 
-  const startGame = (userId) => {
+  // Start game on PLAY NOW button pressed
+  const handleClick = (userId) => {
     createGame(userId).then(() => {
       setIsInstructionsOpen(false);
       nextRound();
@@ -103,7 +104,7 @@ export default function Instructions(props) {
             justifyContent: "space-between",
           }}
         >
-          <DialogButton onClick={() => startGame(modelState.userId)}>
+          <DialogButton onClick={() => handleClick(modelState.userId)}>
             {"PLAY NOW"}
           </DialogButton>
         </DialogActions>

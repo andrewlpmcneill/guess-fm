@@ -50,7 +50,6 @@ export default function GameOver(props) {
     },
   }));
 
-
   const handleClose = (userId) => {
     // Add results to table and pause music
     updateResultsTable(gameData.score);
@@ -67,9 +66,7 @@ export default function GameOver(props) {
         nextRound()
       }, 250);
     });
-    
   };
-
 
   return (
     <div>

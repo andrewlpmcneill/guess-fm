@@ -30,7 +30,10 @@ const CustomDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export default function Announcement(props) {
-  const { onClick, play, clearGuesses, createRound, modelState, gameData, setAnnouncementOpen, open } =
+
+  console.log("hello")
+
+  const { play, clearGuesses, createRound, modelState, gameData, setAnnouncementOpen, open } =
     props;
 
   //conditional text display logic for the button
@@ -52,7 +55,6 @@ export default function Announcement(props) {
     gameData.guesses.length >= 1 &&
     gameData.guesses[gameData.guesses.length - 1].isCorrect
   ) {
-    // let dataRound = gameData.round === 2 ? 1 : 2;
     roundTitle = "NICE ONE!";
     roundAnswer = `You got it in ${gameData.guesses.length} ${gameData.guesses.length === 1? "guess" : "guesses"}. `;
     pinDistanceAway =
@@ -103,7 +105,6 @@ export default function Announcement(props) {
         TransitionComponent={Transition}
         aria-describedby="alert-dialog-slide-description"
         fullWidth={true}
-        onClick={onClick}
       >
         {/* Dynamically generate round number */}
         <DialogTitle
@@ -129,7 +130,7 @@ export default function Announcement(props) {
 
         <DialogActions sx={{ p: 2 }}>
           {buffer ? (
-            <CircularProgress sx={{ m: "auto" }} />
+            <CircularProgress sx={{ m: "auto", color: "#4D4D75" }} />
           ) : (
             <Button
               onClick={handleClose}
