@@ -28,6 +28,8 @@ export default function Dialog(props) {
     getLifeTimeStatistics,
     isInstructionsOpen,
     setIsInstructionsOpen,
+    isAnnouncementOpen,
+    setAnnouncementOpen,
   } = props;
 
   useEffect(() => {
@@ -37,7 +39,6 @@ export default function Dialog(props) {
     }
   }, [gameData.round]);
 
-  const [isAnnouncementOpen, setAnnouncementOpen] = useState(false);
 
   return (
     <div>
@@ -55,6 +56,7 @@ export default function Dialog(props) {
           modelState={modelState}
           createGame={createGame}
           nextRound={nextRound}
+          open={isInstructionsOpen}
           setIsInstructionsOpen={setIsInstructionsOpen}
         />
       )}
