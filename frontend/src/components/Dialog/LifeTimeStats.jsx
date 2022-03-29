@@ -97,7 +97,7 @@ export default function LifeTimeStats(props) {
               justifyContent: "space-between",
             }}
           >
-            <Box>
+            <Box sx={{minWidth: "33%"}}>
               <Card
                 sx={{
                   m: "auto",
@@ -123,7 +123,7 @@ export default function LifeTimeStats(props) {
               </Card>
             </Box>
 
-            <Box>
+            <Box sx={{minWidth: "33%"}}>
               <Card
                 sx={{
                   m: "auto",
@@ -147,7 +147,7 @@ export default function LifeTimeStats(props) {
                 </CardContent>
               </Card>
             </Box>
-            <Box>
+            <Box sx={{minWidth: "33%"}}>
               <Card
                 sx={{
                   m: "auto",
@@ -179,7 +179,7 @@ export default function LifeTimeStats(props) {
               justifyContent: "space-between",
             }}
           >
-            <Box>
+            <Box sx={{minWidth: "33%"}}>
               <Card
                 sx={{
                   m: "auto",
@@ -204,7 +204,7 @@ export default function LifeTimeStats(props) {
                 </CardContent>
               </Card>
             </Box>
-            <Box>
+            <Box sx={{minWidth: "33%"}}>
               <Card
                 sx={{
                   m: "auto",
@@ -228,7 +228,7 @@ export default function LifeTimeStats(props) {
                 </CardContent>
               </Card>
             </Box>
-            <Box>
+            <Box sx={{minWidth: "33%"}}>
               <Card
                 sx={{
                   m: "auto",
@@ -247,7 +247,7 @@ export default function LifeTimeStats(props) {
                     {lifeTimeStatsData.firstGuessAverageDistance}
                   </Typography>
                   <Typography sx={{ fontSize: "18px", fontWeight: 300 }}>
-                    {"AVG FIRST GUESS DISTANCE"}
+                    {"AVG 1ST GUESS DISTANCE"}
                   </Typography>
                 </CardContent>
               </Card>
