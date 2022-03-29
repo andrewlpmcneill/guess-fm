@@ -3,15 +3,19 @@ import axios from 'axios';
 
 export default function usePlayerData() {
 
+  const message = "YOU ARE NOW LISTENING TO 101.7 GUESS FM... ENJOY THE GAME!";
+
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(30);
   const [source, setSource] = useState("");
   const [error, setError] = useState(0);
   const [muted, setMuted] = useState(false);
+  const [text, setText] = useState(message);
   
   const player = document.getElementById("mp3Player");
   
-  const click = () => {
+  // play/pause click handler
+  const handleClick = () => {
     if (playing) {
       setPlaying(false);
       player.pause();
@@ -74,6 +78,6 @@ export default function usePlayerData() {
     }
   };
 
-  return { playing, volume, click, handleChange, play, pause, source, setSource, loadAudio, setPlaying, error, getNewStation, handleMute, muted }
+  return { playing, volume, handleClick, handleChange, play, pause, source, setSource, loadAudio, setPlaying, error, getNewStation, handleMute, muted, text, setText }
 
 }
