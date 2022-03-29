@@ -1,9 +1,7 @@
 import Marker from "./Marker";
 import GoogleMapReact from "google-map-react";
-import axios from "axios";
-import { useState } from "react";
+
 const mapsAPI = process.env.REACT_APP_GOOGLEMAPSAPIKEY;
-const mapBoxAPI = process.env.REACT_APP_MAPBOXAPIKEY;
 
 export default function SimpleMap(props) {
   const { assignCoords, gameData } = props;
