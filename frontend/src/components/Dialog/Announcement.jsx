@@ -1,5 +1,5 @@
 import { useState, useEffect, forwardRef } from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -14,65 +14,79 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 const CustomDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiPaper-root': {
-    backgroundColor: '#20202a',
+  "& .MuiPaper-root": {
+    backgroundColor: "#20202a",
     borderRadius: "15px",
     // Maybe not?
     border: "1px solid #4D4D75",
     // boxShadow: "0px 0px 10px 2px #9393C2"
   },
-  '& .MuiButton-root': {
+  "& .MuiButton-root": {
     backgroundColor: "#c9333b",
-    '&:hover': {
+    "&:hover": {
       backgroundColor: "#AB151D",
-    }
+    },
   },
 }));
 
 export default function Announcement(props) {
+  
+  // Set short buffer on play button to give audio player time to load
+  const [buffer, setBuffer] = useState(true);
 
-  console.log("hello")
+  useEffect(() => {
+    setTimeout(() => {
+      setBuffer(false);
+    }, 1000);
+  }, []);
 
-  const { play, clearGuesses, createRound, modelState, gameData, setAnnouncementOpen, open } =
-    props;
+  const {
+    play,
+    clearGuesses,
+    createRound,
+    modelState,
+    gameData,
+    setAnnouncementOpen,
+    open,
+  } = props;
+  
+  const numberOfGuesses = gameData.guesses.length;
 
-  //conditional text display logic for the button
+  //sets button text
   const buttonTitle =
-    gameData.round === 1 ? "START" : `START ROUND ${gameData.round}`;
+  gameData.round === 1 ? "START" : `START ROUND ${gameData.round}`;
 
-  // Round - 2 represents the previous round
+  
+  //sets round results data
   const currentStation = gameData.stations[gameData.round - 2];
-  let roundTitle;
-  let roundAnswer = "";
-  let pinDistanceAway;
-  let distanceAwayVisual;
+  const roundTitle =
+  gameData.round === 1
+  ? "ROUND 1"
+    : gameData.guesses[numberOfGuesses - 1].isCorrect
+    ? "NICE ONE!"
+    : "OOPS... NOT QUITE";
+    
+  
+  const roundAnswer =
+    numberOfGuesses >= 1 &&
+    gameData.guesses[numberOfGuesses - 1].isCorrect
+      ? `You got it in ${numberOfGuesses} ${
+          numberOfGuesses === 1 ? "guess" : "guesses"
+        }. `
+      : "";
 
-  //fix this logic
-  //can not define variables outside of conditions as undefined will throw errors
-  if (gameData.round === 1) {
-    roundTitle = "ROUND 1";
-  } else if (
-    gameData.guesses.length >= 1 &&
-    gameData.guesses[gameData.guesses.length - 1].isCorrect
-  ) {
-    roundTitle = "NICE ONE!";
-    roundAnswer = `You got it in ${gameData.guesses.length} ${gameData.guesses.length === 1? "guess" : "guesses"}. `;
-    pinDistanceAway =
-      gameData.guesses[gameData.guesses.length - 1].distanceAway;
-    distanceAwayVisual = `📍${getTicksWithDistance(
-      gameData.guesses[gameData.guesses.length - 1].distanceAway
-    )}🌎`;
-  } else if (
-    gameData.guesses.length > 4 &&
-    !gameData.guesses[gameData.guesses.length - 1].isCorrect
-  ) {
-    roundTitle = "OOPS... NOT QUITE";
-    pinDistanceAway =
-      gameData.guesses[gameData.guesses.length - 1].distanceAway;
-    distanceAwayVisual = `📍${getTicksWithDistance(
-      gameData.guesses[gameData.guesses.length - 1].distanceAway
-    )}🌎`;
-  }
+  const pinDistanceAway =
+    numberOfGuesses >= 1
+      ? gameData.guesses[numberOfGuesses - 1].distanceAway
+      : "";
+
+  const distanceAwayVisual =
+    numberOfGuesses >= 1
+      ? `📍${getTicksWithDistance(
+          gameData.guesses[numberOfGuesses - 1].distanceAway
+        )}🌎`
+      : "";
+
 
   // On close of round announcement - play audio and clear previous guesses
   const handleClose = () => {
@@ -88,14 +102,6 @@ export default function Announcement(props) {
     });
   };
 
-  // Set short buffer on play button to give audio player time to load
-  const [buffer, setBuffer] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setBuffer(false);
-    }, 1000);
-  }, []);
 
   return (
     <div>
@@ -108,7 +114,10 @@ export default function Announcement(props) {
       >
         {/* Dynamically generate round number */}
         <DialogTitle
-          sx={{textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b", letterSpacing: "2px" }}
+          sx={{
+            textShadow: "0 0 3px #c9333b, 0 0 5px #c9333b",
+            letterSpacing: "2px",
+          }}
         >{`${roundTitle}`}</DialogTitle>
 
         {gameData.round > 1 && (
@@ -118,7 +127,8 @@ export default function Announcement(props) {
               {roundAnswer}
             </Typography>
             <Typography mt={1}>
-              The station playing was <strong>{currentStation.station_title}</strong> in{" "}
+              The station playing was{" "}
+              <strong>{currentStation.station_title}</strong> in{" "}
               <strong>{currentStation.city}.</strong>
             </Typography>
             <Typography mt={1}>
