@@ -25,8 +25,7 @@ export default function Display(props) {
         backgroundColor: "#1B2126",
         border: "1px solid #4D4D75",
         paddingBottom: 1.5,
-        minWidth: width,
-        maxWidth: width,
+
       }}
     >
       {ready && <Ticker
