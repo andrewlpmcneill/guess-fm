@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import Stack from "@mui/material/Stack";
 import { Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import PlayButton from "./PlayButton";
 import Volume from "./Volume";
 import Mute from "./Mute";
@@ -9,6 +8,7 @@ import Display from "./Display";
 import IconButton from "@mui/material/IconButton";
 
 export default function Player(props) {
+  
   const {
     handleClick,
     playing,
@@ -24,12 +24,16 @@ export default function Player(props) {
     play,
     muted,
     handleMute,
-    round
+    round,
+    text,
+    setText
   } = props;
+  
   const player = document.getElementById("mp3Player");
 
   // Volume Side Effect
   useEffect(() => {
+    // player variable does not work for this - has to be explicit
     document.getElementById("mp3Player").volume = 0.3;
   }, []);
 
@@ -38,6 +42,7 @@ export default function Player(props) {
     // get new station via getNewStation function
     const currentRound = gameData.round - 1;
     const currentStation = gameData.stations[currentRound];
+    // prevent crashing on initial run of this effect
     if (currentStation === undefined) return;
     const country = currentStation.country;
     const stationID = currentStation.id;
@@ -71,13 +76,16 @@ export default function Player(props) {
         p: "1em 1.5em",
       }}
     >
-      <Display round={round}/>
+      <Display
+        round={round}
+        text={text}
+        setText={setText}
+      />
       <Stack
         direction="row"
         spacing={2}
         alignItems="center"
         justifyContent="space-between"
-        // sx={{ width: "220px" }}
       >
         <IconButton
         sx={{ color: "#FFFFFF" }}
@@ -99,13 +107,19 @@ export default function Player(props) {
         >
           {"GUESS FM"}
         </Typography>
-        <IconButton sx={{ color: "#FFFFFF" }}>
-          <Mute handleMute={handleMute} muted={muted} />
+        <IconButton
+          sx={{ color: "#FFFFFF" }}
+        >
+          <Mute
+            handleMute={handleMute}
+            muted={muted}
+          />
         </IconButton>
         <audio
           id="mp3Player"
           src={source}
           type="audio/mp3"
+          // Establishes listeners for media keys on users' keyboards
           onPause={() => {
             navigator.mediaSession.setActionHandler("play", function () {
               player.play();
@@ -120,7 +134,11 @@ export default function Player(props) {
           }}
         />
       </Stack>
-      <Volume volume={volume} handleChange={handleChange} muted={muted} />
+      <Volume
+        volume={volume}
+        handleChange={handleChange}
+        muted={muted}
+      />
     </Stack>
   );
 }

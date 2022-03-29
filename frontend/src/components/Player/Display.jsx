@@ -5,9 +5,7 @@ import Ticker from 'react-ticker';
 
 export default function Display(props) {
 
-  const { round } = props;
-  const message = "YOU ARE NOW LISTENING TO 101.7 GUESS FM... ENJOY THE GAME!";
-  const [text, setText] = useState(message);
+  const { round, text, setText } = props;
 
   useEffect(() => {
     const newFrequency = getRandomFrequency();
@@ -25,8 +23,12 @@ export default function Display(props) {
         paddingBottom: 1.5,
       }}
     >
-      <Ticker speed={5} mode="smooth" offset="run-in" height={30}>
-        {({ index }) => (
+      <Ticker
+      speed={5}
+      mode="smooth"
+      offset="run-in"
+      height={30}>
+      {({ index }) => (
           <>
             <p
               style={{
@@ -40,7 +42,6 @@ export default function Display(props) {
             >
               {text ? text : "PLACEHOLDER"}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
-            {/* <img src="www.my-image-source.com/" alt=""/> */}
           </>
         )}
       </Ticker>
