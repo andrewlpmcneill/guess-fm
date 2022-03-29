@@ -2,20 +2,38 @@ const express = require('express');
 const morgan = require('morgan');
 const { Sequelize } = require('sequelize');
 const db = require('./models');
-const dotenv = require('dotenv').config()
+const dotenv = require('dotenv').config();
 
-const DBNAME = process.env.DBNAME
-const DBUSERNAME = process.env.DBUSERNAME
-const DBPASSWORD = process.env.DBPASSWORD
-const DBHOST = process.env.DBHOST
-const DBDIALECT = process.env.DBDIALECT
+// for development
+// const DBNAME = process.env.DBNAME;
+// const DBUSERNAME = process.env.DBUSERNAME;
+// const DBPASSWORD = process.env.DBPASSWORD;
+// const DBHOST = process.env.DBHOST;
+// const DBDIALECT = process.env.DBDIALECT;
+
+// for production
+const DB_NAME = process.env.DB_NAME;
+const DB_USER = process.env.DB_USER;
+const DB_PASS = process.env.DB_PASS;
+const DB_INSTANCE = process.env.DB_INSTANCE;
 
 const PORT = 8080;
 const ENVIRONMENT = 'dev';
 const app = express();
-const sequelize = new Sequelize(DBNAME, DBUSERNAME, DBPASSWORD, {
-  host: DBHOST,
-  dialect: DBDIALECT
+
+// for development
+// const sequelize = new Sequelize(DBNAME, DBUSERNAME, DBPASSWORD, {
+//   host: DBHOST,
+//   dialect: DBDIALECT
+// });
+
+// for production
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
+  host: `/cloudsql/${process.env.DB_INSTANCE}`,
+  dialect: 'postgres',
+  dialectOptions: {
+    socketPath: `/cloudsql/${DB_INSTANCE}`
+  }
 });
 
 
