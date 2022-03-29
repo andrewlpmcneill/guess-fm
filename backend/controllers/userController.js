@@ -30,7 +30,7 @@ const createUser = async (req, res) => {
       password,
     });
     console.log(newUser);
-    res.json(newUser);
+    res.json(newUser.dataValues);
   } catch (err) {
     console.log(err);
   }
