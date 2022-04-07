@@ -1,4 +1,6 @@
-<img src="https://i.postimg.cc/X774ff90/GUESS-FM-800-300-px.png" alt="Guess FM" align="center" width="430" height="160"/>
+<p align="center">
+<img src="https://i.postimg.cc/X774ff90/GUESS-FM-800-300-px.png" alt="Guess FM" width="430" height="160"/>
+</p>
 
 Guess FM is a game where users are played a random radio station and have to guess what country it is from.
 
