@@ -1,4 +1,4 @@
-## !['Guess FM'](https://i.postimg.cc/X774ff90/GUESS-FM-800-300-px.png)
+<img src="https://i.postimg.cc/X774ff90/GUESS-FM-800-300-px.png" alt="Guess FM" width="430" height="160"/>
 
 Guess FM is a game where users are played a random radio station and have to guess what country it is from.
 
@@ -9,10 +9,12 @@ Inspired by the trend of simple online games like Wordle, Guess FM combines the 
 ## GIFs
 
 A sample gameplay flow. (Warning - you won't always go 3 for 3 🙃)
-!['Sample gameplay'] (https://github.com/andrewlpmcneill/guess-fm/blob/master/docs/guessfm-1.gif)
+
+!['Sample gameplay'](https://github.com/andrewlpmcneill/guess-fm/blob/master/docs/guessfm-1.gif?raw=true)
 
 Users can check their overall statistics - and the statistics of Guess FM. 
-!['Statistics pages'] (https://github.com/andrewlpmcneill/guess-fm/blob/master/docs/guessfm-2.gif)
+
+!['Statistics pages'](https://github.com/andrewlpmcneill/guess-fm/blob/master/docs/guessfm-2.gif?raw=true)
 
 ## Stack
 
